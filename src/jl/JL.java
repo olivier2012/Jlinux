@@ -5,8 +5,13 @@
  */
 package jl;
 
+import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import com.jcraft.jsch.UserInfo;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.LogManager;
 import jl.function.execCommand;
 import org.apache.logging.log4j.Logger;
@@ -38,16 +43,52 @@ public class JL {
         passwd = "x09seokw";
 
         Session session = jsch.getSession(username, host, 22);
-        
         session.setPassword(passwd);
-        String command = "ls";
         
-        String str = execCommand.executeCommand(command,session);        
+        UserInfo ui = new MyUserInfo();
+        session.setUserInfo(ui);
+        session.connect(30000);
+        
+        String command = "iostat ";
+        log.info("call the execCommand");
+        String str = execCommand.executeCommand(command, session);   
+       /* ChannelExec channel = (ChannelExec) session.openChannel("exec");
+	channel.setCommand(command);
+
+	channel.setInputStream(null);
+	channel.setErrStream(System.err);
+
+	final InputStream in = channel.getInputStream();
+
+	channel.connect();
+
+	final StringBuilder result = new StringBuilder();
+	final byte[] tmp = new byte[1024];
+	while (true) {
+		while (in.available() > 0) {
+			final int i = in.read(tmp, 0, 1024);
+			if (i < 0) {
+				break;
+			}
+			result.append(new String(tmp, 0, i));
+                        log.info(result.toString());
+		}
+		if (channel.isClosed()) {
+			log.info("exit-status: " + channel.getExitStatus());
+			break;
+		}
+		try {
+			Thread.sleep(1000);
+		} catch (final Exception ee) {
+		}
+	}
+
+	channel.disconnect();     */
                  
         } catch (Exception ee) {
             System.out.println(ee);
         }
-        
     }
+                 
     
 }

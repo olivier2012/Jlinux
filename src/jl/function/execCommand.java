@@ -14,7 +14,7 @@ public class execCommand {
 
 public static String  executeCommand(String command,Session session) throws JSchException,
 		IOException {
-	final ChannelExec channel = (ChannelExec) session.openChannel("exec");
+        ChannelExec channel = (ChannelExec) session.openChannel("exec");
 	channel.setCommand(command);
 
 	channel.setInputStream(null);
@@ -34,6 +34,7 @@ public static String  executeCommand(String command,Session session) throws JSch
 			}
 			result.append(new String(tmp, 0, i));
 		}
+                log.info(result.toString());
 		if (channel.isClosed()) {
 			log.info("exit-status: " + channel.getExitStatus());
 			break;
@@ -47,5 +48,23 @@ public static String  executeCommand(String command,Session session) throws JSch
 	channel.disconnect();
 
 	return result.toString();
+}
+
+private Session getSession(String username,String hostname,Session session) throws Exception {
+    try {
+        ChannelExec testChannel = (ChannelExec) session.openChannel("exec");
+        testChannel.setCommand("true");
+        testChannel.connect();
+        if(log.isDebugEnabled()) {
+            log.debug("Session erfolgreich getestet, verwende sie erneut");
+        }
+     //   testChannel.exit();
+    } catch (Throwable t) {
+        log.info("Session kaputt. Baue neue.");
+    //    session = getSession(user, host, 22);
+     //   session.setConfig(config);
+        session.connect();
+    }
+    return session;
 }
 }
