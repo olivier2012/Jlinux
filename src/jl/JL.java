@@ -39,8 +39,8 @@ public class JL {
 
         //System.out.print("please input the host that you want to connect (ip address : 127.0.0.1): ");
         host = "192.168.2.204";
-        username = "olivier";
-        passwd = "x09seokw";
+        username = "demo";
+        passwd = "demo";
 
         Session session = jsch.getSession(username, host, 22);
         session.setPassword(passwd);
