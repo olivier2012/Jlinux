@@ -28,7 +28,8 @@ public class JL {
      */
     public static void main(String[] args) {
         log.info("main begin.........! ");
-                 try {
+        DBinit.dbinit();
+        try {
         JSch jsch = new JSch();
 
         /*如果是新的ip 可能 会遇到 UnknownHostKey ， 需要处理 */
@@ -49,41 +50,17 @@ public class JL {
         session.setUserInfo(ui);
         session.connect(30000);
         
-        String command = "iostat ";
+        /* run command , got the system info  */
+        String command = "cat /proc/cpuinfo ";
         log.info("call the execCommand");
-        String str = execCommand.executeCommand(command, session);   
-       /* ChannelExec channel = (ChannelExec) session.openChannel("exec");
-	channel.setCommand(command);
+        /* system info in the str*/
+        String System_info = execCommand.executeCommand(command, session); 
+        
+        /*add the system info to database */
+        log.info("add the information to database ");
+        DBinit.String2map(System_info);
 
-	channel.setInputStream(null);
-	channel.setErrStream(System.err);
-
-	final InputStream in = channel.getInputStream();
-
-	channel.connect();
-
-	final StringBuilder result = new StringBuilder();
-	final byte[] tmp = new byte[1024];
-	while (true) {
-		while (in.available() > 0) {
-			final int i = in.read(tmp, 0, 1024);
-			if (i < 0) {
-				break;
-			}
-			result.append(new String(tmp, 0, i));
-                        log.info(result.toString());
-		}
-		if (channel.isClosed()) {
-			log.info("exit-status: " + channel.getExitStatus());
-			break;
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (final Exception ee) {
-		}
-	}
-
-	channel.disconnect();     */
+       session.disconnect();
                  
         } catch (Exception ee) {
             System.out.println(ee);
