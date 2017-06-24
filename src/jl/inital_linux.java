@@ -24,6 +24,7 @@ import java.util.Base64;
 import java.util.Properties;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import jl.function.execCommand;
 
 
 /**
@@ -55,28 +56,14 @@ public class inital_linux {
         UserInfo ui = new MyUserInfo();
         session.setUserInfo(ui);
        session.connect(30000);
-        Channel channel = session.openChannel("shell");
+        Channel channel = session.openChannel("exec");
         String command = "top";
         channel.setInputStream(System.in);
         channel.setOutputStream(System.out);
         channel.connect(3 * 1000); 
-        /* set channelExec  for run  some command  at linux host side */
-
         
-        /*绑定输入的 缓存在 这个 channelExec 上 ，然后可以 在远端 输入任何命令 
-        InputStream in = channelExec.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String line;
-        while((line = reader.readLine()) !=null){
-          System.out.println("please input the command : " + line);
-        }
-        
-        int exitStatus = channelExec.getExitStatus();
-        if(exitStatus > 0){
-          System.out.println("remote exec error ! " + exitStatus);
-        }*/
         Thread.sleep(1000);
-//        session.disconnect();
+
         } catch (Exception ee) {
             System.out.println(ee);
         }
