@@ -1,11 +1,5 @@
 package Hiber;
-import Hiber.DB.Accessory;
-import Hiber.DB.CPU;
-import Hiber.DB.HDisk;
-import Hiber.DB.Host;
-import Hiber.DB.Monitor;
-import Hiber.DB.Network;
-import Hiber.DB.User;
+import Hiber.DB.*;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.*;
@@ -23,6 +17,7 @@ public class HibUtil {
         conf.addAnnotatedClass( HDisk.class );
         conf.addAnnotatedClass( Monitor.class );
         conf.addAnnotatedClass( Accessory.class );
+        conf.addAnnotatedClass( simpletest.class );
         sessFactory = conf.buildSessionFactory(
         new StandardServiceRegistryBuilder( ).applySettings(conf.getProperties()).build( )
         );

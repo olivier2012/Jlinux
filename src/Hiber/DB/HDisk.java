@@ -7,18 +7,39 @@ package Hiber.DB;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author olivier-h
  */
+@Entity
+@Table(name = "Jlinux_HDisk")
 public class HDisk {
     @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_hdisk_seq")
+    @SequenceGenerator(
+    name="Jlinux_hdisk_seq",
+    sequenceName="hdisk_sequence",
+    allocationSize=20
+    )
     private long HdId;
+
+    public String getHost_name() {
+        return Host_name;
+    }
+
+    public void setHost_name(String Host_name) {
+        this.Host_name = Host_name;
+    }
+    
+    @Column(name="Host_name", length = 120)
+    private String Host_name;
     
     @Column(name="Hddisk_name",length=20)
     private String Hddisk_name;

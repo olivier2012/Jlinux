@@ -7,21 +7,34 @@ package Hiber.DB;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author olivier-h
  */
+@Entity
+@Table(name = "Jlinux_CPU")
 public class CPU {
     @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_cpu_seq")
+    @SequenceGenerator(
+    name="Jlinux_cpu_seq",
+    sequenceName="cpu_sequence",
+    allocationSize=20
+    )
     private long CPUId;
     
-    @Column(name="Processor",length=20)
-    private String Processor;
+    @Column(name="Host_name", length = 120)
+    private String Host_name;
+    
+    @Column(name="processor",length=20)
+    private String processor;
     
    @Column(name = "vendor_id", length = 20)
     private String vendor_id;
@@ -32,19 +45,161 @@ public class CPU {
    @Column(name = "model", length = 12)
     private String model;
    
-    @Column(name = "model_name", length = 22)
+    @Column(name = "model_name", length = 250)
     private String model_name;
 
-   @Column(name = "step", length = 10)
-    private String step;
+   @Column(name = "stepping", length = 5)
+    private String stepping;
+   
+    @Column(name = "microcode", length = 5)
+    private String microcode;
    
     @Column(name="cpu_mhz", length = 20)
     private String cpu_mhz;
+      
+    @Column(name="cache_size", length = 20)
+    private String cache_size;
+    
+    @Column(name="physical_id", length = 20)
+    private String physical_id;
+    
+    @Column(name="siblings", length = 20)
+    private String siblings;
+    
+    @Column(name="core_id", length = 20)
+    private String core_id;
+    
+    @Column(name="apicid", length = 20)
+    private String apicid;
+    
+    @Column(name="initial_apicid", length = 20)
+    private String initial_apicid;
+    
+    @Column(name="fpu", length = 20)
+    private String fpu;
+    
+    @Column(name="fpu_exception", length = 20)
+    private String fpu_exception;
+    
+    @Column(name="cpuid_level", length = 20)
+    private String cpuid_level;
+    
+    @Column(name="wp", length = 20)
+    private String wp;
+    
+    @Column(name="power_management", length = 120)
+    private String power_management;
+
+    public String getHost_name() {
+        return Host_name;
+    }
+
+    public void setHost_name(String Host_name) {
+        this.Host_name = Host_name;
+    }
+    
+
+    public String getPower_management() {
+        return power_management;
+    }
+
+    public void setPower_management(String power_management) {
+        this.power_management = power_management;
+    }
+    
+
+    public String getCpuid_level() {
+        return cpuid_level;
+    }
+
+    public void setCpuid_level(String cpuid_level) {
+        this.cpuid_level = cpuid_level;
+    }
+
+    public String getWp() {
+        return wp;
+    }
+
+    public void setWp(String wp) {
+        this.wp = wp;
+    }
     
     @Column(name="cpu_cores",length=5)
     private String cpu_cores;
+
+    public String getMicrocode() {
+        return microcode;
+    }
+
+    public void setMicrocode(String microcode) {
+        this.microcode = microcode;
+    }
+
+    public String getCache_size() {
+        return cache_size;
+    }
+
+    public void setCache_size(String cache_size) {
+        this.cache_size = cache_size;
+    }
+
+    public String getPhysical_id() {
+        return physical_id;
+    }
+
+    public void setPhysical_id(String physical_id) {
+        this.physical_id = physical_id;
+    }
+
+    public String getSiblings() {
+        return siblings;
+    }
+
+    public void setSiblings(String siblings) {
+        this.siblings = siblings;
+    }
+
+    public String getCore_id() {
+        return core_id;
+    }
+
+    public void setCore_id(String core_id) {
+        this.core_id = core_id;
+    }
+
+    public String getApicid() {
+        return apicid;
+    }
+
+    public void setApicid(String apicid) {
+        this.apicid = apicid;
+    }
+
+    public String getInitial_apicid() {
+        return initial_apicid;
+    }
+
+    public void setInitial_apicid(String initial_apicid) {
+        this.initial_apicid = initial_apicid;
+    }
+
+    public String getFpu() {
+        return fpu;
+    }
+
+    public void setFpu(String fpu) {
+        this.fpu = fpu;
+    }
+
+    public String getFpu_exception() {
+        return fpu_exception;
+    }
+
+    public void setFpu_exception(String fpu_exception) {
+        this.fpu_exception = fpu_exception;
+    }
    
-    @Column(name = "flags", length = 64)
+    @Column(name = "flags", length = 545)
     private String flags;
        
    @Column(name = "bogomips", length = 64)
@@ -56,11 +211,8 @@ public class CPU {
    @Column(name = "cache_alignment", length = 20)
     private String cache_alignment;
    
-    @Column(name="address_size", length = 30)
+    @Column(name="address_size", length = 150)
     private String address_size; 
-    
-    @Column(name="cpu_core_id",length=12)
-    private String cpu_core_id;
     
     @Column(name="Access_time")
     private Date Access_time;
@@ -71,14 +223,6 @@ public class CPU {
 
     public void setCPUId(long CPUId) {
         this.CPUId = CPUId;
-    }
-
-    public String getProcessor() {
-        return Processor;
-    }
-
-    public void setProcessor(String Processor) {
-        this.Processor = Processor;
     }
 
     public String getVendor_id() {
@@ -111,14 +255,6 @@ public class CPU {
 
     public void setModel_name(String model_name) {
         this.model_name = model_name;
-    }
-
-    public String getStep() {
-        return step;
-    }
-
-    public void setStep(String step) {
-        this.step = step;
     }
 
     public String getCpu_mhz() {
@@ -177,20 +313,28 @@ public class CPU {
         this.address_size = address_size;
     }
 
-    public String getCpu_core_id() {
-        return cpu_core_id;
-    }
-
-    public void setCpu_core_id(String cpu_core_id) {
-        this.cpu_core_id = cpu_core_id;
-    }
-
     public Date getAccess_time() {
         return Access_time;
     }
 
     public void setAccess_time(Date Access_time) {
         this.Access_time = Access_time;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public String getStepping() {
+        return stepping;
+    }
+
+    public void setStepping(String stepping) {
+        this.stepping = stepping;
     }
     
     

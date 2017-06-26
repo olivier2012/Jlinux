@@ -7,36 +7,57 @@ package Hiber.DB;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author olivier-h
  */
+@Entity
+@Table(name = "Jlinux_Host")
 public class Host {
     @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_host_seq")
+    @SequenceGenerator(
+    name="Jlinux_host_seq",
+    sequenceName="host_sequence",
+    allocationSize=20
+    )
     private long HostId;
     
-    @Column(name="network_id",length=40)
+    @Column(name="Host_name",length=20)
+    private String Host_name;
+    
+    @Column(name="network_id",length=18)
     private long NetworkId;
     
-   @Column(name = "CpuId", length = 40)
+   @Column(name = "CpuId", length = 20)
     private long CpuId;
    
-    @Column(name="HdId",length=60)
+    @Column(name="HdId",length=20)
     private long HdId;
     
-   @Column(name = "MemId", length = 40)
+   @Column(name = "MemId", length = 20)
     private long MemID;
    
-    @Column(name = "MonitorId" ,length = 40)
+    @Column(name = "MonitorId" ,length = 20)
     private long MonitorId;
 
-   @Column(name = "AccessorId", length = 80)
+   @Column(name = "AccessorId", length = 20)
     private long AccessorId;
+
+    public String getHost_name() {
+        return Host_name;
+    }
+
+    public void setHost_name(String Host_name) {
+        this.Host_name = Host_name;
+    }
    
     @Column(name="Access_time")
     private Date Access_time;

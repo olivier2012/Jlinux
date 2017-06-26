@@ -7,18 +7,39 @@ package Hiber.DB;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author olivier-h
  */
+@Entity
+@Table(name = "Jlinux_User")
 public class User {
     @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_user_seq")
+    @SequenceGenerator(
+    name="Jlinux_user_seq",
+    sequenceName="user_sequence",
+    allocationSize=20
+    )
     private long UserId;
+    
+    @Column(name="Host_name", length = 120)
+    private String Host_name;
+
+    public String getHost_name() {
+        return Host_name;
+    }
+
+    public void setHost_name(String Host_name) {
+        this.Host_name = Host_name;
+    }
     
     @Column(name="First_name",length=40)
     private String Fname;

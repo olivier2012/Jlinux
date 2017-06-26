@@ -48,15 +48,15 @@ public class inital_linux {
         username = "demo";
         passwd = "demo";
 
-        Session session = jsch.getSession(username, host, 22);
+        Session jschsession = jsch.getSession(username, host, 22);
         
-        session.setPassword(passwd);
+        jschsession.setPassword(passwd);
         
 //        String passphrase = null;
         UserInfo ui = new MyUserInfo();
-        session.setUserInfo(ui);
-       session.connect(30000);
-        Channel channel = session.openChannel("exec");
+        jschsession.setUserInfo(ui);
+       jschsession.connect(30000);
+        Channel channel = jschsession.openChannel("exec");
         String command = "top";
         channel.setInputStream(System.in);
         channel.setOutputStream(System.out);
