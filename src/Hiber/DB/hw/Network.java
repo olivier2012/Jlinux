@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Hiber.DB;
+package Hiber.DB.hw;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -172,6 +172,9 @@ public class Network {
     @Column(name="Net_cardId",length=40)
     private String Net_cardId;
     
+    @Column(name="Net_name",length=40)
+    private String Net_name;
+    
    @Column(name = "MAC", length = 40)
     private String MAC;
    
@@ -183,6 +186,14 @@ public class Network {
    
     @Column(name = "ipv4_gw", length = 32)
     private String ipv4_gw;
+
+    public String getNet_name() {
+        return Net_name;
+    }
+
+    public void setNet_name(String Net_name) {
+        this.Net_name = Net_name;
+    }
 
    @Column(name = "Rx", length = 40)
     private String Rx;

@@ -1,5 +1,6 @@
 package Hiber;
-import Hiber.DB.*;
+import Hiber.DB.Sys.*;
+import Hiber.DB.hw.*;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.*;
@@ -18,6 +19,7 @@ public class HibUtil {
         conf.addAnnotatedClass( Monitor.class );
         conf.addAnnotatedClass( Accessory.class );
         conf.addAnnotatedClass( simpletest.class );
+        conf.addAnnotatedClass( LinuxOs.class );
         sessFactory = conf.buildSessionFactory(
         new StandardServiceRegistryBuilder( ).applySettings(conf.getProperties()).build( )
         );

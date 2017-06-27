@@ -5,19 +5,25 @@
  */
 package jl;
 
-import Hiber.DB.Accessory;
-import Hiber.DB.CPU;
-import Hiber.DB.HDisk;
-import Hiber.DB.Host;
-import Hiber.DB.Monitor;
-import Hiber.DB.Network;
-import Hiber.DB.User;
+import Hiber.DB.hw.Accessory;
+import Hiber.DB.hw.CPU;
+import Hiber.DB.hw.HDisk;
+import Hiber.DB.hw.Host;
+import Hiber.DB.hw.Monitor;
+import Hiber.DB.hw.Network;
+import Hiber.DB.hw.User;
 import Hiber.HibUtil;
 import antlr.StringUtils;
+import com.jcraft.jsch.JSchException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import static jl.JL_network.log;
+import jl.function.execCommand;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -77,7 +83,7 @@ public class DBinit {
        return "\""+orig+"\"";
     }
      
-    private static String lowercase(String orig){
+    public static String lowercase(String orig){
        return orig.toLowerCase() ;
     }
     
@@ -96,15 +102,20 @@ public class DBinit {
     }
     
     /* for multi cpu ,  the cpu information will include few part same content but the processor different */
-    private static String[] multip(String orig){
-       String[] tmpstr = orig.split("processor");
-      return tmpstr;
+    static boolean ismultip(String tmps) {
+        String[] tmpstr = tmps.split("\n\n");
+        return tmpstr.length > 1;
     }
-    
-    private static boolean ismultip(String tmps){
-       String[] tmpstr = tmps.split("processor");
-       return tmpstr.length >0;
+
+    static String[] multip(String orig) {
+        String[] tmpstr = orig.split("\n\n");
+        return tmpstr;
     }
-    
-    
+
+    static HashMap<String,String> addTimestamp(HashMap<String,String> maintmp,String Host_name){
+        HashMap<String,String> addtime = maintmp;
+        addtime.put("Host_name", Host_name);
+        addtime.put("Access_time", new Date().toString());
+        return addtime;
+    }
 }

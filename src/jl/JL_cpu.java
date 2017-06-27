@@ -17,14 +17,15 @@ import java.util.HashMap;
 import java.util.logging.LogManager;
 import jl.function.execCommand;
 import org.apache.logging.log4j.Logger;
+import static org.hibernate.annotations.SourceType.DB;
 
 /**
  *
  * @author olivier-h
  */
-public class JL {
+public class JL_cpu {
 
-    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(JL.class.getName());
+    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(JL_cpu.class.getName());
 
     /**
      * @param args the command line arguments
@@ -63,9 +64,9 @@ public class JL {
             String Orig_System_info = System_info;
 
             /*here we need to detect whether the cpu multiprocessor */
-            boolean aaa = ismultip(Orig_System_info);
-            if (ismultip(Orig_System_info)) {
-                String[] multipS = multip(Orig_System_info);
+            boolean aaa = DBinit.ismultip(Orig_System_info);
+            if (DBinit.ismultip(Orig_System_info)) {
+                String[] multipS = DBinit.multip(Orig_System_info);
                 /* split "processor " this word is first one , so we jump the multipS the 0 one . */
                 for (int i = 0; i < multipS.length; i++) {
                     String System_info1 = multipS[i];
@@ -90,13 +91,5 @@ public class JL {
         }
     }
 
-    private static boolean ismultip(String tmps) {
-        String[] tmpstr = tmps.split("\n\n");
-        return tmpstr.length > 1;
-    }
 
-    private static String[] multip(String orig) {
-        String[] tmpstr = orig.split("\n\n");
-        return tmpstr;
-    }
 }
