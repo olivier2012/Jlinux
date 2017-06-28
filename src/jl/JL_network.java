@@ -81,7 +81,7 @@ public class JL_network {
                 /* split "\r\n\r\n " this word is first one , so we jump the multipS the 0 one . */
                 for (int i = 0; i < multipS.length; i++) {
                     String System_info1 = multipS[i];
-                    HashMap tmpHm = Network_function.String2map(System_info1);
+                    HashMap tmpHm = Network_function.String2map_network(System_info1);
                     tmpHm.put("Host_name", Host_name);
                     /* */
                     log.info("ready  the cpu info , covert it to map");

@@ -11,8 +11,11 @@ import com.jcraft.jsch.Session;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import static javafx.scene.input.KeyCode.T;
 import jl.DBinit;
 import org.apache.logging.log4j.Logger;
 
@@ -61,7 +64,24 @@ public class Network_function {
     
     
     
-         public static HashMap String2map(String str) throws IOException{
+      public static void String2map(String str) throws IOException{
+         log.info("Network_function.String2map .....! ");
+          log.info("last one : "+str.length());
+          BufferedReader br = new BufferedReader(new StringReader(str));
+          String thisLine = null ;
+          StringBuilder SBs = new StringBuilder();
+          Boolean emptyflag = false;
+          for(int i=0;i<CountLines(str);i++){
+            thisLine = br.readLine();
+            System.out.println(thisLine);
+          List<String> network_name = Arrays.asList(thisLine.split(""));
+          }
+          
+ //           String value = addDoublequotes(thisLine.substring(thisLine.indexOf(':')+1));
+       log.info("DBinit.String2map .....before return ! ");
+//       return network_name;
+     }
+    public static HashMap String2map_network(String str) throws IOException{
          log.info("Network_function.String2map .....! ");
           HashMap<String,String> tmpmap = new HashMap<String,String> ();
           log.info("last one : "+str.length());
@@ -83,8 +103,7 @@ public class Network_function {
           }
        log.info("DBinit.String2map .....before return ! ");
        return tmpmap;
-     }
-         
+     }      
         
       public  static String getCommand_back(String command, Session se) throws JSchException, IOException  {
              
