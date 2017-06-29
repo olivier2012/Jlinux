@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.LogManager;
 import jl.function.*;
 import org.apache.logging.log4j.Logger;
@@ -55,16 +57,16 @@ public class JL_network {
             UserInfo ui = new MyUserInfo();
             jschsession.setUserInfo(ui);
             jschsession.connect(30000);
-            
+
             /*First need to know which kind of  linux  */
             String Linux_command = "uname -a ";
-            String Linux_info = Network_function.getCommand_back(Linux_command,jschsession);
+            String Linux_info = Network_function.getCommand_back(Linux_command, jschsession);
             /*   */
-            HashMap<String,String> maintmp = Network_function.Linux_Os(jschsession);
-            
-            LinuxOs_data.add(DBinit.addTimestamp(maintmp,Host_name));
-            
-           // HashMap Linux_map = DBinit.Linux_uname(Linux_info);
+            HashMap<String, String> maintmp = Network_function.Linux_Os(jschsession);
+
+            LinuxOs_data.add(DBinit.addTimestamp(maintmp, Host_name));
+
+            // HashMap Linux_map = DBinit.Linux_uname(Linux_info);
             /* run command , got the system info  */
             String command = "ifconfig -s ";
             log.info("call the execCommand");
@@ -73,27 +75,33 @@ public class JL_network {
 
             /*add the system info to database */
             String Orig_System_info = System_info;
-
+            
+            
             /*here we need to detect whether the network  multi interfaces  */
+            Map<String,String> smntmp = new HashMap<String,String>();
+              Map<String,String> tmpHm = new HashMap<String,String>();
             boolean aaa = Network_function.ismultiNet(Orig_System_info);
             if (Network_function.ismultiNet(Orig_System_info)) {
                 String[] multipS = Network_function.multiNet(Orig_System_info);
                 /* split "\r\n\r\n " this word is first one , so we jump the multipS the 0 one . */
                 for (int i = 0; i < multipS.length; i++) {
+                    if(i!=0){
+                    smntmp = tmpHm;
+                    }
                     String System_info1 = multipS[i];
-                    HashMap tmpHm = Network_function.String2map_network(System_info1);
-                    tmpHm.put("Host_name", Host_name);
-                    /* */
-                    log.info("ready  the cpu info , covert it to map");
-                    Network_data.add(tmpHm);
+                    tmpHm = Network_function.String2map_network(System_info1,i,smntmp);
+                    tmpHm.forEach((k,v)-> System.out.println("key :"+k + "  value : "+v));
                 }
             } else {
-                HashMap tmpHm = DBinit.String2map(System_info);
                 tmpHm.put("Host_name", Host_name);
                 /* */
-                log.info("ready  the cpu info , covert it to map");
-                Network_data.add(tmpHm);
+//                log.info("ready  the cpu info , covert it to map");
+                Network_data.add((HashMap) tmpHm);
             }
+            
+                log.info("ready  the cpu info , covert it to map");
+//                Network_data.add(tmpHm);
+
 
             jschsession.disconnect();
 
@@ -101,6 +109,5 @@ public class JL_network {
             System.out.println(ee);
         }
     }
-
 
 }

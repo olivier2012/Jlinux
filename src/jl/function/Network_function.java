@@ -14,8 +14,12 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import static javafx.scene.input.KeyCode.T;
+import static jdk.nashorn.internal.objects.NativeArray.map;
 import jl.DBinit;
 import org.apache.logging.log4j.Logger;
 
@@ -27,12 +31,12 @@ public class Network_function {
   final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Network_function.class.getName());
     
     public static String[] multiNet(String orig){
-       String[] tmpstr = orig.split("\r\n\r\n");
+       String[] tmpstr = orig.split("\r\n|\r|\n");
       return tmpstr;
     }
     
     public static boolean ismultiNet(String tmps){
-       String[] tmpstr = tmps.split("\r\n\r\n");
+       String[] tmpstr = tmps.split("\r\n|\r|\n");
        return tmpstr.length >0;
     }
     
@@ -44,26 +48,7 @@ public class Network_function {
     private static String replaceSpace(String orig){
        return orig.replace(" ","_").replace("\t","");
     }
-    
-    /* return 这个是个 正则表达式，需要以文件形式在远端机器上，然后 用 ifconfig -a | sed -rf parse.sed  */
-    private static String net_re(){
-       return "s/^([^ ]+) */\\1\\n/                               # interface name\n" +
-"s/Link encap:(.*)(  |$).*/\\1/                    # link encapsulation\n" +
-"N                                                # append next line to PS\n" +
-"/inet addr/! s/\\n[^\\n]*$/\\n0.0.0.0\\n/            # use 0.0.0.0 if no \"inet addr\"\n" +
-"s/ *inet addr:([^ ]+).*/\\1\\n/                    # capture ip address if present\n" +
-"s/\\n[^\\n]*$//                                    # cleanup the last line\n" +
-"s/([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)/IFACE \\1 \\3 \\2/p  # print entry\n" +
-"s/.*//                                           # empty PS\n" +
-": loop                                           # \\\n" +
-"N                                                #  \\\n" +
-"/^\\n$/b                                          #   skip until next empty line\n" +
-"s/.*//                                           #  /\n" +
-"b loop  ";
-    }
-    
-    
-    
+     
       public static void String2map(String str) throws IOException{
          log.info("Network_function.String2map .....! ");
           log.info("last one : "+str.length());
@@ -81,29 +66,54 @@ public class Network_function {
        log.info("DBinit.String2map .....before return ! ");
 //       return network_name;
      }
-    public static HashMap String2map_network(String str) throws IOException{
-         log.info("Network_function.String2map .....! ");
-          HashMap<String,String> tmpmap = new HashMap<String,String> ();
+    public static Map String2map_network(String str,int index,Map<String,String> smntmp) throws IOException{
+        /*index ==0  we got the ifconfig header , put those into hashmap key , is importent */
+        
+         log.info("Network_function.String2Array_network .....! ");
           log.info("last one : "+str.length());
-          BufferedReader br = new BufferedReader(new StringReader(str));
-          String thisLine = null ;
-          StringBuilder SBs = new StringBuilder();
-          Boolean emptyflag = false;
-          for(int i=0;i<CountLines(str);i++){
-            thisLine = br.readLine();
-            System.out.println(thisLine);
-            String key = DBinit.lowercase(replaceSpace(thisLine.substring(0,thisLine.indexOf(':'))));
-            String value = thisLine.substring(thisLine.indexOf(':')+1);
- //           String value = addDoublequotes(thisLine.substring(thisLine.indexOf(':')+1));
-            if(value.equals("")){
-             value=null;
-            }
-         if(key !=null || value !=null){
-            tmpmap.put(key,value);}
-          }
-       log.info("DBinit.String2map .....before return ! ");
-       return tmpmap;
+          String[] tmpmap =str.split(" ");
+          if(index==0){
+          smntmp = Array2map_key(tmpmap);
+          }else{
+          smntmp = Array2map_value(tmpmap,smntmp);
+           }
+       log.info("Network_function.String2Array_network.....before return ! ");
+       return smntmp;
      }      
+    
+    public static Map Array2map_key(String[] str){
+        Map<String,String> amktmp = new  LinkedHashMap<String,String>();
+        for(int i=0 ; i<str.length;i++){
+            String value="";
+            if(!(str[i].isEmpty()||str[i].equals(" "))){
+            String key = str[i];
+            amktmp.put(key, value);
+            }
+        }
+            amktmp.put("Host_name","");
+            amktmp.put("Access_time","");
+            return (LinkedHashMap) amktmp;
+    }
+   
+        public static Map Array2map_value(String[] str,Map<String,String> amktmp){
+//        Map<String,String> amktmp = new  LinkedHashMap<String,String>();
+        Iterator iterator= amktmp.entrySet().iterator();
+        String Key="";
+        String Value="";
+        for(int i=0 ; i<str.length;i++){
+            if(!(str[i].isEmpty()||str[i].equals(" "))){
+            if( iterator.hasNext()){
+            Map.Entry entry =(Map.Entry)iterator.next();
+            Key= entry.getKey().toString();
+            }
+            Value = str[i];
+            amktmp.put(Key, Value);
+            }
+        }
+            amktmp.put("Host_name","");
+            amktmp.put("Access_time","");
+            return amktmp;
+    }
         
       public  static String getCommand_back(String command, Session se) throws JSchException, IOException  {
              

@@ -26,7 +26,7 @@ public class CPU {
     @SequenceGenerator(
     name="Jlinux_cpu_seq",
     sequenceName="cpu_sequence",
-    allocationSize=20
+    allocationSize=10
     )
     private long CPUId;
     

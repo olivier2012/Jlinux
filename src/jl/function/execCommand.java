@@ -14,6 +14,7 @@ public class execCommand {
 
 public static String  executeCommand(String command,Session session) throws JSchException,
 		IOException {
+    /*  jsch run the command  */
         ChannelExec channel = (ChannelExec) session.openChannel("exec");
 	channel.setCommand(command);
 
