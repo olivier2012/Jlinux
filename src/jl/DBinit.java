@@ -74,7 +74,7 @@ public class DBinit {
        log.info("DBinit.String2map .....before return ! ");
        return tmpmap;
      }
-    
+     
     private static String replaceSpace(String orig){
        return orig.replace(" ","_").replace("\t","");
     }

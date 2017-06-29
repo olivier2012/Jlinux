@@ -26,7 +26,7 @@ public class HDisk {
     @SequenceGenerator(
     name="Jlinux_hdisk_seq",
     sequenceName="hdisk_sequence",
-    allocationSize=20
+    allocationSize=1
     )
     private long HdId;
 

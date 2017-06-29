@@ -25,7 +25,7 @@ public class simpletest {
     @SequenceGenerator(
     name="Jlinux_simpletest_seq",
     sequenceName="simpletest_sequence",
-    allocationSize=20
+    allocationSize=5
     )
     private long AccessorId;
     

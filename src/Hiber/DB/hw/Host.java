@@ -26,7 +26,7 @@ public class Host {
     @SequenceGenerator(
     name="Jlinux_host_seq",
     sequenceName="host_sequence",
-    allocationSize=20
+    allocationSize=1
     )
     private long HostId;
     

@@ -26,7 +26,7 @@ public class User {
     @SequenceGenerator(
     name="Jlinux_user_seq",
     sequenceName="user_sequence",
-    allocationSize=20
+    allocationSize=1
     )
     private long UserId;
     

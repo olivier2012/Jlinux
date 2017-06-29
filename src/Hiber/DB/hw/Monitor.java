@@ -26,7 +26,7 @@ public class Monitor {
     @SequenceGenerator(
     name="Jlinux_Monitor_seq",
     sequenceName="Monitor_sequence",
-    allocationSize=20
+    allocationSize=1
     )
     private long MonitorId;
 

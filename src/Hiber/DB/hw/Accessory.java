@@ -26,7 +26,7 @@ public class Accessory {
     @SequenceGenerator(
     name="Jlinux_accessory_seq",
     sequenceName="accessory_sequence",
-    allocationSize=20
+    allocationSize=1
     )
     private long AccessorId;
 
