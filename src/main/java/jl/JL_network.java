@@ -8,6 +8,7 @@ package jl;
 import Hiber.DB.Sys.LinuxOs_data;
 import Hiber.DB.hw.CPU_data;
 import Hiber.DB.hw.Network_data;
+import Hiber.HibUtil;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -24,6 +25,7 @@ import java.util.logging.LogManager;
 import jl.function.*;
 import static jl.function.Network_function.getIpMask;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -48,6 +50,7 @@ public class JL_network {
             //System.out.print("please input the host that you want to connect (ip address : 127.0.0.1): ");
 //        String host = "192.168.2.204";
             String host = "192.168.2.106";
+//            String host = "172.16.17.57";
             String username = "demo";
             String passwd = "demo";
 
@@ -65,8 +68,9 @@ public class JL_network {
             String Linux_info = Network_function.getCommand_back(Linux_command, jschsession);
             /*   */
             HashMap<String, String> maintmp = Network_function.Linux_Os(jschsession);
+            SessionFactory sFactory = HibUtil.getSessionFactory();
 
-            LinuxOs_data.add(DBinit.addTimestamp(maintmp, Host_name));
+            LinuxOs_data.add(DBinit.addTimestamp(maintmp, Host_name), sFactory);
 
             // HashMap Linux_map = DBinit.Linux_uname(Linux_info);
             /* run command , got the system info  */
@@ -77,27 +81,26 @@ public class JL_network {
 
             /*add the system info to database */
             String Orig_System_info = System_info;
-            
-            
+
             /*here we need to detect whether the network  multi interfaces  */
-            Map<String,String> smntmp = new HashMap<String,String>();
-              Map<String,String> tmpHm = new HashMap<String,String>();
+            Map<String, String> smntmp = new HashMap<String, String>();
+            Map<String, String> tmpHm = new HashMap<String, String>();
 //            boolean aaa = Network_function.ismultiNet(Orig_System_info);
             if (Network_function.ismultiNet(Orig_System_info)) {
                 String[] multipS = Network_function.multiNet(Orig_System_info);
                 /* split "\r\n\r\n " this word is first one , so we jump the multipS the 0 one . */
                 for (int i = 0; i < multipS.length; i++) {
-                    if(i!=0){
-                    smntmp = tmpHm;
+                    if (i != 0) {
+                        smntmp = tmpHm;
                     }
                     String System_info1 = multipS[i];
                     /* Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
                        br-ex      1500 0         0      0      0 0             8      0      0      0 BRU
                        br-int     1500 0         0      0      0 0             8      0      0      0 BRU 
                        then call the String2map_network  to handle them */
-                    tmpHm = Network_function.String2map_network(System_info1,i,smntmp);
-                    if(i!=0){
-          /*  virbr0    Link encap:Ethernet  HWaddr e6:44:49:36:65:54  
+                    tmpHm = Network_function.String2map_network(System_info1, i, smntmp);
+                    if (i != 0) {
+                        /*  virbr0    Link encap:Ethernet  HWaddr e6:44:49:36:65:54  
           inet addr:192.168.122.1  Bcast:192.168.122.255  Mask:255.255.255.0
           UP BROADCAST MULTICAST  MTU:1500  Metric:1
           RX packets:0 errors:0 dropped:0 overruns:0 frame:0
@@ -105,17 +108,17 @@ public class JL_network {
           collisions:0 txqueuelen:0 
           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)    handle this information
                         just the two beginning  rows */
-                    tmpHm = Network_function.getIpMask((LinkedHashMap) tmpHm,jschsession,Host_name);
-                      Network_data.add((HashMap) tmpHm);
+                        tmpHm = Network_function.getIpMask((LinkedHashMap) tmpHm, jschsession, Host_name);
+                        Network_data.add((HashMap) tmpHm, sFactory);
                     }
-//                    tmpHm.forEach((k,v)-> System.out.println("key :"+k + "  value : "+v));
-                   for(Map.Entry<String,String> entry : tmpHm.entrySet()){
+//                    tmpHm.forEach((k, v) -> System.out.println("key :" + k + "  value : " + v));
+           for(Map.Entry<String,String> entry : tmpHm.entrySet()){
                        String key = entry.getKey();
                        String value = entry.getValue();
                        System.out.println("key = " + key +"  " + " Value = " + value);
                    }
                 }
-            } 
+            }
             jschsession.disconnect();
 
         } catch (Exception ee) {

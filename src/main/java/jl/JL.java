@@ -73,14 +73,14 @@ public class JL {
                     tmpHm.put("Host_name", Host_name);
                     /* */
                     log.info("ready  the cpu info , covert it to map");
-                    CPU_data.add(tmpHm);
+//                    CPU_data.add(tmpHm);
                 }
             } else {
                 HashMap tmpHm = DBinit.String2map(System_info);
                 tmpHm.put("Host_name", Host_name);
                 /* */
                 log.info("ready  the cpu info , covert it to map");
-                CPU_data.add(tmpHm);
+//                CPU_data.add(tmpHm);
             }
 
             jschsession.disconnect();

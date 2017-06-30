@@ -21,44 +21,44 @@ import org.hibernate.Transaction;
  */
 public class User_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(User_data.class.getName());
-    public static void add(HashMap hm_User){
+    public static void add(HashMap hm_User,SessionFactory sFactory){
         log.debug("add the"+ Class.class.getName()+" cpu infomation to database ");
-        SessionFactory add_sFactory = HibUtil.getSessionFactory();
-        Session dbsession = add_sFactory.openSession();
+//        SessionFactory add_sFactory = HibUtil.getSessionFactory();
+        Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         
-        HDisk hdisk = new HDisk();
-        hdisk.setAccess_time(new Date());
-        hdisk.setHost_name((String) hm_HDisk.get("Host_name"));/*
-        hdisk.setProcessor((String) hm_HDisk.get("processor"));
-        hdisk.setVendor_id((String) hm_HDisk.get("vendor_id"));
-        hdisk.setCpu_family((String) hm_HDisk.get("cpu_family"));
+        User user = new User();
+        user.setAccess_time(new Date());
+        user.setHost_name((String) hm_User.get("Host_name"));
+        user.setProcessor((String) hm_User.get("processor"));
+        user.setVendor_id((String) hm_User.get("vendor_id"));
+        user.setCpu_family((String) hm_User.get("cpu_family"));
         
-        hdisk.setModel((String) hm_HDisk.get("model"));
-        hdisk.setModel_name((String) hm_HDisk.get("model_name"));
-        hdisk.setStepping((String) hm_HDisk.get("stepping"));
-        hdisk.setMicrocode((String) hm_HDisk.get("microcode"));
-        hdisk.setCpu_mhz((String) hm_HDisk.get("cpu_mhz"));
-        hdisk.setCache_size((String) hm_HDisk.get("cache_size"));
-        hdisk.setPhysical_id((String) hm_HDisk.get("physical_id"));
-        hdisk.setSiblings((String) hm_HDisk.get("siblings")); 
+        user.setModel((String) hm_User.get("model"));
+        user.setModel_name((String) hm_User.get("model_name"));
+        user.setStepping((String) hm_User.get("stepping"));
+        user.setMicrocode((String) hm_User.get("microcode"));
+        user.setCpu_mhz((String) hm_User.get("cpu_mhz"));
+        user.setCache_size((String) hm_User.get("cache_size"));
+        user.setPhysical_id((String) hm_User.get("physical_id"));
+        user.setSiblings((String) hm_User.get("siblings")); 
         
-        hdisk.setCore_id((String) hm_HDisk.get("core_id"));
-        hdisk.setCpu_cores((String) hm_HDisk.get("cpu_cores"));
-        hdisk.setApicid((String) hm_HDisk.get("apicid"));  
-        hdisk.setInitial_apicid((String) hm_HDisk.get("initial_apicid"));
+        user.setCore_id((String) hm_User.get("core_id"));
+        user.setCpu_cores((String) hm_User.get("cpu_cores"));
+        user.setApicid((String) hm_User.get("apicid"));  
+        user.setInitial_apicid((String) hm_User.get("initial_apicid"));
   
-        hdisk.setFpu((String) hm_HDisk.get("fpu"));
-        hdisk.setFpu_exception((String) hm_HDisk.get("fpu_exception"));
+        user.setFpu((String) hm_User.get("fpu"));
+        user.setFpu_exception((String) hm_User.get("fpu_exception"));
    
-        hdisk.setCpuid_level((String) hm_HDisk.get("cpuid_level"));      
-        hdisk.setWp((String) hm_HDisk.get("wp")); 
-        hdisk.setFlags((String) hm_HDisk.get("flags"));
-        hdisk.setBogomips((String) hm_HDisk.get("bogomips"));
-        hdisk.setClflush_size((String)hm_HDisk.get("clflush_size"));
-        hdisk.setCache_alignment((String)hm_HDisk.get("cache_alignment")); 
-        hdisk.setAddress_size((String)hm_HDisk.get("address_sizes")); */
-        dbsession.persist(hdisk);
+        user.setCpuid_level((String) hm_User.get("cpuid_level"));      
+        user.setWp((String) hm_User.get("wp")); 
+        user.setFlags((String) hm_User.get("flags"));
+        user.setBogomips((String) hm_User.get("bogomips"));
+        user.setClflush_size((String)hm_User.get("clflush_size"));
+        user.setCache_alignment((String)hm_User.get("cache_alignment")); 
+        user.setAddress_size((String)hm_User.get("address_sizes")); 
+        dbsession.persist(user);
         tr.commit();        
         dbsession.close();
         add_sFactory.close();

@@ -14,7 +14,6 @@ import Hiber.DB.hw.Network;
 import Hiber.DB.hw.User;
 import Hiber.HibUtil;
 import antlr.StringUtils;
-import com.jcraft.jsch.JSchException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;

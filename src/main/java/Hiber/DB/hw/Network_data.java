@@ -23,17 +23,17 @@ public class Network_data {
 
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Network_data.class.getName());
 
-    public static void add(HashMap hm_network) {
+    public static void add(HashMap hm_network,SessionFactory sFactory) {
         log.info("add the network infomation to database ");
-        SessionFactory addd_sFactory = HibUtil.getSessionFactory();
-        Session net_dbsession = addd_sFactory.openSession();
+//        SessionFactory addd_sFactory = HibUtil.getSessionFactory();
+        Session net_dbsession = sFactory.openSession();
 
         Transaction tr = net_dbsession.beginTransaction();
 
         Network network = new Network();
         network.setAccess_time(new Date());
 
-        /*network.setHost_name((String) hm_network.get("Host_name"));
+        network.setHost_name((String) hm_network.get("Host_name"));
         network.setIpv4((String) hm_network.get("inet_addr"));
         network.setNet_cardId((String) hm_network.get("Iface"));
         network.setMemID((String) hm_network.get(""));
@@ -49,14 +49,13 @@ public class Network_data {
         
         network.setIpv6_Tx((String) hm_network.get(""));
         network.setIpv6_Tx((String) hm_network.get(""));
-        network.setAccess_time((Date) hm_network.get("Access_time"));  
         network.setMTU((String) hm_network.get("MTU"));
   
-        network.setLink_encap((String) hm_network.get("link_encap"));*/
+        network.setLink_encap((String) hm_network.get("link_encap"));
         net_dbsession.persist(network);
         tr.commit();
         net_dbsession.close();
-        addd_sFactory.close();
+//        addd_sFactory.close();
         log.info("add the network infomation to database...finished ");
     }
 }
