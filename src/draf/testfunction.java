@@ -56,7 +56,7 @@ public class testfunction {
                 tmpHm.put("Host_name", Host_name);
                 /* */
 //                log.info("ready  the cpu info , covert it to map");
-                Network_data.add((HashMap) tmpHm);
+//                Network_data.add((HashMap) tmpHm);
             }
         }
 }

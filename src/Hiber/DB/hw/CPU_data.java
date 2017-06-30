@@ -21,10 +21,10 @@ import org.hibernate.Transaction;
  */
 public class CPU_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(CPU_data.class.getName());
-    public static void add(HashMap hm){
+    public static void add(HashMap hm,SessionFactory sFactory){
         log.debug("add the cpu infomation to database ");
-        SessionFactory add_sFactory = HibUtil.getSessionFactory();
-        Session dbsession = add_sFactory.openSession();
+//        SessionFactory add_sFactory = HibUtil.getSessionFactory();
+        Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         
         CPU cpu = new CPU();
@@ -61,7 +61,7 @@ public class CPU_data {
         dbsession.persist(cpu);
         tr.commit();        
         dbsession.close();
-        add_sFactory.close();
+//        add_sFactory.close();
       log.debug("add the cpu infomation to database...finished ");
      }
     }

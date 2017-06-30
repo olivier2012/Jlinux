@@ -6,6 +6,7 @@
 package jl;
 
 import Hiber.DB.hw.CPU_data;
+import Hiber.HibUtil;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.logging.LogManager;
 import jl.function.execCommand;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.SessionFactory;
 import static org.hibernate.annotations.SourceType.DB;
 
 /**
@@ -59,7 +61,7 @@ public class JL_cpu {
             log.info("call the execCommand");
             /* system info in the str*/
             String System_info = execCommand.executeCommand(command, jschsession);
-
+            SessionFactory sFactory = HibUtil.getSessionFactory();
             /*add the system info to database */
             String Orig_System_info = System_info;
 
@@ -74,14 +76,14 @@ public class JL_cpu {
                     tmpHm.put("Host_name", Host_name);
                     /* */
                     log.info("ready  the cpu info , covert it to map");
-                    CPU_data.add(tmpHm);
+                    CPU_data.add(tmpHm,sFactory);
                 }
             } else {
                 HashMap tmpHm = DBinit.String2map(System_info);
                 tmpHm.put("Host_name", Host_name);
                 /* */
                 log.info("ready  the cpu info , covert it to map");
-                CPU_data.add(tmpHm);
+                CPU_data.add(tmpHm,sFactory);
             }
 
             jschsession.disconnect();

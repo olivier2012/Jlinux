@@ -22,10 +22,10 @@ import org.hibernate.Transaction;
  */
 public class LinuxOs_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(LinuxOs_data.class.getName());
-    public static void add(HashMap hmtmp){
+    public static void add(HashMap hmtmp,SessionFactory sFactory){
         log.debug("add the cpu infomation to database ");
-        SessionFactory add_sFactory = HibUtil.getSessionFactory();
-        Session dbsession = add_sFactory.openSession();
+//        SessionFactory add_sFactory = HibUtil.getSessionFactory();
+        Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         LinuxOs los = new LinuxOs();
            los.setKernel_name((String) hmtmp.get("Kernel_name"));
@@ -40,7 +40,7 @@ public class LinuxOs_data {
         dbsession.persist(los);
         tr.commit();        
         dbsession.close();
-        add_sFactory.close();
+//        add_sFactory.close();
       log.debug("add the cpu infomation to database...finished ");
     }
 }
