@@ -47,7 +47,8 @@ public class JL_network {
 
             //System.out.print("please input the host that you want to connect (ip address : 127.0.0.1): ");
 //        String host = "192.168.2.204";
-            String host = "192.168.2.106";
+//            String host = "192.168.2.106";
+            String host = "172.16.17.57";
             String username = "demo";
             String passwd = "demo";
 
