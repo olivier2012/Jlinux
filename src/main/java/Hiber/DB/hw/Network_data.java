@@ -23,7 +23,7 @@ public class Network_data {
 
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Network_data.class.getName());
 
-    public static void add(HashMap hm) {
+    public static void add(HashMap hm_network) {
         log.info("add the network infomation to database ");
         SessionFactory addd_sFactory = HibUtil.getSessionFactory();
         Session net_dbsession = addd_sFactory.openSession();
@@ -33,26 +33,26 @@ public class Network_data {
         Network network = new Network();
         network.setAccess_time(new Date());
 
-        /*network.setHost_name((String) hm.get("Host_name"));
-        network.setIpv4((String) hm.get("inet_addr"));
-        network.setNet_cardId((String) hm.get("Iface"));
-        network.setMemID((String) hm.get(""));
+        /*network.setHost_name((String) hm_network.get("Host_name"));
+        network.setIpv4((String) hm_network.get("inet_addr"));
+        network.setNet_cardId((String) hm_network.get("Iface"));
+        network.setMemID((String) hm_network.get(""));
         
-        network.setIpv4_gw((String) hm.get(""));
-        network.setRx((String) hm.get("RX-OK"));
-        network.setTx((String) hm.get("TX-OK"));
-        network.setIpv4_status((String) hm.get(""));
-        network.setIpv6((String) hm.get("inet6"));
-        network.setIpv6_mask((String) hm.get(""));
-        network.setIpv6_gw((String) hm.get(""));
-        network.setIpv6_Rx((String) hm.get("")); 
+        network.setIpv4_gw((String) hm_network.get(""));
+        network.setRx((String) hm_network.get("RX-OK"));
+        network.setTx((String) hm_network.get("TX-OK"));
+        network.setIpv4_status((String) hm_network.get(""));
+        network.setIpv6((String) hm_network.get("inet6"));
+        network.setIpv6_mask((String) hm_network.get(""));
+        network.setIpv6_gw((String) hm_network.get(""));
+        network.setIpv6_Rx((String) hm_network.get("")); 
         
-        network.setIpv6_Tx((String) hm.get(""));
-        network.setIpv6_Tx((String) hm.get(""));
-        network.setAccess_time((Date) hm.get("Access_time"));  
-        network.setMTU((String) hm.get("MTU"));
+        network.setIpv6_Tx((String) hm_network.get(""));
+        network.setIpv6_Tx((String) hm_network.get(""));
+        network.setAccess_time((Date) hm_network.get("Access_time"));  
+        network.setMTU((String) hm_network.get("MTU"));
   
-        network.setLink_encap((String) hm.get("link_encap"));*/
+        network.setLink_encap((String) hm_network.get("link_encap"));*/
         net_dbsession.persist(network);
         tr.commit();
         net_dbsession.close();
