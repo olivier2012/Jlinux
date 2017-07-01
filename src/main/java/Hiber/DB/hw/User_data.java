@@ -28,40 +28,24 @@ public class User_data {
         Transaction tr = dbsession.beginTransaction();
         
         User user = new User();
-        user.setAccess_time(new Date());
-        user.setHost_name((String) hm_User.get("Host_name"));
-        user.setProcessor((String) hm_User.get("processor"));
-        user.setVendor_id((String) hm_User.get("vendor_id"));
-        user.setCpu_family((String) hm_User.get("cpu_family"));
+        user.setAdate(new Date());
+        user.setHost_name((String) hm_User.get("Linux_Host_IP"));
+        user.setHost_IP((String) hm_User.get("Linux_Host_IP"));
+        user.setUser_name((String) hm_User.get("User_name"));
+        user.setPasswd((String) hm_User.get("Host_IP"));
+        user.setFname((String) hm_User.get("Fname"));
+        user.setLname((String) hm_User.get("Lname"));
+        user.setPasswd((String) hm_User.get("Password"));
+        /*usertype : admin , user , client ,linux_user*/
+        user.setUsertype((String) hm_User.get("Usertype"));
+        user.setCdate((Date) new Date());
+        user.setAdate((Date) hm_User.get("Adate"));
+        user.setEmail((String) hm_User.get("microcode"));
         
-        user.setModel((String) hm_User.get("model"));
-        user.setModel_name((String) hm_User.get("model_name"));
-        user.setStepping((String) hm_User.get("stepping"));
-        user.setMicrocode((String) hm_User.get("microcode"));
-        user.setCpu_mhz((String) hm_User.get("cpu_mhz"));
-        user.setCache_size((String) hm_User.get("cache_size"));
-        user.setPhysical_id((String) hm_User.get("physical_id"));
-        user.setSiblings((String) hm_User.get("siblings")); 
-        
-        user.setCore_id((String) hm_User.get("core_id"));
-        user.setCpu_cores((String) hm_User.get("cpu_cores"));
-        user.setApicid((String) hm_User.get("apicid"));  
-        user.setInitial_apicid((String) hm_User.get("initial_apicid"));
-  
-        user.setFpu((String) hm_User.get("fpu"));
-        user.setFpu_exception((String) hm_User.get("fpu_exception"));
-   
-        user.setCpuid_level((String) hm_User.get("cpuid_level"));      
-        user.setWp((String) hm_User.get("wp")); 
-        user.setFlags((String) hm_User.get("flags"));
-        user.setBogomips((String) hm_User.get("bogomips"));
-        user.setClflush_size((String)hm_User.get("clflush_size"));
-        user.setCache_alignment((String)hm_User.get("cache_alignment")); 
-        user.setAddress_size((String)hm_User.get("address_sizes")); 
         dbsession.persist(user);
         tr.commit();        
         dbsession.close();
-        add_sFactory.close();
+//        add_sFactory.close();
       log.debug("add the Hdisk infomation to database...finished ");
      }
     }

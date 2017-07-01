@@ -44,7 +44,8 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
              <version>0.1.54</version>
-          </dependency>
+             <type>jar</type>
+         </dependency>
        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
          <dependency>
             <groupId>org.apache.logging.log4j</groupId>

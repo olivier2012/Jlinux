@@ -5,4 +5,20 @@
             30
         </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>jl.Servlet.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>authPage</servlet-name>
+        <servlet-class>jl.Servlet.AuthenticationPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authPage</servlet-name>
+        <url-pattern>/authPage</url-pattern>
+    </servlet-mapping>
 </web-app>

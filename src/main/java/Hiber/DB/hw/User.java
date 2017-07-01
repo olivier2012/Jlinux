@@ -32,7 +32,29 @@ public class User {
     
     @Column(name="Host_name", length = 120)
     private String Host_name;
+    
+    @Column(name="Host_IP", length = 120)
+    private String Host_IP;
 
+    @Column(name="User_name", length = 120)
+    private String User_name;
+
+    public String getHost_IP() {
+        return Host_IP;
+    }
+
+    public void setHost_IP(String Host_IP) {
+        this.Host_IP = Host_IP;
+    }
+
+    public String getUser_name() {
+        return User_name;
+    }
+
+    public void setUser_name(String User_name) {
+        this.User_name = User_name;
+    }
+    
     public String getHost_name() {
         return Host_name;
     }
@@ -50,6 +72,7 @@ public class User {
     @Column(name="password",length=250)
     private String Passwd;
     
+    /*type: admin,client,user,linux*/
    @Column(name = "UserType", length = 40)
     private String Usertype;
    

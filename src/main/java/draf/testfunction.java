@@ -50,13 +50,13 @@ public class testfunction {
                     }
                     String System_info1 = multipS[i];
                     tmpHm = Network_function.String2map_network(System_info1,i,smntmp);
-                    tmpHm.forEach((k,v)-> System.out.println("key :"+k + "  value : "+v));
+//                    tmpHm.forEach((k,v)-> System.out.println("key :"+k + "  value : "+v));
+           for(Map.Entry<String,String> entry : tmpHm.entrySet()){
+                       String key = entry.getKey();
+                       String value = entry.getValue();
+                       System.out.println("key = " + key +"  " + " Value = " + value);
                 }
-            } else {
-                tmpHm.put("Host_name", Host_name);
-                /* */
-//                log.info("ready  the cpu info , covert it to map");
-//                Network_data.add((HashMap) tmpHm);
-            }
+        }
+}
         }
 }
