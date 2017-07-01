@@ -39,6 +39,10 @@ public class User {
     @Column(name="User_name", length = 120)
     private String User_name;
 
+    public User() {
+       //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getHost_IP() {
         return Host_IP;
     }
@@ -65,6 +69,9 @@ public class User {
     
     @Column(name="First_name",length=40)
     private String Fname;
+    
+    @Column(name = "middle_name", length = 40)
+    private String Mname;
     
    @Column(name = "last_name", length = 40)
     private String Lname;
@@ -148,6 +155,13 @@ public class User {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-   
+     public User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd) {
+        this.Fname = Fname;
+        this.Mname = Mname;
+        this.Lname = Lname;
+        this.Email = Email;
+        this.User_name = User_name;
+        this.Passwd = Passwd;
+    }
    
 }

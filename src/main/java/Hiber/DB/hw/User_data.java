@@ -46,6 +46,6 @@ public class User_data {
         tr.commit();        
         dbsession.close();
 //        add_sFactory.close();
-      log.debug("add the Hdisk infomation to database...finished ");
+      log.debug("add the User infomation to database...finished ");
      }
     }

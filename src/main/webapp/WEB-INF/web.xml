@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Jlinux</display-name>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>jl.Servlet.Login</servlet-class>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>jl.Servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet>
-        <servlet-name>authPage</servlet-name>
-        <servlet-class>jl.Servlet.AuthenticationPage</servlet-class>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>jl.Servlet.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>authPage</servlet-name>
-        <url-pattern>/authPage</url-pattern>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+    
 </web-app>

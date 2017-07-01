@@ -27,7 +27,7 @@ public class LinuxOs {
     @SequenceGenerator(
     name="Jlinux_LinuxOsId_seq",
     sequenceName="LinuxOsId_sequence",
-    allocationSize=20
+    allocationSize=1
     )
     private long LinuxOsId;
     
