@@ -3,6 +3,7 @@ package jl.Servlet;
 import Hiber.DB.hw.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,8 @@ public class RegisterServlet extends HttpServlet {
      String email = request.getParameter("Email");
      String User_name = request.getParameter("User_name");
      String Passwd = request.getParameter("Passwd");
-     User user = new User(firstName,middleName,lastName, email,User_name, Passwd);
+     
+     User user = new User(firstName,middleName,lastName, email,User_name, Passwd,new Date());
              
      try { 
          RegisterService registerService = new RegisterService();
@@ -34,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
          out.println("<body>");
          out.println("<center>");
          if(result){
-             out.println("<h1>Thanks for Registering with us :</h1>");
+             out.println("<h1> Thanks for Registering with us :</h1>");
              out.println("To login with new User_name and Password <a href=login.jsp>Click here</a>");
          }else{
              out.println("<h1>Registration Failed</h1>");

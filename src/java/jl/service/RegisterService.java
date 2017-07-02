@@ -14,7 +14,9 @@ public class RegisterService {
 public boolean register(User user){
     SessionFactory sFactory = HibUtil.getSessionFactory();
      Session dbsession = sFactory.openSession();
-     if(isUserExists(user)) return false;  
+     /*if isUserExists() return true, 已经存在，就返回真，如果为false ，继续执行 */
+     if(isUserExists(user,dbsession)) {return true;}  
+     
      
      Transaction tx = null;
      try {
@@ -33,8 +35,8 @@ public boolean register(User user){
      return true;
 }
  
-public boolean isUserExists(User user){
-     Session dbsession = HibUtil.getSessionFactory().getCurrentSession();
+public boolean isUserExists(User user,Session dbsession){
+//     Session dbsession = HibUtil.getSessionFactory().getCurrentSession();
      boolean result = false;
      Transaction tx = null;
      try{
@@ -43,13 +45,19 @@ public boolean isUserExists(User user){
          Query query = dbsession.createQuery("from User where User_name='"+user.getUser_name()+"'");
          User u = (User)query.uniqueResult();
          tx.commit();
-         if(u!=null) result = true;
+         if(u!=null) 
+         {
+             result = true;
+         } 
+         else{ 
+             result = false; 
+         }
      }catch(Exception ex){
          if(tx!=null){
              tx.rollback();
          }
      }finally{
-         dbsession.close();
+//         dbsession.close();
      }
      return result;
 }

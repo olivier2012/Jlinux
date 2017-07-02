@@ -163,13 +163,15 @@ public class User {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-     public User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd) {
+     public User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd ,Date date) {
         this.Fname = Fname;
         this.Mname = Mname;
         this.Lname = Lname;
         this.Email = Email;
         this.User_name = User_name;
         this.Passwd = Passwd;
+        this.Adate=date;
+        this.Cdate=date;
     }
    
 }

@@ -7,7 +7,7 @@
 <Console name="console-log" target="SYSTEM_OUT">
 <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
 </Console>
-<RollingFile name="trace-log" fileName="${log-path}/mycuteblog-trace.log"
+<RollingFile name="trace-log" fileName="${log-path}/jlinux_trace.log"
 filePattern="${log-path}/Jlinux-trace-%d{yyyy-MM-dd}.log">
 <PatternLayout>
 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
@@ -16,7 +16,7 @@ filePattern="${log-path}/Jlinux-trace-%d{yyyy-MM-dd}.log">
 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
 </Policies>
 </RollingFile>
-<RollingFile name="error-log" fileName="${log-path}/mycuteblog-error.log"
+<RollingFile name="error-log" fileName="${log-path}/jlinux_error.log"
 filePattern="${log-path}/Jlinux-error-%d{yyyy-MM-dd}.log">
 <PatternLayout>
 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>

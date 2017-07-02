@@ -33,11 +33,11 @@ Please provide your credential to use this website
 </div>
 <br />
 <span class="login-box-options">
-New User?  <a href="register.jsp" style="margin-left:30px;">Register Here</a>
+     New User  ?    <a href="register.jsp" style="margin-left:20px;">Register Here</a>
 </span>
 <br />
 <br />
-<input style="margin-left:100px;" type="submit" value="Login" />
+<input style="margin-left:100px; color: #1e4f8a" type="submit" value="Login" />
 </div>
 </div>
 </form>
