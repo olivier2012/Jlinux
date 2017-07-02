@@ -32,7 +32,33 @@ public class User {
     
     @Column(name="Host_name", length = 120)
     private String Host_name;
+    
+    @Column(name="Host_IP", length = 120)
+    private String Host_IP;
 
+    @Column(name="User_name", length = 120)
+    private String User_name;
+
+    public User() {
+       //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getHost_IP() {
+        return Host_IP;
+    }
+
+    public void setHost_IP(String Host_IP) {
+        this.Host_IP = Host_IP;
+    }
+
+    public String getUser_name() {
+        return User_name;
+    }
+
+    public void setUser_name(String User_name) {
+        this.User_name = User_name;
+    }
+    
     public String getHost_name() {
         return Host_name;
     }
@@ -44,12 +70,16 @@ public class User {
     @Column(name="First_name",length=40)
     private String Fname;
     
+    @Column(name = "middle_name", length = 40)
+    private String Mname;
+    
    @Column(name = "last_name", length = 40)
     private String Lname;
    
     @Column(name="password",length=250)
     private String Passwd;
     
+    /*type: admin,client,user,linux*/
    @Column(name = "UserType", length = 40)
     private String Usertype;
    
@@ -76,6 +106,14 @@ public class User {
 
     public void setFname(String Fname) {
         this.Fname = Fname;
+    }
+    
+     public String getMname() {
+        return Mname;
+    }
+
+    public void setMname(String Fname) {
+        this.Fname = Mname;
     }
 
     public String getLname() {
@@ -125,6 +163,13 @@ public class User {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-   
+     public User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd) {
+        this.Fname = Fname;
+        this.Mname = Mname;
+        this.Lname = Lname;
+        this.Email = Email;
+        this.User_name = User_name;
+        this.Passwd = Passwd;
+    }
    
 }
