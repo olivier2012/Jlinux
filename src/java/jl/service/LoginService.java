@@ -49,7 +49,9 @@ public class LoginService {
      SessionFactory sFactory = HibUtil.getSessionFactory();
      dbsession1 = sFactory.openSession();
         }
-        return getListOfUsers(dbsession1);
+        List tmpUser =getListOfUsers(dbsession1);
+        dbsession1.close();
+        return tmpUser;
     }
     public List<User> getListOfUsers(Session dbsession){
         List<User> list = new ArrayList<User>();
