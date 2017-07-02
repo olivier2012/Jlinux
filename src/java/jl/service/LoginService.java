@@ -9,12 +9,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
  
 import Hiber.HibUtil;
+import org.hibernate.SessionFactory;
 
  
 public class LoginService {
  
-    public boolean authenticateUser(String User_name, String Passwd) {
-        User user = getUserByUserId(User_name);         
+    public boolean authenticateUser(String User_name, String Passwd,Session dbsession) {
+        User user = getUserByUserId(User_name,dbsession);         
         if(user!=null && user.getUser_name().equals(User_name) && user.getPasswd().equals(Passwd)){
             return true;
         }else{
@@ -22,14 +23,13 @@ public class LoginService {
         }
     }
  
-    public User getUserByUserId(String User_name) {
-        Session session = HibUtil.getSessionFactory().getCurrentSession();
+    public User getUserByUserId(String User_name,Session dbsession) {
         Transaction tx = null;
         User user = null;
         try {
-            tx = session.getTransaction();
+            tx = dbsession.getTransaction();
             tx.begin();
-            Query query = session.createQuery("from User where User_name='"+User_name+"'");
+            Query query = dbsession.createQuery("from User where User_name='"+User_name+"'");
             user = (User)query.uniqueResult();
             tx.commit();
         } catch (Exception e) {
@@ -38,19 +38,27 @@ public class LoginService {
             }
             e.printStackTrace();
         } finally {
-            session.close();
+//            dbsession.close();
         }
         return user;
     }
-     
+    
     public List<User> getListOfUsers(){
+        Session dbsession1 = null;
+        if(dbsession1==null){
+     SessionFactory sFactory = HibUtil.getSessionFactory();
+     dbsession1 = sFactory.openSession();
+        }
+        return getListOfUsers(dbsession1);
+    }
+    public List<User> getListOfUsers(Session dbsession){
         List<User> list = new ArrayList<User>();
-        Session session = HibUtil.getSessionFactory().getCurrentSession();
+//        Session session = HibUtil.getSessionFactory().getCurrentSession();
         Transaction tx = null;       
         try {
-            tx = session.getTransaction();
+            tx = dbsession.getTransaction();
             tx.begin();
-            list = session.createQuery("from User").list();                       
+            list = dbsession.createQuery("from User").list();                       
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -58,7 +66,7 @@ public class LoginService {
             }
             e.printStackTrace();
         } finally {
-            session.close();
+//            session.close();
         }
         return list;
     }
