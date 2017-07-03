@@ -91,6 +91,10 @@ public class User {
     
    @Column(name = "Email", length = 80)
     private String Email;
+   
+   /*add the email confirm function  ,  when the email confirm is false , user can not login */
+   @Column(name = "Email_confirm", length = 80)
+    private Boolean Email_confirm;
 
     public long getUserId() {
         return UserId;

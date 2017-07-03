@@ -50,6 +50,32 @@ public class Host {
 
    @Column(name = "AccessorId", length = 20)
     private long AccessorId;
+   
+    @Column(name = "UserId", length = 20)
+    private long UserId;
+    
+    @Column(name="User_name", length = 120)
+    private String User_name;
+
+    public long getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(long UserId) {
+        this.UserId = UserId;
+    }
+
+    public String getUser_name() {
+        return User_name;
+    }
+
+    public void setUser_name(String User_name) {
+        this.User_name = User_name;
+    }
+    
+    
+    
+      
 
     public String getHost_name() {
         return Host_name;

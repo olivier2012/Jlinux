@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
  
 import Hiber.HibUtil;
+import java.util.Date;
 import org.hibernate.SessionFactory;
 
  
@@ -17,6 +18,7 @@ public class LoginService {
     public boolean authenticateUser(String User_name, String Passwd,Session dbsession) {
         User user = getUserByUserId(User_name,dbsession);         
         if(user!=null && user.getUser_name().equals(User_name) && user.getPasswd().equals(Passwd)){
+            user.setAdate(new Date());
             return true;
         }else{
             return false;
