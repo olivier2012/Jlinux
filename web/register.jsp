@@ -7,6 +7,11 @@
 <body>
 <div id ="register-box">
 <h3>User Registration Form</h3>
+    <%     
+         session.getAttribute("User_name");
+         session.getAttribute("Passwd");
+         session.invalidate();
+     %>
 <form action="RegisterServlet" method="post">
 <table  align="center" cellpadding = "10">
 <tr>

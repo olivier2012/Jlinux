@@ -33,7 +33,7 @@ Please provide your credential to use this website
 </div>
 <br />
 <span class="login-box-options">
-     New User  ?    <a href="register.jsp" style="margin-left:20px;">Register Here</a>
+     New User  ?    <a href="register.jsp?User_name=value&Passwd=value" style="margin-left:20px;">Register Here</a>
 </span>
 <br />
 <br />
