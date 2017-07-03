@@ -59,10 +59,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.log4j-web-2.8.2.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.jsch-0.1.54.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>

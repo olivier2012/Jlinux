@@ -7,10 +7,9 @@
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" /> 
-     <link rel="stylesheet" type="text/css" href="css/_style.css"/>
      <title>Result Page</title>
 </head>
-<body>
+  <%@include file="header.html" %> 
 <center>
      <div id="container">
          <h1>Result Page</h1>
@@ -52,5 +51,5 @@
          <br/>
      </div>
     </center>
-</body>
+  <%@include file="footer.html" %> 
 </html>
