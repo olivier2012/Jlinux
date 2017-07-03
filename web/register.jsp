@@ -1,10 +1,16 @@
-<html>
-<head>
-<title>Registration Form</title>
-      <meta  charset="utf-8">
-<link href="css/style.css" rel="stylesheet" type="text/css" /> 
-</head>
-<body>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Jlinux System Information</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    </head>
+  <%@include file="header.html" %> 
 <div id ="register-box">
 <h3>User Registration Form</h3>
     <%     
@@ -50,5 +56,6 @@
 </table>
 </form>
 </div>
+ <%@include file="footer.html" %> 
 </body>
 </html>

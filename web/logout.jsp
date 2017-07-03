@@ -5,6 +5,7 @@
      <title>logout Page</title>
 </head>
 <body>
+    <%@include file="header.html" %> 
      <%     
          session.removeAttribute("User_name");
          session.removeAttribute("Passwd");
@@ -14,5 +15,6 @@
      <h1>You have successfully logged out</h1>
      To login again <a href="login.jsp">click here</a>.
 </center>
+<%@include file="footer.html" %> 
 </body>
 </html>
