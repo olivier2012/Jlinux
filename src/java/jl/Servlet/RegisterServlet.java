@@ -23,9 +23,13 @@ public class RegisterServlet extends HttpServlet {
      String email = request.getParameter("Email");
      String User_name = request.getParameter("User_name");
      String Passwd = request.getParameter("Passwd");
-     
-     User user = new User(firstName,middleName,lastName, email,User_name, Passwd,new Date());
-             
+     User user = null;
+     if(email==null||email.isEmpty()||User_name==null||User_name.isEmpty()){
+         return ;
+     }
+     else{
+       user = new User(firstName,middleName,lastName, email,User_name, Passwd,new Date());
+     }  
      try { 
          RegisterService registerService = new RegisterService();
          boolean result = registerService.register(user);      

@@ -33,11 +33,36 @@ public class Host {
     @Column(name="Host_name",length=20)
     private String Host_name;
     
+    @Column(name="Active",length=20,columnDefinition="0")
+    private String Active;
+    
     @Column(name="network_id",length=18)
     private long NetworkId;
     
    @Column(name = "CpuId", length = 20)
     private long CpuId;
+   
+   @Column(name = "LinuxOsId", length = 20)
+    private long LinuxOsId;
+
+    public long getLinuxOsId() {
+        return LinuxOsId;
+    }
+
+    public void setLinuxOsId(long LinuxOsId) {
+        this.LinuxOsId = LinuxOsId;
+    }
+
+    public String getKernel_name() {
+        return Kernel_name;
+    }
+
+    public void setKernel_name(String Kernel_name) {
+        this.Kernel_name = Kernel_name;
+    }
+   
+   @Column(name="Kernel_name",length=40)
+    private String Kernel_name;
    
     @Column(name="HdId",length=20)
     private long HdId;
@@ -151,5 +176,15 @@ public class Host {
     public void setAccess_time(Date Access_time) {
         this.Access_time = Access_time;
     }
+    /*Active has three status:" 0 标识 开始 建立 host值 ；"  ">1  标识已经 有别的部分追加 ；" " -1 标识已经过期 " */
+    public String getActive() {
+        return Active;
+    }
+
+    public void setActive(String Active) {
+        this.Active = Active;
+    }
+    
+    
     
 }

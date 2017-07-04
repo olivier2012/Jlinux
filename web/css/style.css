@@ -156,7 +156,8 @@ width: max-content;
   .sidebar-nav .navbar ul {
     float: none;
   }
-  .sidebar-nav .navbar ul:not {
+  .sidebar-nav .navbar ul:not
+  {
     display: block;
   }
   .sidebar-nav .navbar li {

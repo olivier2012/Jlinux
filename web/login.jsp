@@ -9,7 +9,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     </head>
     <%@include file="header.html" %> 
 <form method="post" action="LoginServlet">
@@ -29,7 +29,7 @@ Please provide your credential to use this website
 </div>
 <br />
 <span class="login-box-options">
-     New User  ?    <a href="register.jsp?User_name=value&Passwd=value" style="margin-left:20px;">Register Here</a>
+     New User  ?    <a href="register.jsp" style="margin-left:20px;">Register Here</a>
 </span>
 <br />
 <br />

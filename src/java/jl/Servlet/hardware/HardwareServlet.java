@@ -1,4 +1,4 @@
-package jl.Servlet;
+package jl.Servlet.hardware;
 
 import Hiber.DB.hw.User;
 import Hiber.HibUtil;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class LoginServlet extends HttpServlet {
+public class HardwareServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -20,26 +20,24 @@ public class LoginServlet extends HttpServlet {
         HttpSession s_session = request.getSession();
         SessionFactory  sFactory = HibUtil.getSessionFactory(); 
         Session dbsession = sFactory.openSession();
+        String User_name = request.getParameter("User_name");
+        String Passwd = request.getParameter("Passwd");
         /* 判断 http session 是不是第一次登录 ，如果是的话*/
-        if (s_session == null) {
-            if(dbsession ==null){
-               sFactory = HibUtil.getSessionFactory(); 
-               dbsession = (Session) sFactory.openStatelessSession();
-            } 
+        if (s_session == null&&dbsession ==null) {
             String MESSAGE = null;
             request.setAttribute(MESSAGE, "Start with this page, please");
-            request.getRequestDispatcher("/RegisterServlet").forward(request, response);
+            request.getRequestDispatcher("/home.html").forward(request, response);
             return;
         } else {
             if (s_session.isNew()) {
-//                 sFactory = HibUtil.getSessionFactory(); 
-                 dbsession = sFactory.openSession();
-//                 dbsession = sFactory.getCurrentSession();
+                if(User_name==null||User_name.isEmpty()||Passwd==null||Passwd.isEmpty())
+                {
+            String MESSAGE = null;
+            request.setAttribute(MESSAGE, "Start with this page, please");
+            request.getRequestDispatcher("/home.html").forward(request, response);
+            return;
+                }
             }else{
-//                 dbsession = sFactory.getCurrentSession();
-            }       
-                String User_name = request.getParameter("User_name");
-                String Passwd = request.getParameter("Passwd");
                 LoginService loginService = new LoginService();
                 boolean result = loginService.authenticateUser(User_name, Passwd, dbsession);
                 User user = loginService.getUserByUserId(Passwd, dbsession);
@@ -50,9 +48,12 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("error.jsp");
                 }
+          }
         }
     }
-    
+    @Override
       public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {doPost(request,response);}
+            throws ServletException, IOException {
+            doPost(request,response);
+        }
 }

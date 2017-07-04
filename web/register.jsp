@@ -19,7 +19,8 @@
          session.invalidate();
      %>
 <form action="RegisterServlet" method="post">
-<table  align="center" cellpadding = "10">
+<!--  <div class="table-responsive" > -->
+<table  class="table" align="center" cellpadding = "10">
 <tr>
 <td>First Name</td>
 <td><input type="text" name="Fname" maxlength="30"/>
@@ -37,23 +38,24 @@
 </tr>
 <tr>
 <td>Email</td>
-<td><input type="text" name="Email" maxlength="100" /></td>
+<td><input type="text" name="Email" maxlength="100"  required/></td>
 </tr>
 <tr>
 <td>User Name</td>
-<td><input type="text" name="User_name" maxlength="100" /></td>
+<td><input type="text" name="User_name" maxlength="100"  required  /></td>
 </tr>
 <tr>
 <td>Password</td>
-<td><input type="text" name="Passwd" maxlength="100" /></td>
+<td><input type="text" name="Passwd" maxlength="100" required /></td>
 </tr>
 <tr>
 <td colspan="2" align="center">
-<input type="submit" value="Submit">
-<input type="reset" value="Reset">
+<input class="btn btn-primary" type="submit" value="Submit">
+<input class="btn btn-info" type="reset" value="Reset">
 </td>
 </tr>
 </table>
+<!-- </div>  -->
 </form>
 </div>
  <%@include file="footer.html" %> 

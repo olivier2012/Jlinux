@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -53,9 +54,48 @@ public class Network_data {
   
         network.setLink_encap((String) hm.get("link_encap"));
         net_dbsession.persist(network);
+        
+        Host host = new Host();
+        host.setAccess_time(new Date());
+        host.setHost_name((String) hm.get("Host_name"));
+        host.setNetworkId(network.getNetworkId());
+        
+        int timeActive = Integer.parseInt(host.getActive());
+        host.setActive(Integer.toString(timeActive+1));
+        net_dbsession.persist(host);
         tr.commit();
         net_dbsession.close();
 //        addd_sFactory.close();
         log.info("add the network infomation to database...finished ");
     }
+    
+     public static Network selectByHost_name(String Host_name,Session dbsession){
+        
+        Transaction tx = null;
+        Network network = null;
+        try {
+            tx = dbsession.getTransaction();
+            tx.begin();
+            Query query = dbsession.createQuery("from Network where Host_name='"+Host_name+"'");
+            network = (Network)query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+//            dbsession.close();
+        }
+        return network;
+     }
+     
+     public static void deleteByHost_name(String Host_name,SessionFactory sFactory){
+     
+     }
+          
+     public static void UpdateByHost_name(String Host_name,SessionFactory sFactory){
+     
+     }
+               
 }

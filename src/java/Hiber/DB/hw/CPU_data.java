@@ -59,6 +59,13 @@ public class CPU_data {
         cpu.setCache_alignment((String)hm.get("cache_alignment")); 
         cpu.setAddress_size((String)hm.get("address_sizes")); 
         dbsession.persist(cpu);
+        Host host = new Host();
+        host.setAccess_time(new Date());
+        host.setHost_name((String) hm.get("Host_name"));
+        int timeActive = Integer.parseInt(host.getActive());
+        host.setActive(Integer.toString(timeActive+1));
+        host.setCpuId(cpu.getCPUId());
+        dbsession.persist(host);
         tr.commit();        
         dbsession.close();
 //        add_sFactory.close();
