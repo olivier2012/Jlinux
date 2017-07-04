@@ -1,3 +1,4 @@
+<%@ page errorPage="error.jsp" %>  
 <%@page import="jl.service.LoginService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>

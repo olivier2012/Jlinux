@@ -6,8 +6,10 @@
 package Hiber.DB.hw;
 
 import Hiber.HibUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
@@ -69,8 +71,44 @@ public class Network_data {
         log.info("add the network infomation to database...finished ");
     }
     
-     public static Network selectByHost_name(String Host_name,Session dbsession){
-        
+     public static List<Network> selectByHost_name(String Host_name){
+        Session dbsession1 = null;
+        if(dbsession1==null){
+            SessionFactory sFactory = HibUtil.getSessionFactory();
+            dbsession1 = sFactory.openSession();
+        }
+        List tmpnetwork_data = selectByHost_name( Host_name,dbsession1);
+        dbsession1.close();
+        return  tmpnetwork_data;
+     }
+     
+     public static List<Network> selectByHost_name(String Host_name,Session dbsession){  
+         List<Network> list = new ArrayList<Network>();
+        Transaction tx = null;
+        Network network = null;
+        try {
+            tx = dbsession.getTransaction();
+            tx.begin();
+//            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
+           list = dbsession.createQuery("from Network").list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+//            dbsession.close();
+        }
+        return list;
+     }
+     
+     public static void deleteByHost_name(String Host_name,SessionFactory sFactory){
+     
+     }
+      
+     /*hostmap can update all of column , use match key , and update the value*/
+     public static Network UpdateByHost_name(String Host_name,Map<String,String> hostmap,Session dbsession){
         Transaction tx = null;
         Network network = null;
         try {
@@ -88,14 +126,6 @@ public class Network_data {
 //            dbsession.close();
         }
         return network;
-     }
-     
-     public static void deleteByHost_name(String Host_name,SessionFactory sFactory){
-     
-     }
-          
-     public static void UpdateByHost_name(String Host_name,SessionFactory sFactory){
-     
      }
                
 }

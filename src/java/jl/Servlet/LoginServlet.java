@@ -40,6 +40,8 @@ public class LoginServlet extends HttpServlet {
             }       
                 String User_name = request.getParameter("User_name");
                 String Passwd = request.getParameter("Passwd");
+                s_session.setAttribute("Passwd", Passwd);
+                s_session.setAttribute("User_name", Passwd);
                 LoginService loginService = new LoginService();
                 boolean result = loginService.authenticateUser(User_name, Passwd, dbsession);
                 User user = loginService.getUserByUserId(Passwd, dbsession);

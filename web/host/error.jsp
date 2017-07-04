@@ -9,12 +9,12 @@
 <title>Error Page</title>
 </head>
 <body>
-        <%@include file="header.html" %> 
+        <%@include file="host_header.html" %> 
 <center>
     <h1>Exception is: <%= exception %>   </h1>
      <h1>Your Login Was Unsuccessful - Please Try Again</h1>
-     To login again <a href="login.jsp">click here</a>.
+     To login again <a href="../login.jsp">click here</a>.
 </center>
-    <%@include file="footer.html" %> 
+    <%@include file="host_footer.html" %> 
 </body>
 </html>

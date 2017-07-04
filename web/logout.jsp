@@ -6,6 +6,7 @@
 </head>
 <body>
     <%@include file="header.html" %> 
+    <%@ page errorPage="error.jsp" %>  
      <%     
          session.removeAttribute("User_name");
          session.removeAttribute("Passwd");

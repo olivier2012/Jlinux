@@ -33,8 +33,8 @@ public class Host {
     @Column(name="Host_name",length=20)
     private String Host_name;
     
-    @Column(name="Active",length=20,columnDefinition="0")
-    private String Active;
+    @Column(name="Active",length=5)
+    private String Active = "0" ;
     
     @Column(name="network_id",length=18)
     private long NetworkId;

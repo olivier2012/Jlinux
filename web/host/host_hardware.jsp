@@ -1,3 +1,4 @@
+<%@ page errorPage="error.jsp" %>  
 <%@page import="jl.service.LoginService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
@@ -21,34 +22,32 @@
              <b>Welcome <%= user.getFname() + " " + user.getLname()%></b>     
              <br/>
              <a href="../logout.jsp">Logout</a>
-              <%
-                CPU cpu = (CPU) session.getAttribute("cpu");
-             %> 
                
-         <table>
+         <table> 
              <thead>
                  <tr>
                      <th>Host_name</th>
-                     <th>APICID</th>
-                     <th>CPU_Cores</th>
-                     <th>CPU Family</th>
-                     <th>Flags</th>   
-                     <th>Model Name</th>  
-                     <th>Physical_ID</th>  
+                     <th>Net_name</th>
+                     <th>IPv4</th>
+                     <th>IPv6</th>
+                     <th>Access_time</th>   
+                     <th>MTU</th>  
+                     <th>Link_Encap</th>  
                  </tr>
              </thead>
              <tbody>
-                 <%
-                     LoginService loginService = new LoginService();
-                     List<User> list = loginService.getListOfUsers();
-                     for (User u : list) {
+                 <%  String Host_name = "192.168.2.106 ";
+                     List<Network> list = Network_data.selectByHost_name(Host_name);
+                     for (Network n : list) {
                  %>
                  <tr>
-                     <td><%=u.getUser_name()%></td>
-                     <td><%=u.getFname()%></td>
-                     <td><%=u.getMname()%></td>
-                     <td><%=u.getLname()%></td>
-                     <td><%=u.getEmail()%></td>
+                     <td><%=n.getHost_name()%></td>
+                     <td><%=n.getNet_name()%></td>
+                     <td><%=n.getIpv4()%></td>
+                     <td><%=n.getIpv6()%></td>
+                     <td><%=n.getAccess_time()%></td>
+                     <td><%=n.getMTU()%></td>
+                     <td><%=n.getLink_encap()%></td>
                  </tr>
                  <%}%>
              <tbody>

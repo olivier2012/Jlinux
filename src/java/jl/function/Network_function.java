@@ -180,7 +180,7 @@ public class Network_function {
 
     public static String getCommand_back(String command, Session se) throws JSchException, IOException {
 
-        log.info("call the execCommand" + command);
+        log.info("call the execCommand : " + command);
         /* system info in the str*/
         String Linux_infot = execCommand.executeCommand(command, se);
         return Linux_infot;

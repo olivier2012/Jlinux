@@ -75,7 +75,7 @@ public class JL_network {
             // HashMap Linux_map = DBinit.Linux_uname(Linux_info);
             /* run command , got the system info  */
             String command = "ifconfig -s ";
-            log.info("call the execCommand");
+            log.info("call the execCommand : ");
             /* system info in the str*/
             String System_info = execCommand.executeCommand(command, jschsession);
 
