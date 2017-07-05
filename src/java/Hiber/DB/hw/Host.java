@@ -43,6 +43,22 @@ public class Host {
     
     @Column(name="Active",length=5)
     private String Active = "0" ;
+
+    public Host(long HostId, String Host_name, long NetworkId, long CpuId, long LinuxOsId, String Kernel_name, long HdId, long MemID, long MonitorId, long AccessorId, long UserId, String User_name, Date Access_time) {
+        this.HostId = HostId;
+        this.Host_name = Host_name;
+        this.NetworkId = NetworkId;
+        this.CpuId = CpuId;
+        this.LinuxOsId = LinuxOsId;
+        this.Kernel_name = Kernel_name;
+        this.HdId = HdId;
+        this.MemID = MemID;
+        this.MonitorId = MonitorId;
+        this.AccessorId = AccessorId;
+        this.UserId = UserId;
+        this.User_name = User_name;
+        this.Access_time = Access_time;
+    }
     
     @Column(name="network_id",length=18)
     private long NetworkId;
