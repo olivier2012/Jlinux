@@ -11,54 +11,68 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
     </head>
-  <%@include file="header.html" %> 
-<div id ="register-box">
-<h3>User Registration Form</h3>
-    <%     
-         session.getAttribute("User_name");
-         session.getAttribute("Passwd");
-         session.invalidate();
-     %>
-<form action="RegisterServlet" method="post">
-<!--  <div class="table-responsive" > -->
-<table  class="table" align="center" cellpadding = "10">
-<tr>
-<td>First Name</td>
-<td><input type="text" name="Fname" maxlength="30"/>
-</td>
-</tr>
-<tr>
-<td>Middle Name</td>
-<td><input type="text" name="Mname" maxlength="30"/>
-</td>
-</tr>
-<tr>
-<td>Last Name</td>
-<td><input type="text" name="Lname" maxlength="30"/>
-</td>
-</tr>
-<tr>
-<td>Email</td>
-<td><input type="text" name="Email" maxlength="100"  required/></td>
-</tr>
-<tr>
-<td>User Name</td>
-<td><input type="text" name="User_name" maxlength="100"  required  /></td>
-</tr>
-<tr>
-<td>Password</td>
-<td><input type="text" name="Passwd" maxlength="100" required /></td>
-</tr>
-<tr>
-<td colspan="2" align="center">
-<input class="btn btn-primary" type="submit" value="Submit">
-<input class="btn btn-info" type="reset" value="Reset">
-</td>
-</tr>
-</table>
-<!-- </div>  -->
-</form>
-</div>
- <%@include file="footer.html" %> 
+    <%@include file="header.html" %> 
+    <%
+        session.getAttribute("User_name");
+        session.getAttribute("Passwd");
+        session.invalidate();
+    %>
+
+
+    <form action="RegisterServlet" method="post" id="register-box">
+        <h3>User Registration Form</h3>
+        <div class="form-inline">
+
+            <div class="form-group ">
+                <label class="control-label col-sm-4" for="fn" >First Name</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control input-md " id="fname" name="Fname" maxlength="30"/>
+                </div>
+            </div>
+                            
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Middle Name</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control input-md" id="mname" name="Mname" maxlength="30"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Last Name</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control input-md" id="lname" name="Lname" maxlength="30"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Email</label>
+                <div class="col-sm-2">
+                    <input type="email" class="form-control input-md" id="email" name="email" maxlength="30"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" >User Name</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control input-md" id="User_name" name="User_name" maxlength="30"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Password</label>
+                <div class="col-sm-2">
+                    <input type="password" class="form-control input-md" id="Passwd" name="Passwd" maxlength="30"/>
+                </div>
+            </div>
+            
+            <div class="form-group" >
+                <span class="col-sm-2 col-sm-offset-2">
+                    <input class="btn btn-primary" type="submit" value="Submit"></span>
+                <span class="col-sm-2 col-sm-offset-5">
+                    <input class="btn btn-info" type="reset" value="Reset">
+                </span>
+            </div>
+    </form>
+    <%@include file="footer.html" %> 
 </body>
 </html>

@@ -29,6 +29,14 @@ public class Host {
     allocationSize=1
     )
     private long HostId;
+    public Host(){};
+    public Host( String Host_name,  long UserId, String User_name,Date Access_time) {
+        this.Host_name = Host_name;
+        this.User_name = User_name;
+        this.Access_time = Access_time;
+		this.UserId = UserId;
+
+    }
     
     @Column(name="Host_name",length=20)
     private String Host_name;

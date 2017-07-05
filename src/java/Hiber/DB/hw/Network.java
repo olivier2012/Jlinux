@@ -29,6 +29,31 @@ public class Network {
     allocationSize=1
     )
     private long NetworkId;
+
+    public Network(){};
+        
+    public Network(long NetworkId, String Host_name, String Net_cardId, String Net_name, String ipv4, String MemID, String ipv4_gw, String Rx, String Tx, String ipv4_status, String ipv6, String ipv6_mask, String ipv6_gw, String ipv6_Rx, String ipv6_Tx, String ipv6_status, String link_encap, String MTU, String MAC, Date Access_time) {
+        this.NetworkId = NetworkId;
+        this.Host_name = Host_name;
+        this.Net_cardId = Net_cardId;
+        this.Net_name = Net_name;
+        this.ipv4 = ipv4;
+        this.MemID = MemID;
+        this.ipv4_gw = ipv4_gw;
+        this.Rx = Rx;
+        this.Tx = Tx;
+        this.ipv4_status = ipv4_status;
+        this.ipv6 = ipv6;
+        this.ipv6_mask = ipv6_mask;
+        this.ipv6_gw = ipv6_gw;
+        this.ipv6_Rx = ipv6_Rx;
+        this.ipv6_Tx = ipv6_Tx;
+        this.ipv6_status = ipv6_status;
+        this.link_encap = link_encap;
+        this.MTU = MTU;
+        this.MAC = MAC;
+        this.Access_time = Access_time;
+    }
     
     @Column(name="Host_name", length = 120)
     private String Host_name;

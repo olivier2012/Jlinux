@@ -29,6 +29,22 @@ public class User {
     allocationSize=1
     )
     private long UserId;
+
+    
+    public User( String Host_name, String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
+        this.Host_name = Host_name;
+        this.Host_IP = Host_IP;
+        this.User_name = User_name;
+        this.Fname = Fname;
+        this.Mname = Mname;
+        this.Lname = Lname;
+        this.Passwd = Passwd;
+        this.Usertype = Usertype;
+        this.Cdate = Cdate;
+        this.Adate = Adate;
+        this.Email = Email;
+        this.Email_confirm = Email_confirm;
+    }
     
     @Column(name="Host_name", length = 120)
     private String Host_name;

@@ -77,6 +77,9 @@ font-weight:bold;
 border-radius: 5px;
 }
 table, tr, td{
+    font-family: sans-serif;
+    color: black;
+    background-color:teal;
 border-radius: 5px;
 border:solid 1px;
 padding: 5px;
@@ -133,20 +136,46 @@ width: max-content;
     color: #ebebeb;
     font-size: 11px;
 }
+/* form from firstname to password can  be moving */
+div.form-inline{
+       padding-left: 6em;
+    
+}
+.form-control{
+  
+}
 
 #register-box{
     align-content: center;
     width:533px;
-    height: 352px;
-    padding: 58px 76px 0 76px;
+    height: 420px;
+    padding: 1px 20px 1px 20px;
     color: #ebebeb;
     font: 12px Arial, Helvetica, sans-serif;
-    margin: 70px;
-    border: 5em;
-    background-image: url("../img/login_box.png") ;
+    margin: 20px;
+    border: 1em;
+   background-image: url("../img/login_box.png")  ;
+   /*background-size:400px 400px;*/
     
 }
+/* form row span can be moving  */
+#register-box div div.form-group{
+     padding :5px;
+     border : 2em;
+     
+}
 
+#register-box div div label{
+     padding :8px;
+     border : 1em;
+     
+}
+
+#register-box div div div input{
+     align-items: right;
+     border : 1em;
+     
+}
 /* make sidebar nav vertical */ 
 @media (min-width: 768px) {
   .sidebar-nav .navbar .navbar-collapse {

@@ -22,9 +22,9 @@ import org.hibernate.Transaction;
  *
  * @author olivier-h
  */
-public class Network_data {
+public class Host_data {
 
-    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Network_data.class.getName());
+    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Host_data.class.getName());
 
     public static void add(HashMap hm,SessionFactory sFactory) {
         log.info("add the network infomation to database ");
@@ -33,38 +33,10 @@ public class Network_data {
 
         Transaction tr = net_dbsession.beginTransaction();
 
-        Network network = new Network();
-        network.setAccess_time(new Date());
-
-        network.setHost_name((String) hm.get("Host_name"));
-        network.setIpv4((String) hm.get("inet_addr"));
-        network.setNet_cardId((String) hm.get("Iface"));
-        network.setMemID((String) hm.get(""));
-        
-        network.setIpv4_gw((String) hm.get(""));
-        network.setRx((String) hm.get("RX-OK"));
-        network.setTx((String) hm.get("TX-OK"));
-        network.setIpv4_status((String) hm.get(""));
-        network.setIpv6((String) hm.get("inet6"));
-        network.setIpv6_mask((String) hm.get(""));
-        network.setIpv6_gw((String) hm.get(""));
-        network.setIpv6_Rx((String) hm.get("")); 
-        
-        network.setIpv6_Tx((String) hm.get(""));
-        network.setIpv6_Tx((String) hm.get(""));
-        network.setMTU((String) hm.get("MTU"));
-  
-        network.setLink_encap((String) hm.get("link_encap"));
-        net_dbsession.persist(network);
-        
-        Host host = new Host();
-        host.setAccess_time(new Date());
-        host.setHost_name((String) hm.get("Host_name"));
-        host.setNetworkId(network.getNetworkId());
-        
-        int timeActive = Integer.parseInt(host.getActive());
-        host.setActive(Integer.toString(timeActive+1));
+        Host host = new Host((String) hm.get("Host_name"),Long.parseLong((String) hm.get("UserId")), (String) hm.get("User_name"),new Date());
         net_dbsession.persist(host);
+       /* new host data save , then it need to update the User data */
+       
         tr.commit();
         net_dbsession.close();
 //        addd_sFactory.close();
@@ -89,8 +61,8 @@ public class Network_data {
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
-//           list = dbsession.createQuery("from Network").list();
+//            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
+           list = dbsession.createQuery("from Network").list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

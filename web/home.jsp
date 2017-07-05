@@ -7,19 +7,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="css/style.css" rel="stylesheet" type="text/css" /> 
+<link href="css/main.css" rel="stylesheet" type="text/css" /> 
      <title>Result Page</title>
 </head>
   <%@include file="header.html" %> 
 <center>
      <div id="container">
-         <h1>Result Page</h1>
-             <b>This is Sample Result Page</b><br/>
+         <h1>Admin Page</h1>
+          <b>You from Host name : <%= request.getRemoteHost() + "   IP Address : " + request.getRemoteAddr()+ "------ Port: "+ request.getRemotePort()%></b>   
+           <br/>
              <%=new Date()%></br>
              <%
                  User user = (User) session.getAttribute("user");
              %>     
-             <b>Welcome <%= user.getFname() + " " + user.getLname()%></b>     
+             <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
              <br/>
              <a href="logout.jsp">Logout</a>
  

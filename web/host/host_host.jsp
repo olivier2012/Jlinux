@@ -14,13 +14,12 @@
 <center>
      <div id="container">
          <h1>Hardware Page</h1>
-          <b>You from Host name : <%= request.getRemoteHost() + "   IP Address : " + request.getRemoteAddr()+ "------ Port: "+ request.getRemotePort()%></b>   
-           <br/>
+             <b>Hardware Result Page</b><br/>
              <%=new Date()%></br>
              <%
                  User user = (User) session.getAttribute("user");
              %>     
-             <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
+             <b>Welcome <%= user.getFname() + " " + user.getLname()%></b>     
              <br/>
              <a href="../logout.jsp">Logout</a>
                
@@ -28,17 +27,17 @@
              <thead>
                  <tr>
                      <th>Host_name</th>
-                     <th>Net_name</th>
-                     <th>IPv4</th>
-                     <th>IPv6</th>
-                     <th>Access_time</th>   
-                     <th>MTU</th>  
-                     <th>Link_Encap</th>  
+                     <th>Access_time</th>
+                     <th>Kernel_name</th>
+                     <th>LinuxOs_ID</th>
+                     <th>Active</th>   
+                     <th>User_name</th>  
+                     <th>UserID</th>  
                  </tr>
              </thead>
              <tbody>
-                 <%  String Host_name = user.getHost_name();
-                     List<Network> list = Network_data.selectByHost_name(Host_name);
+                 <%  String Host_name = "192.168.2.106 ";
+                     List<Host> list = Network_data.selectByHost_name(Host_name);
                      for (Network n : list) {
                  %>
                  <tr>

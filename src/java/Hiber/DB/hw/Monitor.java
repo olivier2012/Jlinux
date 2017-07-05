@@ -114,4 +114,17 @@ public class Monitor {
     
     @Column(name="Access_time")
     private Date Access_time;
+     public Monitor(){};
+    public Monitor(long MonitorId, String Host_name, String Monitor_name, String Monitor_type, String Monitor_IO_counts, String Monitor_IO_type, String commitlimit, Date Access_time) {
+        this.MonitorId = MonitorId;
+        this.Host_name = Host_name;
+        this.Monitor_name = Monitor_name;
+        this.Monitor_type = Monitor_type;
+        this.Monitor_IO_counts = Monitor_IO_counts;
+        this.Monitor_IO_type = Monitor_IO_type;
+        this.commitlimit = commitlimit;
+        this.Access_time = Access_time;
+    }
+    
+    
 }

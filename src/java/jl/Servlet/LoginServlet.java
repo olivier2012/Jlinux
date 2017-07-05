@@ -47,9 +47,12 @@ public class LoginServlet extends HttpServlet {
                 User user = loginService.getUserByUserId(Passwd, dbsession);
                 dbsession.close();
                 if (result == true) {
+                    /*all of  user information will be keep in the session attribute , other servlet just call them and judge .*/
                     request.getSession().setAttribute("user", user);
+                    request.getSession().setAttribute("session_result", result);
                     response.sendRedirect("home.jsp");
                 } else {
+                    request.getSession().setAttribute("session_result", result);
                     response.sendRedirect("error.jsp");
                 }
         }

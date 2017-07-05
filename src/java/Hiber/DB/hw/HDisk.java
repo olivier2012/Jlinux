@@ -21,6 +21,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Jlinux_HDisk")
 public class HDisk {
+    public HDisk(){};
+    public HDisk(long HdId, String Host_name, String Hddisk_name, String dev_name, String blocks, String Mounted_on, String used, String available, String partition, String partition_type, String units, String sector, String io_size, String disk_label, String disk_id, Date Access_time) {
+        this.HdId = HdId;
+        this.Host_name = Host_name;
+        this.Hddisk_name = Hddisk_name;
+        this.dev_name = dev_name;
+        this.blocks = blocks;
+        this.Mounted_on = Mounted_on;
+        this.used = used;
+        this.available = available;
+        this.partition = partition;
+        this.partition_type = partition_type;
+        this.units = units;
+        this.sector = sector;
+        this.io_size = io_size;
+        this.disk_label = disk_label;
+        this.disk_id = disk_id;
+        this.Access_time = Access_time;
+    }
     @Id 
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_hdisk_seq")
     @SequenceGenerator(
