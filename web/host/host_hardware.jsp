@@ -22,7 +22,7 @@
              %>     
              <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
              <br/>
-             <a href="../logout.jsp">Logout</a>
+             <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
                
          <table> 
              <thead>

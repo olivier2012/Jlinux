@@ -24,6 +24,17 @@ public class LoginService {
             return false;
         }
     }
+    
+    public User getUserByUserId_s(String User_name){
+       Session dbsession1 = null;
+        if(dbsession1==null){
+     SessionFactory sFactory = HibUtil.getSessionFactory();
+     dbsession1 = sFactory.openSession();
+        }
+        User tmpUser =getUserByUserId(User_name,dbsession1);
+        dbsession1.close();
+        return tmpUser;
+    }
  
     public User getUserByUserId(String User_name,Session dbsession) {
         Transaction tx = null;

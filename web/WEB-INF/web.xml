@@ -6,16 +6,14 @@
             30
         </session-timeout>
     </session-config>
-    
     <servlet>
         <servlet-name>HardwareServlet</servlet-name>
-        <servlet-class>jl.Servlet.hardware.HardwareServlet</servlet-class>
+        <servlet-class>jl.Servlet.hardware.add_monitor_host_servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HardwareServlet</servlet-name>
         <url-pattern>/hardware</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>jl.Servlet.LoginServlet</servlet-class>
