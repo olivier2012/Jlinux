@@ -127,7 +127,7 @@ public class Jlinux_CPU extends Jlinux_Host {
     }
 
     public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size, long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super(HostId, H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+        super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
         this.processor = processor;
         this.vendor_id = vendor_id;
         this.cpu_family = cpu_family;

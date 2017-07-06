@@ -70,7 +70,7 @@ public class JL_network {
             HashMap<String, String> maintmp = Network_function.Linux_Os(jschsession);
             SessionFactory sFactory = HibUtil.getSessionFactory();
 
-            LinuxOs_data.add(DBinit.addTimestamp(maintmp, Host_name), sFactory);
+           /* LinuxOs_data.add(DBinit.addTimestamp(maintmp, Host_name), sFactory);*/
 
             // HashMap Linux_map = DBinit.Linux_uname(Linux_info);
             /* run command , got the system info  */
@@ -109,7 +109,7 @@ public class JL_network {
           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)    handle this information
                         just the two beginning  rows */
                         tmpHm = Network_function.getIpMask((LinkedHashMap) tmpHm, jschsession, Host_name);
-                        Network_data.add((HashMap) tmpHm, sFactory);
+                    /*    Network_data.add((HashMap) tmpHm, sFactory);*/
                     }
                     tmpHm.forEach((k, v) -> System.out.println("key :" + k + "  value : " + v));
                 }

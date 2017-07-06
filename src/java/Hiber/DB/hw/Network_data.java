@@ -26,14 +26,14 @@ public class Network_data {
 
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Network_data.class.getName());
 
-    public static void add(HashMap hm,SessionFactory sFactory) {
+    public static void add(HashMap hm,SessionFactory sFactory,Jlinux_Host jhost) {
         log.info("add the network infomation to database ");
 //        SessionFactory addd_sFactory = HibUtil.getSessionFactory();
         Session net_dbsession = sFactory.openSession();
 
         Transaction tr = net_dbsession.beginTransaction();
 
-        Jlinux_Network network = new Jlinux_Network();
+        Jlinux_Network network = new Jlinux_Network(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
         network.setAccess_time(new Date());
 
         network.setIpv4((String) hm.get("inet_addr"));

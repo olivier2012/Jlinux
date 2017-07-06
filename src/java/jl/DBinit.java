@@ -105,7 +105,7 @@ public class DBinit {
         return tmpstr;
     }
 
-    static HashMap<String,String> addTimestamp(HashMap<String,String> maintmp,String Host_name){
+   public static HashMap<String,String> addTimestamp(HashMap<String,String> maintmp,String Host_name){
         HashMap<String,String> addtime = maintmp;
         addtime.put("Host_name", Host_name);
         addtime.put("Access_time", new Date().toString());

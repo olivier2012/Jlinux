@@ -64,7 +64,7 @@ public class Jlinux_HDisk extends Jlinux_Host{
     }
 
     public Jlinux_HDisk(long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super(HostId, H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+        super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
     
     

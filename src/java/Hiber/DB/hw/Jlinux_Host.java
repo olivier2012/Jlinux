@@ -36,6 +36,17 @@ public abstract class Jlinux_Host {
     @Column(name="H_Host_name",length=20)
     private String H_Host_name;
     
+    @Column(name="H_Host_port",length=20)
+    private int H_Host_port=22;
+
+    public int getH_Host_port() {
+        return H_Host_port;
+    }
+
+    public void setH_Host_port(int H_Host_port) {
+        this.H_Host_port = H_Host_port;
+    }
+    
     @Column(name="Active",length=5)
     private String Active = "0" ;
    
@@ -133,8 +144,7 @@ public abstract class Jlinux_Host {
         this.Active = Active;
     }
 
-    public Jlinux_Host(long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        this.HostId = HostId;
+    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
         this.UserId = UserId;

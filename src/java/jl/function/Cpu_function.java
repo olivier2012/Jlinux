@@ -1,8 +1,10 @@
 package jl.function;
 
 import Hiber.DB.Sys.LinuxOs_data;
+import Hiber.DB.hw.CPU_data;
 import Hiber.DB.hw.Jlinux_Host;
 import Hiber.DB.hw.Network_data;
+import Hiber.HibUtil;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import java.io.BufferedReader;
@@ -27,9 +29,9 @@ import static jl.function.LinuxOs_function.log;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 
-public class Network_function {
+public class Cpu_function {
 
-    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Network_function.class.getName());
+    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Cpu_function.class.getName());
 
     public static String[] multiNet(String orig) {
         String[] tmpstr = orig.split("\r\n|\r|\n");
@@ -204,49 +206,36 @@ public class Network_function {
         return hmtmp;
     }
     
-     public static boolean check_network(Jlinux_Host jhost , Map<String,String> maintmp , SessionFactory sFactory,Session jschsession){
+     public static boolean check_cpu(Jlinux_Host jhost , Map<String,String> maintmp , SessionFactory sFactory,Session jschsession){
         boolean  run_flag =false;
         try{
-                        /* run command , got the system info  */
-            String command = "ifconfig -s ";
-            log.info("call the execCommand : ");
+            String command = "cat /proc/cpuinfo ";
+            log.info("call the execCommand");
             /* system info in the str*/
             String System_info = execCommand.executeCommand(command, jschsession);
-
+            SessionFactory sFactory = HibUtil.getSessionFactory();
             /*add the system info to database */
             String Orig_System_info = System_info;
 
-            /*here we need to detect whether the network  multi interfaces  */
-            Map<String, String> smntmp = new HashMap<String, String>();
-            Map<String, String> tmpHm = new HashMap<String, String>();
-//            boolean aaa = Network_function.ismultiNet(Orig_System_info);
-            if (Network_function.ismultiNet(Orig_System_info)) {
-                String[] multipS = Network_function.multiNet(Orig_System_info);
-                /* split "\r\n\r\n " this word is first one , so we jump the multipS the 0 one . */
+            /*here we need to detect whether the cpu multiprocessor */
+            boolean aaa = DBinit.ismultip(Orig_System_info);
+            if (DBinit.ismultip(Orig_System_info)) {
+                String[] multipS = DBinit.multip(Orig_System_info);
+                /* split "processor " this word is first one , so we jump the multipS the 0 one . */
                 for (int i = 0; i < multipS.length; i++) {
-                    if (i != 0) {
-                        smntmp = tmpHm;
-                    }
                     String System_info1 = multipS[i];
-                    /* Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
-                       br-ex      1500 0         0      0      0 0             8      0      0      0 BRU
-                       br-int     1500 0         0      0      0 0             8      0      0      0 BRU 
-                       then call the String2map_network  to handle them */
-                    tmpHm = Network_function.String2map_network(System_info1, i, smntmp);
-                    if (i != 0) {
-                        /*  virbr0    Link encap:Ethernet  HWaddr e6:44:49:36:65:54  
-          inet addr:192.168.122.1  Bcast:192.168.122.255  Mask:255.255.255.0
-          UP BROADCAST MULTICAST  MTU:1500  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0 
-          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)    handle this information
-                        just the two beginning  rows */
-                        tmpHm = Network_function.getIpMask((LinkedHashMap) tmpHm, jschsession, jhost.getH_Host_name());
-                        Network_data.add((HashMap) tmpHm, sFactory ,jhost);
-                    }
-                    tmpHm.forEach((k, v) -> System.out.println("key :" + k + "  value : " + v));
+                    HashMap tmpHm = DBinit.String2map(System_info1);
+                    tmpHm.put("Host_name", Host_name);
+                    /* */
+                    log.info("ready  the cpu info , covert it to map");
+                    CPU_data.add(tmpHm,sFactory);
                 }
+            } else {
+                HashMap tmpHm = DBinit.String2map(System_info);
+                tmpHm.put("Host_name", Host_name);
+                /* */
+                log.info("ready  the cpu info , covert it to map");
+                CPU_data.add(tmpHm,sFactory);
             }
         run_flag = true;
         } catch(Exception e){
