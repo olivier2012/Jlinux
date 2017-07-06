@@ -33,10 +33,9 @@ public class Network_data {
 
         Transaction tr = net_dbsession.beginTransaction();
 
-        Network network = new Network();
+        Jlinux_Network network = new Jlinux_Network();
         network.setAccess_time(new Date());
 
-        network.setHost_name((String) hm.get("Host_name"));
         network.setIpv4((String) hm.get("inet_addr"));
         network.setNet_cardId((String) hm.get("Iface"));
         network.setMemID((String) hm.get(""));
@@ -57,21 +56,13 @@ public class Network_data {
         network.setLink_encap((String) hm.get("link_encap"));
         net_dbsession.persist(network);
         
-        Host host = new Host();
-        host.setAccess_time(new Date());
-        host.setHost_name((String) hm.get("Host_name"));
-        host.setNetworkId(network.getNetworkId());
-        
-        int timeActive = Integer.parseInt(host.getActive());
-        host.setActive(Integer.toString(timeActive+1));
-        net_dbsession.persist(host);
         tr.commit();
         net_dbsession.close();
 //        addd_sFactory.close();
         log.info("add the network infomation to database...finished ");
     }
     
-     public static List<Network> selectByHost_name(String Host_name){
+     public static List<Jlinux_Network> selectByHost_name(String Host_name){
         Session dbsession1 = null;
         if(dbsession1==null){
             SessionFactory sFactory = HibUtil.getSessionFactory();
@@ -82,14 +73,14 @@ public class Network_data {
         return  tmpnetwork_data;
      }
      
-     public static List<Network> selectByHost_name(String Host_name,Session dbsession){  
-         List<Network> list = new ArrayList<Network>();
+     public static List<Jlinux_Network> selectByHost_name(String Host_name,Session dbsession){  
+         List<Jlinux_Network> list = new ArrayList<Jlinux_Network>();
         Transaction tx = null;
-        Network network = null;
+        Jlinux_Network network = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
+            list = dbsession.createQuery("from Jlinux_Network where Host_name='"+Host_name+"'").list();
 //           list = dbsession.createQuery("from Network").list();
             tx.commit();
         } catch (Exception e) {
@@ -108,14 +99,14 @@ public class Network_data {
      }
       
      /*hostmap can update all of column , use match key , and update the value*/
-     public static Network UpdateByHost_name(String Host_name,Map<String,String> hostmap,Session dbsession){
+     public static Jlinux_Network UpdateByHost_name(String Host_name,Map<String,String> hostmap,Session dbsession){
         Transaction tx = null;
-        Network network = null;
+        Jlinux_Network network = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            Query query = dbsession.createQuery("from Network where Host_name='"+Host_name+"'");
-            network = (Network)query.uniqueResult();
+            Query query = dbsession.createQuery("from Jlinux_Network where Host_name='"+Host_name+"'");
+            network = (Jlinux_Network)query.uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

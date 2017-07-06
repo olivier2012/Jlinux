@@ -19,45 +19,8 @@ import javax.persistence.Table;
  * @author olivier-h
  */
 @Entity
-@Table(name = "Jlinux_Network")
-public class Network {
-    @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_network_seq")
-    @SequenceGenerator(
-    name="Jlinux_network_seq",
-    sequenceName="network_sequence",
-    allocationSize=1
-    )
-    private long NetworkId;
+public class Jlinux_Network extends Jlinux_Host{
 
-    public Network(){};
-        
-    public Network(long NetworkId, String Host_name, String Net_cardId, String Net_name, String ipv4, String MemID, String ipv4_gw, String Rx, String Tx, String ipv4_status, String ipv6, String ipv6_mask, String ipv6_gw, String ipv6_Rx, String ipv6_Tx, String ipv6_status, String link_encap, String MTU, String MAC, Date Access_time) {
-        this.NetworkId = NetworkId;
-        this.Host_name = Host_name;
-        this.Net_cardId = Net_cardId;
-        this.Net_name = Net_name;
-        this.ipv4 = ipv4;
-        this.MemID = MemID;
-        this.ipv4_gw = ipv4_gw;
-        this.Rx = Rx;
-        this.Tx = Tx;
-        this.ipv4_status = ipv4_status;
-        this.ipv6 = ipv6;
-        this.ipv6_mask = ipv6_mask;
-        this.ipv6_gw = ipv6_gw;
-        this.ipv6_Rx = ipv6_Rx;
-        this.ipv6_Tx = ipv6_Tx;
-        this.ipv6_status = ipv6_status;
-        this.link_encap = link_encap;
-        this.MTU = MTU;
-        this.MAC = MAC;
-        this.Access_time = Access_time;
-    }
-    
-    @Column(name="Host_name", length = 120)
-    private String Host_name;
-        
     @Column(name="Net_cardId",length=40)
     private String Net_cardId;
     
@@ -108,25 +71,14 @@ public class Network {
             
     @Column(name="MAC",length=32)
     private String MAC;
- 
-    @Column(name="Access_time")
-    private Date Access_time;
 
-    public long getNetworkId() {
-        return NetworkId;
+    public Jlinux_Network() {
     }
 
-    public void setNetworkId(long NetworkId) {
-        this.NetworkId = NetworkId;
+    public Jlinux_Network(long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super(HostId, H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
 
-    public String getHost_name() {
-        return Host_name;
-    }
-
-    public void setHost_name(String Host_name) {
-        this.Host_name = Host_name;
-    }
 
     public String getNet_cardId() {
         return Net_cardId;
@@ -263,13 +215,6 @@ public class Network {
     public void setMAC(String MAC) {
         this.MAC = MAC;
     }
-
-    public Date getAccess_time() {
-        return Access_time;
-    }
-
-    public void setAccess_time(Date Access_time) {
-        this.Access_time = Access_time;
-    }
+ 
     
 }

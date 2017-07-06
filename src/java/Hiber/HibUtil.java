@@ -11,15 +11,14 @@ public class HibUtil {
     static {	// Java static initializer, executed  before call of any static method
        // sessFactory = new Configuration( ).configure( ).buildSessionFactory();    //deprecated method
         Configuration conf  = new Configuration( ).configure( );  //reads hibernate.cfg.xml
-        conf.addAnnotatedClass( User.class );
-        conf.addAnnotatedClass( Host.class );
-        conf.addAnnotatedClass( CPU.class );
-        conf.addAnnotatedClass( Network.class );
-        conf.addAnnotatedClass( HDisk.class );
-        conf.addAnnotatedClass( Monitor.class );
-        conf.addAnnotatedClass( Accessory.class );
-        conf.addAnnotatedClass( simpletest.class );
-        conf.addAnnotatedClass( LinuxOs.class );
+        conf.addAnnotatedClass( Jlinux_User.class );
+        conf.addAnnotatedClass( Jlinux_Host.class );
+        conf.addAnnotatedClass( Jlinux_CPU.class );
+        conf.addAnnotatedClass( Jlinux_Network.class );
+        conf.addAnnotatedClass( Jlinux_HDisk.class );
+        conf.addAnnotatedClass( Jlinux_Monitor.class );
+        conf.addAnnotatedClass( Jlinux_Accessory.class );
+        conf.addAnnotatedClass( Jlinux_LinuxOs.class );
         sessFactory = conf.buildSessionFactory(
         new StandardServiceRegistryBuilder( ).applySettings(conf.getProperties()).build( )
         );

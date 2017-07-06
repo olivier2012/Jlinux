@@ -1,6 +1,6 @@
 package jl.Servlet;
 
-import Hiber.DB.hw.User;
+import Hiber.DB.hw.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -16,42 +16,41 @@ public class RegisterServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
      response.setContentType("text/html;charset=UTF-8");
-     PrintWriter out = response.getWriter();
      String firstName = request.getParameter("Fname");
      String middleName = request.getParameter("Mname");
      String lastName = request.getParameter("Lname");
-     String email = request.getParameter("Email");
+     String email = request.getParameter("email");
      String User_name = request.getParameter("User_name");
      String Passwd = request.getParameter("Passwd");
-     User user = null;
+     String c_Host_name = "";
+     String c_Host_IP = request.getRemoteAddr();
+     String usertype ="register_client";
+     Date cdate = new Date();
+     boolean email_confirm = false;
+     Jlinux_User user = null;
+     try{
      if(email==null||email.isEmpty()||User_name==null||User_name.isEmpty()){
+            String MESSAGE = null;
+            request.setAttribute(MESSAGE, "email or User_name is empty, please check ");
+         response.sendRedirect("error.jsp");
          return ;
      }
      else{
-       user = new User(firstName,middleName,lastName, email,User_name, Passwd,new Date());
+       user = new Jlinux_User(c_Host_name,c_Host_IP,User_name,firstName,middleName,lastName,Passwd,usertype, cdate,cdate,email,email_confirm);
      }  
-     try { 
          RegisterService registerService = new RegisterService();
          boolean result = registerService.register(user);      
-         out.println("<html>");
-         out.println("<head>");      
-         out.println("<title>Registration Successful</title>");    
-         out.println("</head>");
-         out.println("<body>");
-         out.println("<center>");
          if(result){
-             out.println("<h1> Thanks for Registering with us :</h1>");
-             out.println("To login with new User_name and Password <a href=login.jsp>Click here</a>");
+            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("session_result", result);
+            response.sendRedirect("register_successful.jsp");
          }else{
-             out.println("<h1>Registration Failed</h1>");
-             out.println("To try again<a href=register.jsp>Click here</a>");
+            request.getSession().setAttribute("session_result", result);
+            response.sendRedirect("register_failed.jsp");
          }
-         out.println("</center>");
-         out.println("</body>");
-         out.println("</html>");
-     } finally {       
-         out.close();
-     }
-}
+
+}catch(Exception e){
+    e.printStackTrace();
+}}
  
 }

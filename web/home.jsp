@@ -2,7 +2,7 @@
 <%@page import="jl.service.LoginService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
-<%@page import="Hiber.DB.hw.User"%>
+<%@page import="Hiber.DB.hw.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
             <br/>
             <%=new Date()%></br>
             <%
-                User user = (User) session.getAttribute("user");
+                Jlinux_User user = (Jlinux_User) session.getAttribute("user");
             %>     
             <b>Welcome <%= user.getFname() + " " + user.getLname() + "------ UserID: " + user.getUserId()%></b>     
             <br/>
@@ -27,18 +27,20 @@
             <table>
                 <thead>
                     <tr>
-                        <th>User Name</th>
-                        <th>First Name</th>
-                        <th>Middle Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>                
+                        <th>User Name -  </th>
+                        <th>First Name -  </th>
+                        <th>Middle Name - </th>
+                        <th>Last Name  - </th>
+                        <th> Email    -  </th>   
+                        <th>Password  - </th> 
+                        <th>Usertype - </th> 
                     </tr>
                 </thead>
                 <tbody>
                     <%
                         LoginService loginService = new LoginService();
-                        List<User> list = loginService.getListOfUsers();
-                        for (User u : list) {
+                        Jlinux_User u = loginService.getUserByUserId_s(user.getUser_name());
+//                        for (Jlinux_User u : list) {
                     %>
                     <tr>
                         <td><%=u.getUser_name()%></td>
@@ -46,12 +48,16 @@
                         <td><%=u.getMname()%></td>
                         <td><%=u.getLname()%></td>
                         <td><%=u.getEmail()%></td>
+                        <td><%=u.getPasswd()%></td>
+                        <td><%=u.getUsertype()%></td>
                     </tr>
-                    <%}%>
+                    <% //}%>
                 <tbody>
             </table>    
             <br/>
         </div>
+       <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>          
+                
     </center>
     <%@include file="footer.html" %> 
 </html>

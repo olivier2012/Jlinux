@@ -27,9 +27,7 @@ public class CPU_data {
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         
-        CPU cpu = new CPU();
-        cpu.setAccess_time(new Date());
-        cpu.setHost_name((String) hm.get("Host_name"));
+        Jlinux_CPU cpu = new Jlinux_CPU();
         cpu.setProcessor((String) hm.get("processor"));
         cpu.setVendor_id((String) hm.get("vendor_id"));
         cpu.setCpu_family((String) hm.get("cpu_family"));
@@ -59,13 +57,13 @@ public class CPU_data {
         cpu.setCache_alignment((String)hm.get("cache_alignment")); 
         cpu.setAddress_size((String)hm.get("address_sizes")); 
         dbsession.persist(cpu);
-        Host host = new Host();
-        host.setAccess_time(new Date());
-        host.setHost_name((String) hm.get("Host_name"));
-        int timeActive = Integer.parseInt(host.getActive());
-        host.setActive(Integer.toString(timeActive+1));
-        host.setCpuId(cpu.getCPUId());
-        dbsession.persist(host);
+//        Host host = new Host();
+//        host.setAccess_time(new Date());
+//        host.setHost_name((String) hm.get("Host_name"));
+//        int timeActive = Integer.parseInt(host.getActive());
+//        host.setActive(Integer.toString(timeActive+1));
+//        host.setCpuId(cpu.getCPUId());
+//        dbsession.persist(host);
         tr.commit();        
         dbsession.close();
 //        add_sFactory.close();

@@ -6,7 +6,7 @@
 package Hiber.DB.Sys;
 
 import Hiber.DB.hw.CPU_data;
-import Hiber.DB.hw.Host;
+import Hiber.DB.hw.Jlinux_Host;
 import Hiber.HibUtil;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class LinuxOs_data {
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
-        LinuxOs los = new LinuxOs();
+        Jlinux_LinuxOs los = new Jlinux_LinuxOs();
            los.setKernel_name((String) hmtmp.get("Kernel_name"));
             los.setNode_name((String) hmtmp.get("Node_name"));
             los.setKernel_version((String) hmtmp.get("Kernel_version"));
@@ -36,17 +36,16 @@ public class LinuxOs_data {
             los.setHardware_platform((String) hmtmp.get("Hardware_platform"));
             los.setArchitecture((String) hmtmp.get("Architecture"));
             los.setOperate_system((String) hmtmp.get("Operate_system"));
-            los.setHost_name((String) hmtmp.get("Host_name"));
             los.setAccess_time(new Date());
-        Host host = new Host();
-        host.setAccess_time(new Date());
-        host.setHost_name((String) hmtmp.get("Host_name"));
-        host.setKernel_name((String) hmtmp.get("Kernel_name"));
-        host.setLinuxOsId( los.getLinuxOsId());
-        
-        int timeActive = Integer.parseInt(host.getActive());
-        host.setActive(Integer.toString(timeActive+1));
-        dbsession.persist(host);
+//        Jlinux_Host host = new Jlinux_Host();
+//        host.setAccess_time(new Date());
+//        host.setHost_name((String) hmtmp.get("Host_name"));
+//        host.setKernel_name((String) hmtmp.get("Kernel_name"));
+//        host.setLinuxOsId( los.getLinuxOsId());
+//        
+//        int timeActive = Integer.parseInt(host.getActive());
+//        host.setActive(Integer.toString(timeActive+1));
+//        dbsession.persist(host);
         dbsession.persist(los);
         tr.commit();        
         dbsession.close();

@@ -5,13 +5,7 @@
  */
 package jl;
 
-import Hiber.DB.hw.Accessory;
-import Hiber.DB.hw.CPU;
-import Hiber.DB.hw.HDisk;
-import Hiber.DB.hw.Host;
-import Hiber.DB.hw.Monitor;
-import Hiber.DB.hw.Network;
-import Hiber.DB.hw.User;
+import Hiber.DB.hw.*;
 import Hiber.HibUtil;
 import antlr.StringUtils;
 import java.io.BufferedReader;
@@ -38,13 +32,13 @@ public class DBinit {
         SessionFactory init_sFactory = HibUtil.getSessionFactory();
         Session dbsession = init_sFactory.openSession();
 
-        User user = new User();
-        Host host = new Host(); 
-        Network network = new Network();
-        HDisk hdisk = new HDisk();
-        CPU cpu = new CPU();
-        Accessory access = new Accessory();
-        Monitor monitor = new Monitor();
+        Jlinux_User user = new Jlinux_User();
+        Jlinux_Host host = new Jlinux_Host() {};
+        Jlinux_Network network = new Jlinux_Network();
+        Jlinux_HDisk hdisk = new Jlinux_HDisk();
+        Jlinux_CPU cpu = new Jlinux_CPU();
+        Jlinux_Accessory access = new Jlinux_Accessory();
+        Jlinux_Monitor monitor = new Jlinux_Monitor();
         
         dbsession.close();
         init_sFactory.close();

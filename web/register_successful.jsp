@@ -6,13 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Jlinux System Error Page</title>
-
- <%@include file="header.html" %> 
+<title>Error Page</title>
+</head>
+<body>
+        <%@include file="header.html" %> 
 <center>
     <h1>Exception is: <%= exception %>   </h1>
-     <h1>Your Login Was Unsuccessful - Please Try Again</h1>
-     To login again <a href="login.jsp">click here</a>.
+     <h1>Registration Successful</h1>
+     
+     <h2> Thanks for Registering with us :</h2>
+     
+     <h2>To login with new User_name and Password <a href=login.jsp>Click here</a></h2>
 </center>
     <%@include file="footer.html" %> 
 </body>

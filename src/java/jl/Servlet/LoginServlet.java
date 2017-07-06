@@ -1,6 +1,6 @@
 package jl.Servlet;
 
-import Hiber.DB.hw.User;
+import Hiber.DB.hw.*;
 import Hiber.HibUtil;
 import jl.service.LoginService;
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
                 s_session.setAttribute("User_name", Passwd);
                 LoginService loginService = new LoginService();
                 boolean result = loginService.authenticateUser(User_name, Passwd, dbsession);
-                User user = loginService.getUserByUserId(Passwd, dbsession);
+                Jlinux_User user = loginService.getUserByUserId(Passwd, dbsession);
                 dbsession.close();
                 if (result == true) {
                     /*all of  user information will be keep in the session attribute , other servlet just call them and judge .*/

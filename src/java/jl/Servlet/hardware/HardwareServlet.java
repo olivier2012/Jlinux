@@ -1,6 +1,6 @@
 package jl.Servlet.hardware;
 
-import Hiber.DB.hw.User;
+import Hiber.DB.hw.*;
 import Hiber.HibUtil;
 import jl.service.LoginService;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class HardwareServlet extends HttpServlet {
             }else{
                 LoginService loginService = new LoginService();
                 boolean result = loginService.authenticateUser(User_name, Passwd, dbsession);
-                User user = loginService.getUserByUserId(Passwd, dbsession);
+                Jlinux_User user = loginService.getUserByUserId(Passwd, dbsession);
                 dbsession.close();
                 if (result == true) {
                     request.getSession().setAttribute("user", user);

@@ -1,6 +1,6 @@
 package jl.service;
 
-import Hiber.DB.hw.User;
+import Hiber.DB.hw.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 
 public class RegisterService {
      
-public boolean register(User user){
+public boolean register(Jlinux_User user){
     SessionFactory sFactory = HibUtil.getSessionFactory();
      Session dbsession = sFactory.openSession();
      /*if isUserExists() return true, 已经存在，就返回真，如果为false ，继续执行 */
@@ -35,15 +35,15 @@ public boolean register(User user){
      return true;
 }
  
-public boolean isUserExists(User user,Session dbsession){
+public boolean isUserExists(Jlinux_User user,Session dbsession){
 //     Session dbsession = HibUtil.getSessionFactory().getCurrentSession();
      boolean result = false;
      Transaction tx = null;
      try{
          tx = dbsession.getTransaction();
          tx.begin();
-         Query query = dbsession.createQuery("from User where User_name='"+user.getUser_name()+"'");
-         User u = (User)query.uniqueResult();
+         Query query = dbsession.createQuery("from Jlinux_User where User_name='"+user.getUser_name()+"'");
+         Jlinux_User u = (Jlinux_User)query.uniqueResult();
          tx.commit();
          if(u!=null) 
          {

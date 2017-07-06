@@ -31,7 +31,7 @@ public class JL {
      */
     public static void main(String[] args) {
         log.info("main begin.........! ");
-//         DBinit.dbinit();
+         DBinit.dbinit();
         try {
             JSch jsch = new JSch();
 

@@ -18,7 +18,7 @@
            <br/>
              <%=new Date()%></br>
              <%
-                 User user = (User) session.getAttribute("user");
+                 Jlinux_User user = (Jlinux_User) session.getAttribute("user");
              %>     
              <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
              <br/>
@@ -38,11 +38,11 @@
              </thead>
              <tbody>
                  <%  String Host_name = user.getHost_name();
-                     List<Network> list = Network_data.selectByHost_name(Host_name);
-                     for (Network n : list) {
+                     List<Jlinux_Network> list = Network_data.selectByHost_name(Host_name);
+                     for (Jlinux_Network n : list) {
                  %>
                  <tr>
-                     <td><%=n.getHost_name()%></td>
+                     <td><%=n.getH_Host_name()%></td>
                      <td><%=n.getNet_name()%></td>
                      <td><%=n.getIpv4()%></td>
                      <td><%=n.getIpv6()%></td>

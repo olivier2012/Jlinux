@@ -20,19 +20,7 @@ import javax.persistence.Table;
  * @author olivier-h
  */
 @Entity
-@Table(name = "Jlinux_LinuxOs")
-public class LinuxOs {
-    @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_LinuxOsId_seq")
-    @SequenceGenerator(
-    name="Jlinux_LinuxOsId_seq",
-    sequenceName="LinuxOsId_sequence",
-    allocationSize=20
-    )
-    private long LinuxOsId;
-    
-    @Column(name="Host_name", length = 90)
-    private String Host_name;
+public class Jlinux_LinuxOs extends Jlinux_Host{
     
     @Column(name="Kernel_name",length=40)
     private String Kernel_name;
@@ -54,25 +42,6 @@ public class LinuxOs {
    
     @Column(name = "Operate_system", length = 45)
     private String Operate_system;
-  
-    @Column(name="Access_time")
-    private Date Access_time;
-
-    public long getLinuxOsId() {
-        return LinuxOsId;
-    }
-
-    public void setLinuxOsId(long LinuxOsId) {
-        this.LinuxOsId = LinuxOsId;
-    }
-
-    public String getHost_name() {
-        return Host_name;
-    }
-
-    public void setHost_name(String Host_name) {
-        this.Host_name = Host_name;
-    }
 
     public String getKernel_name() {
         return Kernel_name;
@@ -130,12 +99,11 @@ public class LinuxOs {
         this.Operate_system = Operate_system;
     }
 
-    public Date getAccess_time() {
-        return Access_time;
+    public Jlinux_LinuxOs() {
     }
 
-    public void setAccess_time(Date Access_time) {
-        this.Access_time = Access_time;
+    public Jlinux_LinuxOs(long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super(HostId, H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
     
 }

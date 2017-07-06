@@ -2,9 +2,8 @@
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
      <link rel="stylesheet" type="text/css" href="css/main.css">
-     <title>logout Page</title>
+     <title>Jlinux System logout Page</title>
 </head>
-<body>
     <%@include file="header.html" %> 
     <%@ page errorPage="error.jsp" %>  
      <%     
@@ -17,5 +16,4 @@
      To login again <a href="login.jsp">click here</a>.
 </center>
 <%@include file="footer.html" %> 
-</body>
 </html>

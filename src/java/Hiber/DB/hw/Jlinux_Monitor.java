@@ -19,33 +19,8 @@ import javax.persistence.Table;
  * @author olivier-h
  */
 @Entity
-@Table(name = "Jlinux_Monitor")
-public class Monitor {
-    @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_Monitor_seq")
-    @SequenceGenerator(
-    name="Jlinux_Monitor_seq",
-    sequenceName="Monitor_sequence",
-    allocationSize=1
-    )
-    private long MonitorId;
-
-    public long getMonitorId() {
-        return MonitorId;
-    }
-
-    public void setMonitorId(long MonitorId) {
-        this.MonitorId = MonitorId;
-    }
-
-    public String getHost_name() {
-        return Host_name;
-    }
-
-    public void setHost_name(String Host_name) {
-        this.Host_name = Host_name;
-    }
-
+public class Jlinux_Monitor extends Jlinux_Host{
+    
     public String getMonitor_name() {
         return Monitor_name;
     }
@@ -85,17 +60,6 @@ public class Monitor {
     public void setCommitlimit(String commitlimit) {
         this.commitlimit = commitlimit;
     }
-
-    public Date getAccess_time() {
-        return Access_time;
-    }
-
-    public void setAccess_time(Date Access_time) {
-        this.Access_time = Access_time;
-    }
-    
-    @Column(name="Host_name", length = 120)
-    private String Host_name;
     
     @Column(name="Monitor_name",length=20)
     private String Monitor_name;
@@ -111,20 +75,13 @@ public class Monitor {
    
     @Column(name = "commitlimit", length = 22)
     private String commitlimit;
-    
-    @Column(name="Access_time")
-    private Date Access_time;
-     public Monitor(){};
-    public Monitor(long MonitorId, String Host_name, String Monitor_name, String Monitor_type, String Monitor_IO_counts, String Monitor_IO_type, String commitlimit, Date Access_time) {
-        this.MonitorId = MonitorId;
-        this.Host_name = Host_name;
-        this.Monitor_name = Monitor_name;
-        this.Monitor_type = Monitor_type;
-        this.Monitor_IO_counts = Monitor_IO_counts;
-        this.Monitor_IO_type = Monitor_IO_type;
-        this.commitlimit = commitlimit;
-        this.Access_time = Access_time;
+
+    public Jlinux_Monitor() {
     }
-    
+
+    public Jlinux_Monitor(long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super(HostId, H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    }
+  
     
 }

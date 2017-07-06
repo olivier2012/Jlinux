@@ -18,34 +18,34 @@
             <br/>
             <%=new Date()%></br>
             <%
-                User user = (User) session.getAttribute("user");
+                Jlinux_User user = (Jlinux_User) session.getAttribute("user");
             %>     
             <b>Welcome <%= user.getFname() + " " + user.getLname() + "------ UserID: " + user.getUserId()%></b>     
             <br/>
             <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="../logout.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
         </div>
-        <form action="add_monitor_host_servlet" method="post" id="host-register-box">
+        <form action="add_monitor_servlet" method="get" id="host-register-box">
             <h3>Host add Form</h3>
             <div class="form-inline">
 
                 <div class="form-group ">
                     <label class="control-label col-sm-4" for="fn" >Host_name</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control input-md " id="host_name_ssh" name="host_name_ssh" maxlength="30"/>
+                        <input type="text" class="form-control input-md " id="host_name_ssh" name="H_Host_name" maxlength="30"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-4" >User_name</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control input-md" id="User_name_ssh" name="User_name_ssh" maxlength="30"/>
+                        <input type="text" class="form-control input-md" id="User_name_ssh" name="H_User_name" maxlength="30"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-4" >Ssh Password</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control input-md" id="passwd_ssh" name="passwd_ssh" maxlength="30"/>
+                        <input type="password" class="form-control input-md" id="passwd_ssh" name="H_Passwd" maxlength="30"/>
                     </div>
                 </div>
                 <div class="form-group" >

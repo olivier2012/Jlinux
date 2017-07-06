@@ -27,7 +27,7 @@ public class User_data {
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         
-        User user = new User();
+        Jlinux_User user = new Jlinux_User();
         user.setAdate(new Date());
         user.setHost_name((String) hm_User.get("Linux_Host_IP"));
         user.setHost_IP((String) hm_User.get("Linux_Host_IP"));

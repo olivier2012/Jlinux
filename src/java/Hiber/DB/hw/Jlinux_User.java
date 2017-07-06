@@ -20,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Jlinux_User")
-public class User {
+public class Jlinux_User {
     @Id 
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Jlinux_user_seq")
     @SequenceGenerator(
@@ -29,16 +29,21 @@ public class User {
     allocationSize=1
     )
     private long UserId;
-
+/*   the userid for the browser user access */
     
-    public User( String Host_name, String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
+    public Jlinux_User( String Host_name, String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
+        /* the host_name is same with H_Host_name of jlinux_host */
         this.Host_name = Host_name;
+        
         this.Host_IP = Host_IP;
+        /* for browser side login and use access user data*/
         this.User_name = User_name;
         this.Fname = Fname;
         this.Mname = Mname;
         this.Lname = Lname;
+		/*web browser  password of login  */
         this.Passwd = Passwd;
+        /* There are three usertypes : admin , client ,  anonymouse*/
         this.Usertype = Usertype;
         this.Cdate = Cdate;
         this.Adate = Adate;
@@ -55,7 +60,7 @@ public class User {
     @Column(name="User_name", length = 120)
     private String User_name;
 
-    public User() {
+    public Jlinux_User() {
        //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -183,7 +188,7 @@ public class User {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-     public User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd ,Date date) {
+     public Jlinux_User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd ,Date date) {
         this.Fname = Fname;
         this.Mname = Mname;
         this.Lname = Lname;
