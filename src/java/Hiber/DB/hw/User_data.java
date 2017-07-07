@@ -29,7 +29,6 @@ public class User_data {
         
         Jlinux_User user = new Jlinux_User();
         user.setAdate(new Date());
-        user.setHost_name((String) hm_User.get("Linux_Host_IP"));
         user.setHost_IP((String) hm_User.get("Linux_Host_IP"));
         user.setUser_name((String) hm_User.get("User_name"));
         user.setPasswd((String) hm_User.get("Host_IP"));

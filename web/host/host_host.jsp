@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@ page errorPage="error.jsp" %>  
 <%@page import="jl.service.LoginService"%>
 <%@page import="java.util.List"%>
@@ -17,7 +18,7 @@
              <b>Hardware Result Page</b><br/>
              <%=new Date()%></br>
              <%
-                 User user = (User) session.getAttribute("user");
+                 Map<String,String> user = session.getAttribute("user");
              %>     
              <b>Welcome <%= user.getFname() + " " + user.getLname()%></b>     
              <br/>

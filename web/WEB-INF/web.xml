@@ -8,13 +8,12 @@
     </session-config>
     <servlet>
         <servlet-name>HServlet</servlet-name>
-        <servlet-class>jl.Servlet.hardware.add_monitor_host_servlet</servlet-class>
+        <servlet-class>jl.Servlet.add_monitor_host_servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HServlet</servlet-name>
-        <url-pattern>/amh_servlet</url-pattern>
+        <url-pattern>/host/amh_servlet</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>jl.Servlet.LoginServlet</servlet-class>
@@ -23,7 +22,6 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>jl.Servlet.RegisterServlet</servlet-class>
@@ -32,7 +30,6 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
-    
     <welcome-file-list>
         <welcome-file>/index.html</welcome-file>
     </welcome-file-list>

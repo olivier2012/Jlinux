@@ -22,9 +22,9 @@
             %>     
             <b>Welcome <%= user.getFname() + " " + user.getLname() + "------ UserID: " + user.getUserId()%></b>     
             <br/>
-            <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="../logout.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
+           <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
         </div>
-        <form action="add_monitor_servlet" method="get" id="host-register-box">
+        <form action="amh_servlet" method="get" id="host-register-box">
             <h3>Host add Form</h3>
             <div class="form-inline">
 

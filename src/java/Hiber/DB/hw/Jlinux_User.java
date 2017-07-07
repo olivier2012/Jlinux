@@ -31,9 +31,7 @@ public class Jlinux_User {
     private long UserId;
 /*   the userid for the browser user access */
     
-    public Jlinux_User( String Host_name, String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
-        /* the host_name is same with H_Host_name of jlinux_host */
-        this.Host_name = Host_name;
+    public Jlinux_User(  String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
         
         this.Host_IP = Host_IP;
         /* for browser side login and use access user data*/
@@ -51,8 +49,6 @@ public class Jlinux_User {
         this.Email_confirm = Email_confirm;
     }
     
-    @Column(name="Host_name", length = 120)
-    private String Host_name;
     
     @Column(name="Host_IP", length = 120)
     private String Host_IP;
@@ -78,14 +74,6 @@ public class Jlinux_User {
 
     public void setUser_name(String User_name) {
         this.User_name = User_name;
-    }
-    
-    public String getHost_name() {
-        return Host_name;
-    }
-
-    public void setHost_name(String Host_name) {
-        this.Host_name = Host_name;
     }
     
     @Column(name="First_name",length=40)

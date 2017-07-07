@@ -19,7 +19,7 @@
     %>
 
 
-    <form action="RegisterServlet" method="post" id="register-box">
+    <form action="RegisterServlet" method="get" id="register-box">
         <h3>User Registration Form</h3>
         <div class="form-inline">
 

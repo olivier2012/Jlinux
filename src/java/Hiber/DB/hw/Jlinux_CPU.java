@@ -98,35 +98,8 @@ public class Jlinux_CPU extends Jlinux_Host {
 
     public Jlinux_CPU(){};
     
-    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size) {
-        this.processor = processor;
-        this.vendor_id = vendor_id;
-        this.cpu_family = cpu_family;
-        this.model = model;
-        this.model_name = model_name;
-        this.stepping = stepping;
-        this.microcode = microcode;
-        this.cpu_mhz = cpu_mhz;
-        this.cache_size = cache_size;
-        this.physical_id = physical_id;
-        this.siblings = siblings;
-        this.core_id = core_id;
-        this.apicid = apicid;
-        this.initial_apicid = initial_apicid;
-        this.fpu = fpu;
-        this.fpu_exception = fpu_exception;
-        this.cpuid_level = cpuid_level;
-        this.wp = wp;
-        this.power_management = power_management;
-        this.cpu_cores = cpu_cores;
-        this.flags = flags;
-        this.bogomips = bogomips;
-        this.clflush_size = clflush_size;
-        this.cache_alignment = cache_alignment;
-        this.address_size = address_size;
-    }
 
-    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size, long HostId, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size,  String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
         this.processor = processor;
         this.vendor_id = vendor_id;

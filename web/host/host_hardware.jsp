@@ -1,3 +1,4 @@
+<%@page import="Hiber.DB.hw.Jlinux_Host"%>
 <%@ page errorPage="error.jsp" %>  
 <%@page import="jl.service.LoginService"%>
 <%@page import="java.util.List"%>
@@ -23,32 +24,39 @@
              <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
              <br/>
              <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
-               
+             <br/>
+             <%
+               List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
+             %> 
+             
          <table> 
              <thead>
                  <tr>
-                     <th>Host_name</th>
-                     <th>Net_name</th>
-                     <th>IPv4</th>
-                     <th>IPv6</th>
-                     <th>Access_time</th>   
-                     <th>MTU</th>  
-                     <th>Link_Encap</th>  
+                     <td>User Id  </td>
+                     <td>Host Id</td>
+                     <td>H_Host_name</td>
+                     <td>H_User_name</td>
+                     <td>H_Passwd</td>
+                     <td>Host_UUID</td>
+                     <td>Active</td>
+                     <td>Created_time</td>
+                     <td>H_Host_port</td>
                  </tr>
              </thead>
              <tbody>
-                 <%  String Host_name = user.getHost_name();
-                     List<Jlinux_Network> list = Network_data.selectByHost_name(Host_name);
-                     for (Jlinux_Network n : list) {
+                 <%  
+                     for (Jlinux_Host n : list) {
                  %>
                  <tr>
+                     <td><%=n.getUserId() %></td>
+                     <td><%=n.getHostId() %></td>
                      <td><%=n.getH_Host_name()%></td>
-                     <td><%=n.getNet_name()%></td>
-                     <td><%=n.getIpv4()%></td>
-                     <td><%=n.getIpv6()%></td>
-                     <td><%=n.getAccess_time()%></td>
-                     <td><%=n.getMTU()%></td>
-                     <td><%=n.getLink_encap()%></td>
+                     <td><%=n.getH_User_name() %></td>
+                     <td><%=n.getH_Passwd() %></td>
+                     <td><%=n.getHost_UUID() %></td>
+                     <td><%=n.getActive() %></td>
+                     <td><%=n.getCreated_time() %></td>
+                     <td><%=n.getH_Host_port() %></td>
                  </tr>
                  <%}%>
              <tbody>

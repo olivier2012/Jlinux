@@ -165,6 +165,16 @@ public class Cpu_function {
         return amktmp;
     }
 
+   /* for multi cpu ,  the cpu information will include few part same content but the processor different */
+    static boolean ismultip(String tmps) {
+        String[] tmpstr = tmps.split("\n\n");
+        return tmpstr.length > 1;
+    }
+
+    static String[] multip(String orig) {
+        String[] tmpstr = orig.split("\n\n");
+        return tmpstr;
+    }
     public static String[] arrayRemoveEmpty(String[] tmp) {
 //        List<String> list = new ArrayList<String>();
 //        Collections.addAll(list, tmp);
@@ -213,29 +223,29 @@ public class Cpu_function {
             log.info("call the execCommand");
             /* system info in the str*/
             String System_info = execCommand.executeCommand(command, jschsession);
-            SessionFactory sFactory = HibUtil.getSessionFactory();
+//            SessionFactory sFactory = HibUtil.getSessionFactory();
             /*add the system info to database */
             String Orig_System_info = System_info;
 
             /*here we need to detect whether the cpu multiprocessor */
-            boolean aaa = DBinit.ismultip(Orig_System_info);
-            if (DBinit.ismultip(Orig_System_info)) {
-                String[] multipS = DBinit.multip(Orig_System_info);
+            boolean aaa = ismultip(Orig_System_info);
+            if (ismultip(Orig_System_info)) {
+                String[] multipS = multip(Orig_System_info);
                 /* split "processor " this word is first one , so we jump the multipS the 0 one . */
                 for (int i = 0; i < multipS.length; i++) {
                     String System_info1 = multipS[i];
                     HashMap tmpHm = DBinit.String2map(System_info1);
-                    tmpHm.put("Host_name", Host_name);
+                    tmpHm.put("Host_name", jhost.getH_Host_name());
                     /* */
                     log.info("ready  the cpu info , covert it to map");
-                    CPU_data.add(tmpHm,sFactory);
+                    CPU_data.add(tmpHm,sFactory,jhost);
                 }
             } else {
                 HashMap tmpHm = DBinit.String2map(System_info);
-                tmpHm.put("Host_name", Host_name);
+               tmpHm.put("Host_name", jhost.getH_Host_name());
                 /* */
                 log.info("ready  the cpu info , covert it to map");
-                CPU_data.add(tmpHm,sFactory);
+                CPU_data.add(tmpHm,sFactory,jhost);
             }
         run_flag = true;
         } catch(Exception e){

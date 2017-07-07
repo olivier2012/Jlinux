@@ -22,7 +22,6 @@ public class RegisterServlet extends HttpServlet {
      String email = request.getParameter("email");
      String User_name = request.getParameter("User_name");
      String Passwd = request.getParameter("Passwd");
-     String c_Host_name = "";
      String c_Host_IP = request.getRemoteAddr();
      String usertype ="register_client";
      Date cdate = new Date();
@@ -36,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
          return ;
      }
      else{
-       user = new Jlinux_User(c_Host_name,c_Host_IP,User_name,firstName,middleName,lastName,Passwd,usertype, cdate,cdate,email,email_confirm);
+       user = new Jlinux_User(c_Host_IP,User_name,firstName,middleName,lastName,Passwd,usertype, cdate,cdate,email,email_confirm);
      }  
          RegisterService registerService = new RegisterService();
          boolean result = registerService.register(user);      
@@ -53,4 +52,7 @@ public class RegisterServlet extends HttpServlet {
     e.printStackTrace();
 }}
  
+    @Override
+   public void doGet(HttpServletRequest request, HttpServletResponse response)
+           throws ServletException, IOException{doPost(request,response);}
 }

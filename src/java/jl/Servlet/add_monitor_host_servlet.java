@@ -1,4 +1,4 @@
-package jl.Servlet.hardware;
+package jl.Servlet;
 
 import Hiber.DB.hw.*;
 import Hiber.HibUtil;
