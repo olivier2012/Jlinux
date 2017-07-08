@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
             return;
         } else {
             if (s_session.isNew()) {
+                String userResult = "0";
+                s_session.setAttribute(userResult,userResult );
 //                 sFactory = HibUtil.getSessionFactory(); 
                 dbsession = sFactory.openSession();
 //                 dbsession = sFactory.getCurrentSession();
@@ -54,8 +56,9 @@ public class LoginServlet extends HttpServlet {
                 s_session.setAttribute("Passwd", Passwd);
                 s_session.setAttribute("User_name", User_name);
                 LoginService loginService = new LoginService();
+                String isLoggedIn = "0";
                 boolean result = loginService.authenticateUser(User_name, Passwd, dbsession);
-                Jlinux_User user = loginService.getUserByUserId(Passwd, dbsession);
+                Jlinux_User user = loginService.getUserByUserId(User_name, dbsession);
                 List<Jlinux_Host> list_jhost = host_function.getHostByUser_ID(user.getUserId(), dbsession);
                 dbsession.close();
                 if (result == true) {
@@ -63,11 +66,12 @@ public class LoginServlet extends HttpServlet {
                     if (!list_jhost.isEmpty()) {
                         s_session.setAttribute("list_jhost", list_jhost);
                     }
+                    isLoggedIn="1";
                     s_session.setAttribute("user", user);
-                    s_session.setAttribute("session_result", 1);
+                    s_session.setAttribute("isLoggedIn", isLoggedIn);
                     response.sendRedirect("home.jsp");
                 } else {
-                    s_session.setAttribute("session_result", 0);
+                    request.setAttribute("isLoggedIn",isLoggedIn);
                     response.sendRedirect("error.jsp");
                 }
      //       }

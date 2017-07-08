@@ -1,3 +1,4 @@
+<%@page import="java.lang.String"%>
 <%@page import="Hiber.DB.hw.Jlinux_User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page errorPage="index.html" %>  
@@ -14,18 +15,36 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     </head>
     <%@include file="header.html" %> 
-     <%
-             Object User_name = session.getAttribute("User_name");
-             
-            Object Passwd = session.getAttribute("Passwd");
-            Object b_result = session.getAttribute("session_result");
+    <%
+           Object User_name = session.getAttribute("User_name"); 
+          if(User_name==null || User_name.toString()==null ||User_name.toString()==""){}else{
+              Object isLoggedIn = session.getAttribute("isLoggedIn");
+              /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
+              if (isLoggedIn != null)
+              {String isLoggedIn1 = isLoggedIn.toString();}
+              Object Passwd = session.getAttribute("Passwd");
+           
+            try{
+                 /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
+               Object  bbresult = session.getAttribute("isLoggedIn");
+               }
+            catch(Exception e){
+               System.out.println("error=" + e.toString());  
+            }
             Jlinux_User b_user = (Jlinux_User) session.getAttribute("user");
             /*customer have login , then second time click the Login menu , they will go home page directly*/
-            if (Integer.parseInt("b_result")==1 && User_name.toString() == b_user.getUser_name() && Passwd.toString() == b_user.getPasswd()) {
+           
+                out.print("b_user name : "+b_user.getUser_name());
+                out.print("     b_passwd  : "+b_user.getPasswd());
+                String bb_pass =  b_user.getPasswd();
+//            if ( User_name.toString() == b_user.getUser_name() && Passwd.toString() == b_user.getPasswd()) {
+            if ( Integer.parseInt(isLoggedIn.toString())==1) {
                 response.sendRedirect("home.jsp");
             } 
+            }
+            String userResult = "0";
                    %>
-    <form method="get" action="LoginServlet">
+    <form method="post" action="LoginServlet">
         <div style="padding: 100px 0 0 250px;">
             <div id="login-box">
                 <h2>Login Page</h2>

@@ -15,6 +15,8 @@ import org.hibernate.SessionFactory;
 
 
 /*http://localhost:8088/jLinux_jl/amh_servlet?H_Host_name=192.168.2.106&H_User_name=demo&H_Passwd=demo  test address */
+/*http://localhost:8088/jLinux_jl/amh_servlet?H_Host_name=172.16.17.57&H_User_name=demo&H_Passwd=demo  test address */  
+
 public class add_monitor_host_servlet extends HttpServlet {
     public static String H_Host_name = "Linux_Host_IP";
     public static  String H_User_name = "User_name";
