@@ -21,54 +21,98 @@ import javax.persistence.Table;
 @Entity
 public class Jlinux_HDisk extends Jlinux_Host{
  
-    @Column(name="Hddisk_name",length=20)
+    @Column(name="Hddisk_name",length=30)
     private String Hddisk_name;
-    
-   @Column(name = "dev_name", length = 20)
-    private String dev_name;
    
-    @Column(name="blocks",length=12)
-    private String blocks;
+   @Column(name = "Majmin", length = 30)
+    private String Majmin;
     
    @Column(name = "Mounted_on", length = 62)
     private String Mounted_on;
-   
-    @Column(name = "used", length = 30)
-    private String used;
-
-   @Column(name = "available", length = 30)
-    private String available;
-   
-    @Column(name="partition", length = 20)
-    private String partition;
     
-    @Column(name="partition_type",length=10)
+    @Column(name="partition_type",length=30)
     private String partition_type;
    
-    @Column(name = "units", length = 64)
-    private String units;
-       
-   @Column(name = "sector", length = 64)
-    private String sector;
-   
-    @Column(name = "io_size", length = 34)
-    private String io_size;
-
-   @Column(name = "disk_label", length = 30)
-    private String disk_label;
-   
-    @Column(name="disk_id", length = 30)
-    private String disk_id; 
-
+    @Column(name = "size", length = 64)
+    private String size;
+    
+    @Column(name = "RO", length = 34)
+    private String RO;
+        
+    @Column(name = "RM", length = 34)
+    private String RM;
+    
     public Jlinux_HDisk() {
     }
 
     public Jlinux_HDisk( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+        super(H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    }
+    public Jlinux_HDisk(String Hddisk_name, String Majmin, String Mounted_on, String partition_type, String size, String RO, String RM, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super(H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+        this.Hddisk_name = Hddisk_name;
+        this.Majmin = Majmin;
+        this.Mounted_on = Mounted_on;
+        this.partition_type = partition_type;
+        this.size = size;
+        this.RO = RO;
+        this.RM = RM;
     }
 
-    Jlinux_HDisk(String string, String string0, String string1, String string2, String string3, String string4, String string5, String h_Host_name, long userId, String h_User_name, String h_Passwd, Date access_time, Date created_time, String host_UUID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getHddisk_name() {
+        return Hddisk_name;
+    }
+
+    public void setHddisk_name(String Hddisk_name) {
+        this.Hddisk_name = Hddisk_name;
+    }
+
+    public String getMajmin() {
+        return Majmin;
+    }
+
+    public void setMajmin(String Majmin) {
+        this.Majmin = Majmin;
+    }
+
+    public String getMounted_on() {
+        return Mounted_on;
+    }
+
+    public void setMounted_on(String Mounted_on) {
+        this.Mounted_on = Mounted_on;
+    }
+
+    public String getPartition_type() {
+        return partition_type;
+    }
+
+    public void setPartition_type(String partition_type) {
+        this.partition_type = partition_type;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getRO() {
+        return RO;
+    }
+
+    public void setRO(String RO) {
+        this.RO = RO;
+    }
+
+    public String getRM() {
+        return RM;
+    }
+
+    public void setRM(String RM) {
+        this.RM = RM;
     }
     
     

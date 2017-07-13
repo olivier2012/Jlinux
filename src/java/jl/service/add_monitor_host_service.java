@@ -16,6 +16,7 @@ import jl.DBinit;
 import jl.JL_network;
 import jl.MyUserInfo;
 import jl.function.Cpu_function;
+import jl.function.HDdisk_function;
 import jl.function.LinuxOs_function;
 import jl.function.Network_function;
 import jl.function.host_function;
@@ -56,9 +57,9 @@ public class add_monitor_host_service {
             boolean check_linuxOs = LinuxOs_function.check_linuxOs(jhost,maintmp,sFactory);
             boolean check_network = Network_function.check_network(jhost,maintmp,sFactory,jschsession);
             boolean check_cpu =  Cpu_function.check_cpu(jhost,maintmp,sFactory,jschsession);
-           /* check_hdisk(H_Host_name ,H_User_name,H_Passwd);
+            boolean check_hdisk = HDdisk_function.check_hdisk(jhost,maintmp,sFactory,jschsession);
 
-            check_monitor(H_Host_name ,H_User_name,H_Passwd);
+           /* check_monitor(H_Host_name ,H_User_name,H_Passwd);
             check_Accessory(H_Host_name ,H_User_name,H_Passwd); */
         } catch (Exception e){
            log.info(e);
