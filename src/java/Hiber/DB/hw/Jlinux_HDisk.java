@@ -66,6 +66,10 @@ public class Jlinux_HDisk extends Jlinux_Host{
     public Jlinux_HDisk( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
+
+    Jlinux_HDisk(String string, String string0, String string1, String string2, String string3, String string4, String string5, String h_Host_name, long userId, String h_User_name, String h_Passwd, Date access_time, Date created_time, String host_UUID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
