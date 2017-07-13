@@ -23,10 +23,13 @@
              %>     
              <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
              <br/>
-             <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
+             <a class="btn btn-info" href="logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
              <br/>
              <%
                List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
+               if (list==null){
+                   response.sendRedirect("add_monitor_host.jsp");
+               }
              %> 
              
          <table> 

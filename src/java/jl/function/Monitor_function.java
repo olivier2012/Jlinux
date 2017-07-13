@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import static javafx.scene.input.KeyCode.T;
 import static jdk.nashorn.internal.objects.NativeArray.map;
 import jl.DBinit;
@@ -226,6 +227,21 @@ public class Monitor_function {
 
             /*add the system info to database */
             String Orig_System_info = System_info;
+            /*
+            $ lshw -c display
+              *-display               
+       description: VGA compatible controller
+       product: 3rd Gen Core processor Graphics Controller
+       vendor: Intel Corporation
+       physical id: 2
+       bus info: pci@0000:00:02.0
+       version: 09
+       width: 64 bits
+       clock: 33MHz
+       capabilities: vga_controller bus_master cap_list rom
+       configuration: driver=i915 latency=0
+       resources: irq:27 memory:f6400000-f67fffff memory:e0000000-efffffff ioport:f000(size=64)
+            */
 
             /*here we need to detect whether the network  multi interfaces  */
             Map<String, String> smntmp = new HashMap<String, String>();
@@ -234,15 +250,14 @@ public class Monitor_function {
             if (Monitor_function.ismultiNet(Orig_System_info)) {
                 String[] multipS = Monitor_function.multiNet(Orig_System_info);
                 for (int i = 0; i < multipS.length; i++) {
-                   if (i==0){
-                       String [] tmpmap =multipS[i].split(" ");
-                       smntmp = Array2map_key(tmpmap);
-                     }else{
-                     String [] tmpmap =multipS[i].split(" ");
-                     smntmp = Array2map_value(tmpmap,smntmp);
-                   }
+                     String [] tmpmap =replaceSpace(((multipS[i]).split(":")));
+                     for(int j =0 ; j<tmpmap.length;j++){
+                       System.out.println(tmpmap[j]);
+                     }
+                     
+                /*     smntmp = Array2map_value(tmpmap,smntmp);
                    printmap(smntmp);
-                 HDisk_data.add((HashMap) smntmp, sFactory, jhost);
+                 HDisk_data.add((HashMap) smntmp, sFactory, jhost);*/
               }
                 
             }
@@ -256,4 +271,10 @@ public class Monitor_function {
      return run_flag;   
     } 
 
+     public static StringBuilder RE_Format_monitor(String st){
+           StringBuilder sbtmp = new StringBuilder();
+   /* 1, handle this " bus info: pci@0000:00:02.0 "  , only keep the first colon , the second one and third one  , will be replace  */
+            Pattern pa_re = Pattern.compile("^bus")
+           return sbtmp;
+     } 
 }
