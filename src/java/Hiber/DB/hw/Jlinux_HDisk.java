@@ -33,8 +33,8 @@ public class Jlinux_HDisk extends Jlinux_Host{
     @Column(name="partition_type",length=30)
     private String partition_type;
    
-    @Column(name = "size", length = 64)
-    private String size;
+    @Column(name = "hdsize", length = 64)
+    private String hdsize;
     
     @Column(name = "RO", length = 34)
     private String RO;
@@ -48,13 +48,13 @@ public class Jlinux_HDisk extends Jlinux_Host{
     public Jlinux_HDisk( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         super(H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
-    public Jlinux_HDisk(String Hddisk_name, String Majmin, String Mounted_on, String partition_type, String size, String RO, String RM, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+    public Jlinux_HDisk(String Hddisk_name, String Majmin, String Mounted_on, String partition_type, String shdize, String RO, String RM, String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         super(H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
         this.Hddisk_name = Hddisk_name;
         this.Majmin = Majmin;
         this.Mounted_on = Mounted_on;
         this.partition_type = partition_type;
-        this.size = size;
+        this.hdsize = hdsize;
         this.RO = RO;
         this.RM = RM;
     }
@@ -91,12 +91,12 @@ public class Jlinux_HDisk extends Jlinux_Host{
         this.partition_type = partition_type;
     }
 
-    public String getSize() {
-        return size;
+    public String gethdSize() {
+        return hdsize;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void sethdSize(String hdsize) {
+        this.hdsize = hdsize;
     }
 
     public String getRO() {
