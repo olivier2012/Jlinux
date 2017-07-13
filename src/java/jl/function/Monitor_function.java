@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static javafx.scene.input.KeyCode.T;
 import static jdk.nashorn.internal.objects.NativeArray.map;
@@ -250,7 +251,8 @@ public class Monitor_function {
             if (Monitor_function.ismultiNet(Orig_System_info)) {
                 String[] multipS = Monitor_function.multiNet(Orig_System_info);
                 for (int i = 0; i < multipS.length; i++) {
-                     String [] tmpmap =replaceSpace(((multipS[i]).split(":")));
+                     String multips_Re =RE_Format_monitor(multipS[i]);
+                     String [] tmpmap =replaceSpace((multips_Re.split(":")));
                      for(int j =0 ; j<tmpmap.length;j++){
                        System.out.println(tmpmap[j]);
                      }
@@ -271,10 +273,20 @@ public class Monitor_function {
      return run_flag;   
     } 
 
-     public static StringBuilder RE_Format_monitor(String st){
-           StringBuilder sbtmp = new StringBuilder();
+     public static String RE_Format_monitor(String st){
+          // StringBuilder sbtmp = new StringBuilder();
    /* 1, handle this " bus info: pci@0000:00:02.0 "  , only keep the first colon , the second one and third one  , will be replace  */
-            Pattern pa_re = Pattern.compile("^bus")
-           return sbtmp;
+           String REGEX = "^bus.*";
+           Pattern pattern = Pattern.compile(REGEX);
+           Matcher matcher = pattern.matcher(st);
+          if (matcher.matches()){
+           replaceColon_keep_firstColon(st);
+          }
+           
+           return st;
      } 
+     
+    private static String replaceColon_keep_firstColon(String orig) {
+        return orig.replace(":", "_").replaceFirst("_", ":");
+    }
 }
