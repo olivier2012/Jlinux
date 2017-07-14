@@ -56,7 +56,7 @@
             </table>    
             <br/>
         </div>
-       <a class="btn btn-info" href="../logout.jsp">Logout</a> <a class="btn btn-info" href="host/add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="logout.jsp">Update the host information </a>          
+       <a class="btn btn-info" href="logout.jsp">Logout</a> <a class="btn btn-info" href="host/add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="logout.jsp">Update the host information </a>          
                 
     </center>
     <%@include file="footer.html" %> 

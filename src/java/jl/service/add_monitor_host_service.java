@@ -55,12 +55,13 @@ public class add_monitor_host_service {
 
             
         
-          /*  boolean check_linuxOs = LinuxOs_function.check_linuxOs(jhost,maintmp,sFactory);
+          /* */
+            boolean check_linuxOs = LinuxOs_function.check_linuxOs(jhost,maintmp,sFactory);
             boolean check_network = Network_function.check_network(jhost,maintmp,sFactory,jschsession);
             boolean check_cpu =  Cpu_function.check_cpu(jhost,maintmp,sFactory,jschsession);
-            boolean check_hdisk = HDdisk_function.check_hdisk(jhost,maintmp,sFactory,jschsession);*/
+            boolean check_hdisk = HDdisk_function.check_hdisk(jhost,maintmp,sFactory,jschsession);
             boolean check_monitor = Monitor_function.check_monitor(jhost, maintmp, sFactory, jschsession);
-           /* check_Accessory(H_Host_name ,H_User_name,H_Passwd); */
+           /* boolean check_accessory = Monitor_function.check_accessory(jhost, maintmp, sFactory, jschsession);*/
         } catch (Exception e){
            log.info(e);
         }finally{

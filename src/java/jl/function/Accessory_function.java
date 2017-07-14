@@ -31,9 +31,9 @@ import static jl.function.LinuxOs_function.log;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 
-public class Monitor_function {
+public class Accessory_function {
 
-    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Monitor_function.class.getName());
+    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Accessory_function.class.getName());
 
     public static String[] multiNet(String orig) {
         String[] tmpstr = orig.split("\r\n|\r|\n");
@@ -132,8 +132,8 @@ public class Monitor_function {
         /* system info in the str*/
         String System_info = execCommand.executeCommand(command, jschsession);
         String Orig_System_info = System_info;
-        if (Monitor_function.ismultiNet(Orig_System_info)) {
-            String[] multipS = Monitor_function.multiNet(Orig_System_info);
+        if (Accessory_function.ismultiNet(Orig_System_info)) {
+            String[] multipS = Accessory_function.multiNet(Orig_System_info);
             /* virbr0    Link encap:Ethernet  HWaddr e6:44:49:36:65:54  
           inet addr:192.168.122.1  Bcast:192.168.122.255  Mask:255.255.255.0 */
             for (int i = 0; i < 2; i++) {
@@ -201,13 +201,13 @@ public class Monitor_function {
     /* need to create on database  to save */
     public static HashMap<String, String> Linux_Os(Session se) throws JSchException, IOException {
         HashMap<String, String> hmtmp = new HashMap<String, String>();
-        hmtmp.put("Kernel_name", Monitor_function.getCommand_back("uname -s", se));
-        hmtmp.put("Node_name", Monitor_function.getCommand_back("uname -n", se));
-        hmtmp.put("Kernel_version", Monitor_function.getCommand_back("uname -v", se));
-        hmtmp.put("Build_time", Monitor_function.getCommand_back("uname -o", se));
-        hmtmp.put("Hardware_platform", Monitor_function.getCommand_back("uname -m", se));
-        hmtmp.put("Architecture", Monitor_function.getCommand_back("uname -i", se));
-        hmtmp.put("Operate_system", Monitor_function.getCommand_back("uname -r", se));
+        hmtmp.put("Kernel_name", Accessory_function.getCommand_back("uname -s", se));
+        hmtmp.put("Node_name", Accessory_function.getCommand_back("uname -n", se));
+        hmtmp.put("Kernel_version", Accessory_function.getCommand_back("uname -v", se));
+        hmtmp.put("Build_time", Accessory_function.getCommand_back("uname -o", se));
+        hmtmp.put("Hardware_platform", Accessory_function.getCommand_back("uname -m", se));
+        hmtmp.put("Architecture", Accessory_function.getCommand_back("uname -i", se));
+        hmtmp.put("Operate_system", Accessory_function.getCommand_back("uname -r", se));
         System.out.print(Arrays.asList(hmtmp));
         return hmtmp;
     }
@@ -218,7 +218,7 @@ public class Monitor_function {
          }
      }
     
-     public static boolean check_monitor(Jlinux_Host jhost , Map<String,String> maintmp , SessionFactory sFactory,Session jschsession){
+     public static boolean check_accessory(Jlinux_Host jhost , Map<String,String> maintmp , SessionFactory sFactory,Session jschsession){
         boolean  run_flag =false;
         try{
                         /* run command , got the system info  */
@@ -250,8 +250,8 @@ public class Monitor_function {
             Map<String, String> tmpHm = new HashMap<String, String>();
             String key = null, value = null;
 //            boolean aaa = Network_function.ismultiNet(Orig_System_info);
-            if (Monitor_function.ismultiNet(Orig_System_info)) {
-                String[] multipS = Monitor_function.multiNet(Orig_System_info);
+            if (Accessory_function.ismultiNet(Orig_System_info)) {
+                String[] multipS = Accessory_function.multiNet(Orig_System_info);
                 for (int i = 0; i < multipS.length; i++) {
                      String multips_Re =RE_Format_monitor(replaceTab_trim_monitor(replaceSpace_trim_monitor(multipS[i])));
                      String [] tmpmap =multips_Re.split(":");
