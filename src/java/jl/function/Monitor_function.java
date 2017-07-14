@@ -251,8 +251,8 @@ public class Monitor_function {
             if (Monitor_function.ismultiNet(Orig_System_info)) {
                 String[] multipS = Monitor_function.multiNet(Orig_System_info);
                 for (int i = 0; i < multipS.length; i++) {
-                     String multips_Re =RE_Format_monitor(multipS[i]);
-                     String [] tmpmap =replaceSpace((multips_Re.split(":")));
+                     String multips_Re =RE_Format_monitor(replaceTab_trim_monitor(replaceSpace_trim_monitor(multipS[i])));
+                     String [] tmpmap =multips_Re.split(":");
                      for(int j =0 ; j<tmpmap.length;j++){
                        System.out.println(tmpmap[j]);
                      }
@@ -280,13 +280,29 @@ public class Monitor_function {
            Pattern pattern = Pattern.compile(REGEX);
            Matcher matcher = pattern.matcher(st);
           if (matcher.matches()){
-           replaceColon_keep_firstColon(st);
+           st =replaceColon_keepfirst(replaceColon_(st));
           }
-           
+      /* 2, handle this " resources: irq:16 ioport:1070(size=16) memory:e8000000-efffffff memory:fe000000-fe7fffff memory:c0000000-c0007fff "  , only keep the first colon , the second one and third one  , will be replace  */  
+           String REGEX1 = "^resource.*";
+           Pattern pattern1 = Pattern.compile(REGEX1);
+           Matcher matcher1 = pattern1.matcher(st);
+          if (matcher1.matches()){
+           st =replaceColon_keepfirst(replaceColon_(st));
+          }
            return st;
      } 
      
-    private static String replaceColon_keep_firstColon(String orig) {
-        return orig.replace(":", "_").replaceFirst("_", ":");
+    private static String replaceColon_(String orig) {
+        return orig.replaceAll("\\:", "_");
+    }
+    private static String replaceColon_keepfirst(String orig) {
+        return orig.replaceFirst("_", "\\:");
+    }
+    
+    private static String replaceSpace_trim_monitor(String orig) {
+        return orig.trim();
+    }
+    private static String replaceTab_trim_monitor(String orig) {
+        return orig.replaceAll("\t", "");
     }
 }
