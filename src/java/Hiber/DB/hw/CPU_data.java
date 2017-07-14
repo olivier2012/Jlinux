@@ -21,6 +21,13 @@ import org.hibernate.Transaction;
  */
 public class CPU_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(CPU_data.class.getName());
+    
+    public static Jlinux_CPU Selectbyhostid(SessionFactory sFactory,Jlinux_Host jhost ,long Host_id){
+         Session dbsession = sFactory.openSession();
+         Jlinux_CPU cpu = (Jlinux_CPU) dbsession.get(Jlinux_CPU.class, Host_id);
+        return cpu;
+    }
+     
     public static void add(HashMap hm,SessionFactory sFactory,Jlinux_Host jhost){
         log.debug("add the cpu infomation to database ");
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
