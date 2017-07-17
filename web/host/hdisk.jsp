@@ -1,4 +1,4 @@
-<%@page import="Hiber.DB.hw.Jlinux_CPU"%>
+<%@page import="Hiber.DB.hw.Jlinux_HDisk"%>
 <%@page import="java.util.Map"%>
 <%@ page errorPage="error.jsp" %>  
 <%@page import="jl.service.LoginService"%>
@@ -22,37 +22,37 @@
             %>     
             <b>Welcome <%= user.getFname() + " " + user.getLname() + "------ UserID: " + user.getUserId()%></b>  
                          <%
-            List<Jlinux_CPU> list = (List<Jlinux_CPU>) session.getAttribute("list_cpu");
+            List<Jlinux_HDisk> list = (List<Jlinux_HDisk>) session.getAttribute("list_cpu");
                if (list==null){
 //                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
-                   list = CPU_data.selectByH_Host_name("192.168.2.106");
+                   list = HDisk_data.selectByH_Host_name("192.168.2.106");
                }
              %> 
          <table> 
              <thead>
                  <tr>
-                     <th>Model_name</th>
-                     <th>Model</th>
-                     <th>Cpu_family</th>
-                     <th>Vendor_id</th>
-                     <th>Processor</th>   
-                     <th>Stepping</th>  
-                     <th>Cpu_mhz</th>  
+                     <th>Hddisk_name</th>
+                     <th>Majmin</th>
+                     <th>Mounted_on</th>
+                     <th>Partition_type</th>
+                     <th>Size</th>   
+                     <th>RO</th>  
+                     <th>RM</th>  
                  </tr>
              </thead>
              <tbody>
               <%
                    
-                        for (Jlinux_CPU n : list) {
+                        for (Jlinux_HDisk n : list) {
                     %>
                  <tr>
-                     <td><%=n.getModel_name() %></td>
-                     <td><%=n.getModel()%></td>
-                     <td><%=n.getCpu_family()%></td>
-                     <td><%=n.getVendor_id()%></td>
-                     <td><%=n.getProcessor()%></td>
-                     <td><%=n.getStepping()%></td>
-                     <td><%=n.getCpu_mhz()%></td>
+                     <td><%=n.getHddisk_name() %></td>
+                     <td><%=n.getMajmin()%></td>
+                     <td><%=n.getMounted_on()%></td>
+                     <td><%=n.getPartition_type()%></td>
+                     <td><%=n.gethdSize()%></td>
+                     <td><%=n.getRO()%></td>
+                     <td><%=n.getRM()%></td>
                  </tr>
                  <%}%>
              <tbody>

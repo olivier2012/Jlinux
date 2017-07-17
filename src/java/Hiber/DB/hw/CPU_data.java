@@ -6,8 +6,10 @@
 package Hiber.DB.hw;
 
 import Hiber.HibUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
@@ -22,11 +24,36 @@ import org.hibernate.Transaction;
 public class CPU_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(CPU_data.class.getName());
     
-    public static Jlinux_CPU Selectbyhostid(SessionFactory sFactory,Jlinux_Host jhost ,long Host_id){
-         Session dbsession = sFactory.openSession();
-         Jlinux_CPU cpu = (Jlinux_CPU) dbsession.get(Jlinux_CPU.class, Host_id);
-        return cpu;
-    }
+     public static List<Jlinux_CPU> selectByH_Host_name(String H_Host_name){
+        Session dbsession1 = null;
+        if(dbsession1==null){
+            SessionFactory sFactory = HibUtil.getSessionFactory();
+            dbsession1 = sFactory.openSession();
+        }
+        List tmpnetwork_data = selectByH_Host_name( H_Host_name,dbsession1);
+        dbsession1.close();
+        return  tmpnetwork_data;
+     }
+     
+     public static List<Jlinux_CPU> selectByH_Host_name(String H_Host_name,Session dbsession){  
+         List<Jlinux_CPU> list = new ArrayList<Jlinux_CPU>();
+        Transaction tx = null;
+        try {
+            tx = dbsession.getTransaction();
+            tx.begin();
+//            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
+           list = dbsession.createQuery("from Jlinux_CPU").list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+//            dbsession.close();
+        }
+        return list;
+     }
      
     public static void add(HashMap hm,SessionFactory sFactory,Jlinux_Host jhost){
         log.debug("add the cpu infomation to database ");

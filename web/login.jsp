@@ -1,7 +1,8 @@
+
 <%@page import="java.lang.String"%>
 <%@page import="Hiber.DB.hw.Jlinux_User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page errorPage="index.html" %>  
+<%@ page errorPage="error.jsp" %>  
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,7 +16,15 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     </head>
     <%@include file="header.html" %> 
-    <%
+    <%   
+          
+           HttpSession s_session = request.getSession();
+           if(s_session==null){
+             request.getRequestDispatcher("index.html").forward(request, response);
+           }else if(s_session.isNew()){
+             String message=null;
+             String isLoggedIn=null;
+           }else{
            Object User_name = session.getAttribute("User_name"); 
           if(User_name==null || User_name.toString()==null ||User_name.toString()==""){}else{
               Object isLoggedIn = session.getAttribute("isLoggedIn");
@@ -39,11 +48,11 @@
                 String bb_pass =  b_user.getPasswd();
 //            if ( User_name.toString() == b_user.getUser_name() && Passwd.toString() == b_user.getPasswd()) {
             if ( Integer.parseInt(isLoggedIn.toString())==1) {
-                response.sendRedirect("home.jsp");
+                 request.getRequestDispatcher("home.jsp").forward(request, response);
+//                response.sendRedirect("home.jsp");
             } 
             }
-            String userResult = "0";
-                   %>
+           }    %>
     <form method="post" action="LoginServlet">
         <div style="padding: 100px 0 0 250px;">
             <div id="login-box">

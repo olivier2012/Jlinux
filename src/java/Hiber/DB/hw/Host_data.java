@@ -26,7 +26,7 @@ public class Host_data {
 
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Host_data.class.getName());
     
-     public static List<Jlinux_Network> selectByH_Host_name(String H_Host_name){
+     public static List<Jlinux_Host> selectByH_Host_name(String H_Host_name){
         Session dbsession1 = null;
         if(dbsession1==null){
             SessionFactory sFactory = HibUtil.getSessionFactory();
@@ -37,15 +37,15 @@ public class Host_data {
         return  tmpnetwork_data;
      }
      
-     public static List<Jlinux_Network> selectByH_Host_name(String H_Host_name,Session dbsession){  
-         List<Jlinux_Network> list = new ArrayList<Jlinux_Network>();
+     public static List<Jlinux_Host> selectByH_Host_name(String H_Host_name,Session dbsession){  
+         List<Jlinux_Host> list = new ArrayList<Jlinux_Host>();
         Transaction tx = null;
-        Jlinux_Network network = null;
+        Jlinux_Host host = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
 //            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
-           list = dbsession.createQuery("from Jlinux_Network").list();
+           list = dbsession.createQuery("from Jlinux_Host").list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

@@ -14,35 +14,6 @@
   <%@include file="host_header.html" %> 
 <center>
      <div id="container">
-         <%
-           Object User_name = session.getAttribute("User_name"); 
-          if(User_name==null || User_name.toString()==null ||User_name.toString()==""){}else{
-              Object isLoggedIn = session.getAttribute("isLoggedIn");
-              /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
-              if (isLoggedIn != null)
-              {String isLoggedIn1 = isLoggedIn.toString();}
-              Object Passwd = session.getAttribute("Passwd");
-           
-            try{
-                 /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
-               Object  bbresult = session.getAttribute("isLoggedIn");
-               }
-            catch(Exception e){
-               System.out.println("error=" + e.toString());  
-            }
-            Jlinux_User b_user = (Jlinux_User) session.getAttribute("user");
-            /*customer have login , then second time click the Login menu , they will go home page directly*/
-           
-                out.print("b_user name : "+b_user.getUser_name());
-                out.print("     b_passwd  : "+b_user.getPasswd());
-                String bb_pass =  b_user.getPasswd();
-//            if ( User_name.toString() == b_user.getUser_name() && Passwd.toString() == b_user.getPasswd()) {
-            if ( Integer.parseInt(isLoggedIn.toString())==1) {
-                response.sendRedirect("../home.jsp");
-            } 
-            }
-            String userResult = "0";
-                   %>
          <h1>Hardware Page</h1>
           <b>You from Host name : <%= request.getRemoteHost() + "   IP Address : " + request.getRemoteAddr()+ "------ Port: "+ request.getRemotePort()%></b>   
            <br/>
@@ -57,7 +28,8 @@
              <%
                List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
                if (list==null){
-                   response.sendRedirect("add_monitor_host.jsp");
+//                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
+                   list = Host_data.selectByH_Host_name("192.168.2.106");
                }
              %> 
              
