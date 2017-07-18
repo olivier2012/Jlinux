@@ -116,7 +116,8 @@ public class HDdisk_function {
                     Key = entry.getKey().toString();
                 }
                 Value = str[i];
-                amktmp.put(Key, Value);
+                if(Key!=null && Value!=null){
+                amktmp.put(Key, Value);}
             }
         }
         return amktmp;

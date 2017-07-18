@@ -15,7 +15,7 @@
   <%@include file="host_header.html" %> 
 <center>
      <div id="container">
-         <h1>Hardware CPU Page</h1>
+         <h1>Hardware Hard Disk Page</h1>
              <%=new Date()%></br>
             <%
                 Jlinux_User user = (Jlinux_User) session.getAttribute("user");

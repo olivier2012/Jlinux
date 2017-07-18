@@ -5,6 +5,8 @@
  */
 package Hiber.DB.hw;
 
+import Hiber.DAO.Jlinux_User_DAO;
+import Hiber.DAO.Jlinux_User_DAO_Impl;
 import Hiber.HibUtil;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +23,13 @@ import org.hibernate.Transaction;
  */
 public class User_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(User_data.class.getName());
+     private static Jlinux_User_DAO jlinux_user_dao;
+     
+     public User_data(){
+        jlinux_user_dao = new Jlinux_User_DAO_Impl(); 
+      }
+     
+     
     public static void add(HashMap hm_User,SessionFactory sFactory){
         log.debug("add the"+ Class.class.getName()+" cpu infomation to database ");
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
