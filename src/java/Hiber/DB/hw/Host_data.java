@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,7 +24,8 @@ import org.hibernate.Transaction;
  * @author olivier-h
  */
 public class Host_data {
-
+    
+    final static String TAB_NAME = "Jlinux_Host";
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Host_data.class.getName());
     
      public static List<Jlinux_Host> selectByH_Host_name(String H_Host_name){
@@ -44,8 +46,8 @@ public class Host_data {
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-//            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
-           list = dbsession.createQuery("from Jlinux_Host").list();
+           Query query = dbsession.createQuery(" from " + TAB_NAME );
+           list = query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

@@ -10,6 +10,7 @@ import Hiber.DAO.Jlinux_User_DAO_Impl;
 import Hiber.HibUtil;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +30,41 @@ public class User_data {
         jlinux_user_dao = new Jlinux_User_DAO_Impl(); 
       }
      
+    public Jlinux_User_DAO jlinux_user_dao(){
+     return jlinux_user_dao();
+    }
+    
+    public void update(Jlinux_User user){
+         jlinux_user_dao.openCurrentSessionwithTransaction();
+         jlinux_user_dao.updateJlinux_User(user);
+         jlinux_user_dao.closeCurrentSessionwithTransaction();
+     }
+     
+    public void insert(Jlinux_User user){
+         jlinux_user_dao.openCurrentSessionwithTransaction();
+         jlinux_user_dao.insertJlinux_UserTable(user);
+         jlinux_user_dao.closeCurrentSessionwithTransaction();
+     }
+    
+    public void delete(long UserId){
+         jlinux_user_dao.openCurrentSessionwithTransaction();
+         jlinux_user_dao.deletebyJlinux_Users(UserId);
+         jlinux_user_dao.closeCurrentSessionwithTransaction();
+     }
+        
+    public Jlinux_User find(String User_name){
+         jlinux_user_dao.openCurrentSessionwithTransaction();
+         Jlinux_User user = jlinux_user_dao.getJlinux_UserName(User_name);
+         jlinux_user_dao.closeCurrentSessionwithTransaction();
+         return user;
+     }
+    
+    public List<Jlinux_User> findAll(){
+         jlinux_user_dao.openCurrentSessionwithTransaction();
+         List<Jlinux_User> list = jlinux_user_dao.getListOfJlinux_Users();
+         jlinux_user_dao.closeCurrentSessionwithTransaction();
+         return list;
+     }
      
     public static void add(HashMap hm_User,SessionFactory sFactory){
         log.debug("add the"+ Class.class.getName()+" cpu infomation to database ");

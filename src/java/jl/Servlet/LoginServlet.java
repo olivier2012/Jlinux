@@ -72,12 +72,16 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("home.jsp");
                 } else {
                     request.setAttribute("isLoggedIn",isLoggedIn);
-                    response.sendRedirect("error.jsp");
+                    response.sendRedirect("RegisterServlet");
                 }
-     //       }
+
         }}catch(Exception e){
-        log.info(e);
+            String MESSAGE = "";
+            request.setAttribute(MESSAGE, e.toString());
+         request.getRequestDispatcher("register.jsp").forward(request, response);
+//           response.sendRedirect("http://localhost:8088/jLinux_jl/RegisterServlet");
         }
+
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)

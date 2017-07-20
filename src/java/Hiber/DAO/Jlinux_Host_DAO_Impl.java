@@ -1,5 +1,5 @@
 package Hiber.DAO;
-import Hiber.DB.hw.Jlinux_User;
+import Hiber.DB.hw.*;
 import Hiber.HibUtil;
 import static Hiber.HibUtil.getSessionFactory;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.*;
 
 @Component
-public class Jlinux_User_DAO_Impl implements     Jlinux_User_DAO {
+public class Jlinux_Host_DAO_Impl implements     Jlinux_Host_DAO {
 
     SessionFactory sFactory = HibUtil.getSessionFactory();
     Session dbsession = sFactory.openSession();
@@ -51,48 +51,48 @@ public class Jlinux_User_DAO_Impl implements     Jlinux_User_DAO {
     }
     
     @Override
-    public int getJlinux_UserCount(){
-        return dbsession.createCriteria(Jlinux_User.class).list().size();
+    public int getJlinux_HostCount(){
+        return dbsession.createCriteria(Jlinux_Host.class).list().size();
     }
     
     @Override
-    public void insertJlinux_UserTable(Jlinux_User user){
+    public void insertJlinux_HostTable(Jlinux_Host user){
        currentSession.save(user);
     }
     
     @Override
-    public void updateJlinux_User(Jlinux_User user){
+    public void updateJlinux_Host(Jlinux_Host user){
         currentSession.update(user);
     }
     
    @Override
-    public  Jlinux_User getJlinux_UserName(String User_name){
+    public  Jlinux_Host getJlinux_HostName(String h_host_name){
         try{
-        Jlinux_User user = (Jlinux_User) dbsession.createCriteria(Jlinux_User.class).add(Restrictions.eq("User_name", User_name));
-         return user;
+        Jlinux_Host host = (Jlinux_Host) dbsession.createCriteria(Jlinux_Host.class).add(Restrictions.eq("h_host_name", h_host_name));
+         return host;
         }  // catch all exceptions if any, return null as a sign of failure 
         catch(Exception e) {  return  null;  }
     }
     
     @Override
-    public void deleteAllJlinux_Users(){   //special ORACLE syntax
-        List<Jlinux_User> entityList = getListOfJlinux_Users( );
-        for(Jlinux_User entity: entityList){
+    public void deleteAllJlinux_Hosts(){   //special ORACLE syntax
+        List<Jlinux_Host> entityList = getListOfJlinux_Hosts( );
+        for(Jlinux_Host entity: entityList){
          currentSession.delete(entity);
         }
         
     }
     
-    public void deletebyJlinux_Users(long UserId){   //special ORACLE syntax
-       Jlinux_User result =  (Jlinux_User) dbsession.createCriteria(Jlinux_User.class).add(Restrictions.idEq(UserId)).uniqueResult();
+    public void deletebyJlinux_Hosts(String HostId){   //special ORACLE syntax
+       Jlinux_Host result =  (Jlinux_Host) dbsession.createCriteria(Jlinux_Host.class).add(Restrictions.idEq(HostId)).uniqueResult();
         if(result !=null){
          dbsession.delete(result);
         }
     }
     
     @Override
-    public List<Jlinux_User> getListOfJlinux_Users( ) {
-         List<Jlinux_User> list = dbsession.createCriteria(Jlinux_User.class).list();
+    public List<Jlinux_Host> getListOfJlinux_Hosts( ) {
+         List<Jlinux_Host> list = dbsession.createCriteria(Jlinux_Host.class).list();
          return list;
 
     }

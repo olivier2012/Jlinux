@@ -1,6 +1,7 @@
 
 <%@page import="java.lang.String"%>
 <%@page import="Hiber.DB.hw.Jlinux_User"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp" %>  
 <!DOCTYPE html>
@@ -16,6 +17,21 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     </head>
     <%@include file="header.html" %> 
+      <h2 style="color:teal; ">Cookie list</h2>
+
+        Size of "cookie" map : ${cookie.size()}<br/>
+        <c:forEach var="cook" items="${cookie}" >
+            <c:out value="key = ${cook .key}  value =${cook .value.value}"  />
+        </c:forEach>
+        <hr color="blue" />
+        
+        <h2 style="color:brown;">Headers of HttpServletRequest</h2>
+        <ol style="list-style-type: decimal">
+        <c:forEach items="${header}" var="h" >
+            <li><c:out value="Header[${h.key}]=${h.value}"  /></li>
+        </c:forEach>
+        </ol>
+        Session id = <%=  request.getSession(false).getId()  %>
     <%   
           
            HttpSession s_session = request.getSession();
@@ -38,6 +54,7 @@
                Object  bbresult = session.getAttribute("isLoggedIn");
                }
             catch(Exception e){
+               s_session.invalidate();
                System.out.println("error=" + e.toString());  
             }
             Jlinux_User b_user = (Jlinux_User) session.getAttribute("user");

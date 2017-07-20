@@ -13,10 +13,13 @@ import java.util.List;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 
 /**
  *
@@ -79,9 +82,9 @@ public class Network_data {
         Jlinux_Network network = null;
         try {
             tx = dbsession.getTransaction();
-            tx.begin();
-            list = dbsession.createQuery("from Jlinux_Network where H_Host_name='"+H_Host_name+"'").list();
-//           list = dbsession.createQuery("from Network").list();
+            tx.begin();         
+            list = dbsession.createQuery("from Jlinux_Network where H_Host_name='"+H_Host_name+"' group by H_Host_name ").list();
+           list = dbsession.createQuery("from Network").list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -105,8 +108,8 @@ public class Network_data {
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            Query query = dbsession.createQuery("from Jlinux_Network where H_Host_name='"+H_Host_name+"'");
-            network = (Jlinux_Network)query.uniqueResult();
+            Query query = dbsession.createQuery("from Jlinux_Network where H_Host_name='"+H_Host_name+"' group by H_Host_name"); 
+              network = (Jlinux_Network)query.uniqueResult();   
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

@@ -13,9 +13,10 @@ public interface   Jlinux_User_DAO {
     
     public int getJlinux_UserCount();
     
-    public void createJlinux_UserTable(Jlinux_User user);
+    public void insertJlinux_UserTable(Jlinux_User user);
     
-    public void insertJlinux_User(Jlinux_User user);
+    public void updateJlinux_User(Jlinux_User user);
+    
        
     public  Jlinux_User getJlinux_UserName(String User_name);    
     
