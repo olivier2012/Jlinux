@@ -5,6 +5,7 @@
  */
 package Hiber.DB.hw;
 
+import static Hiber.DB.hw.CPU_data.Is_selectbyHostname;
 import Hiber.HibUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -35,8 +37,17 @@ public class Network_data {
         Session net_dbsession = sFactory.openSession();
 
         Transaction tr = net_dbsession.beginTransaction();
+        boolean flag = Is_selectbyHostname( jhost,sFactory);
+        Jlinux_Network network = new Jlinux_Network();
+            network.setH_Host_name(jhost.getH_Host_name());
+            network.setUserId(jhost.getUserId());
+            network.setH_User_name(jhost.getH_User_name());
+            network.setH_Passwd(jhost.getH_Passwd());
+            network.setAccess_time(jhost.getAccess_time());
+            network.setCreated_time(jhost.getCreated_time());
+            network.setHost_UUID(jhost.getHost_UUID());
 
-        Jlinux_Network network = new Jlinux_Network(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
+//        Jlinux_Network network = new Jlinux_Network(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
         network.setAccess_time(new Date());
 
         network.setIpv4((String) hm.get("inet_addr"));
@@ -57,7 +68,13 @@ public class Network_data {
         network.setMTU((String) hm.get("MTU"));
   
         network.setLink_encap((String) hm.get("link_encap"));
-        net_dbsession.persist(network);
+        
+       if (flag)
+           net_dbsession.update(network);
+        else{   
+           net_dbsession.persist(network);
+        }
+       
         
         tr.commit();
         net_dbsession.close();
@@ -120,6 +137,20 @@ public class Network_data {
 //            dbsession.close();
         }
         return network;
+     }
+     
+    public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
+        Session dbsession = sFactory.openSession();
+        Transaction tr = dbsession.beginTransaction();
+        Jlinux_Network jnetwork = (Jlinux_Network) dbsession.createCriteria(Jlinux_Network.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
+        tr.commit();
+        dbsession.close();
+        if (jnetwork==null)
+            return false;
+        else
+            return true;
+        
+
      }
                
 }

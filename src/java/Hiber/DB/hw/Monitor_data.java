@@ -5,6 +5,7 @@
  */
 package Hiber.DB.hw;
 
+import static Hiber.DB.hw.CPU_data.Is_selectbyHostname;
 import Hiber.HibUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -32,8 +34,17 @@ public class Monitor_data {
         Session net_dbsession = sFactory.openSession();
 
         Transaction tr = net_dbsession.beginTransaction();
+        boolean flag = Is_selectbyHostname( jhost,sFactory);
+        Jlinux_Monitor monitor = new Jlinux_Monitor();
+            monitor.setH_Host_name(jhost.getH_Host_name());
+            monitor.setUserId(jhost.getUserId());
+            monitor.setH_User_name(jhost.getH_User_name());
+            monitor.setH_Passwd(jhost.getH_Passwd());
+            monitor.setAccess_time(jhost.getAccess_time());
+            monitor.setCreated_time(jhost.getCreated_time());
+            monitor.setHost_UUID(jhost.getHost_UUID());
 
-        Jlinux_Monitor monitor = new Jlinux_Monitor(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
+//        Jlinux_Monitor monitor = new Jlinux_Monitor(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 
         
         monitor.setDescription((String) hm.get("description"));
@@ -48,8 +59,12 @@ public class Monitor_data {
         monitor.setCapabilities((String) hm.get("capabilities"));
         monitor.setConfiguration((String) hm.get("configuration"));
         monitor.setResources((String) hm.get("resources"));
-        
-        net_dbsession.persist(monitor);
+        if (flag)
+          net_dbsession.update(monitor);
+        else{   
+          net_dbsession.persist(monitor);
+        }
+       
         
         tr.commit();
         net_dbsession.close();
@@ -112,6 +127,18 @@ public class Monitor_data {
 //            dbsession.close();
         }
         return network;
+     }
+     
+    public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
+        Session dbsession = sFactory.openSession();
+        Transaction tr = dbsession.beginTransaction();
+        Jlinux_Monitor jmonitor = (Jlinux_Monitor) dbsession.createCriteria(Jlinux_Monitor.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
+        tr.commit();
+        dbsession.close();
+        if (jmonitor==null)
+            return false;
+        else
+            return true;
      }
                
 }

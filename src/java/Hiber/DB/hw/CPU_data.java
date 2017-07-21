@@ -123,6 +123,8 @@ public class CPU_data {
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         Jlinux_CPU jcpu = (Jlinux_CPU) dbsession.createCriteria(Jlinux_CPU.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
+        tr.commit();
+        dbsession.close();
         if (jcpu==null)
             return false;
         else
