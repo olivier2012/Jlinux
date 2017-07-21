@@ -58,9 +58,9 @@ public class add_monitor_host_servlet extends HttpServlet {
                 boolean amhs_result = amhs.checkallofhw(H_Host_name,H_User_name,H_Passwd);
 
                 if (amhs_result == true) {
-                   // response.sendRedirect("host/show_host_details.jsp");
+                   response.sendRedirect("host/show_host_details.jsp");
                 } else {
-                  //  response.sendRedirect("error.jsp");
+                   response.sendRedirect("error.jsp");
                 }
    /*       }
         }

@@ -64,7 +64,7 @@ public class CPU_data {
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
-        boolean flag = Is_selectbyHostname( jhost,sFactory);
+        boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,dbsession,tr);
         Jlinux_CPU cpu = new Jlinux_CPU();
             cpu.setH_Host_name(jhost.getH_Host_name());
             cpu.setUserId(jhost.getUserId());
@@ -119,15 +119,4 @@ public class CPU_data {
       log.debug("add the cpu infomation to database...finished ");
      }
     
-    public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
-        Session dbsession = sFactory.openSession();
-        Transaction tr = dbsession.beginTransaction();
-        Jlinux_CPU jcpu = (Jlinux_CPU) dbsession.createCriteria(Jlinux_CPU.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
-        tr.commit();
-        dbsession.close();
-        if (jcpu==null)
-            return false;
-        else
-        return true;
-     }
     }

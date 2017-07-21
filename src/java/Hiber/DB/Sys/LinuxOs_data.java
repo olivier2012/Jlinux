@@ -10,9 +10,11 @@ import Hiber.DB.hw.Jlinux_Host;
 import Hiber.HibUtil;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import javax.persistence.Column;
 import jl.function.Network_function;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,11 +27,11 @@ import org.hibernate.criterion.Restrictions;
 public class LinuxOs_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(LinuxOs_data.class.getName());
     public static void add(HashMap hmtmp,Jlinux_Host jhost,SessionFactory sFactory){
-        log.debug("add the cpu infomation to database ");
+        log.debug("add the LinuxOS  infomation to database ");
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
-        boolean flag = Is_selectbyHostname( jhost,sFactory);
+        boolean flag = Is_selectbyHostname( jhost,sFactory,dbsession,tr);
         Jlinux_LinuxOs los = new Jlinux_LinuxOs();
             los.setH_Host_name(jhost.getH_Host_name());
             los.setUserId(jhost.getUserId());
@@ -61,7 +63,7 @@ public class LinuxOs_data {
         tr.commit();        
         dbsession.close();
 //        add_sFactory.close();
-      log.debug("add the cpu infomation to database...finished ");
+      log.debug("add theLinuxOS  infomation to database...finished ");
     }
      public static Jlinux_LinuxOs selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
         Session dbsession = sFactory.openSession();
@@ -71,14 +73,29 @@ public class LinuxOs_data {
         return jlo;
      }
      
-     public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
-        Session dbsession = sFactory.openSession();
-        Transaction tr = dbsession.beginTransaction();
-        Jlinux_LinuxOs  jlo = (Jlinux_LinuxOs) dbsession.createCriteria(Jlinux_LinuxOs.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
-        if (jlo==null)
-            return false;
+     public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory,Session dbsession,Transaction tr){
+        boolean iflag = false;
+         try{
+//        Session is_dbsession = sFactory.openSession();
+//        Transaction tr = is_dbsession.beginTransaction();
+        
+//        Query query = (Query)dbsession.createQuery("from Jlinux_Host where H_Host_NAME = " + jhost.getH_Host_name());
+        Query query = (Query)dbsession.createSQLQuery("select * from Jlinux_Host where H_Host_NAME = '" + jhost.getH_Host_name()+"'");
+        log.info(query.toString());
+        List list = query.list();
+//        tr.commit();
+//        dbsession.close();
+//        Jlinux_LinuxOs  jlo = (Jlinux_LinuxOs) dbsession.createCriteria(Jlinux_LinuxOs.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
+        if (list.isEmpty())
+            iflag = false;
         else
-        return true;
+            iflag = true;
+        }
+         catch(Exception e){
+             log.debug(e);
+         }finally {
+           return iflag;
+         }
      }
     
 }

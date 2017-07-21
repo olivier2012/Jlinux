@@ -9,6 +9,8 @@ import com.jcraft.jsch.Session;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -226,8 +228,9 @@ public class HDdisk_function {
             String System_info = execCommand.executeCommand(command, jschsession);
 
             /*add the system info to database */
+//            String Orig_System_info = character_utf8(System_info);
             String Orig_System_info = System_info;
-
+            
             /*here we need to detect whether the network  multi interfaces  */
             Map<String, String> smntmp = new HashMap<String, String>();
             Map<String, String> tmpHm = new HashMap<String, String>();
@@ -256,5 +259,10 @@ public class HDdisk_function {
         
      return run_flag;   
     } 
+     
+     public static String character_utf8(String str){
+       ByteBuffer c_str = Charset.forName("UTF-8").encode(str);  
+       return c_str.toString();
+     }
 
 }

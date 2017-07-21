@@ -7,7 +7,6 @@ package Hiber.DB.hw;
 
 import Hiber.DAO.Jlinux_User_DAO;
 import Hiber.DAO.Jlinux_User_DAO_Impl;
-import static Hiber.DB.hw.Network_data.Is_selectbyHostname;
 import Hiber.HibUtil;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import jl.JL;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -73,7 +73,7 @@ public class User_data {
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
-        boolean flag = Is_selectbyHostname( hm_User,sFactory);
+        boolean flag = Is_selectbyHostname( hm_User,sFactory,dbsession,tr);
         
         Jlinux_User user = new Jlinux_User();
         
@@ -100,16 +100,28 @@ public class User_data {
       log.debug("add the User infomation to database...finished ");
      }
     
-        public static boolean Is_selectbyHostname(HashMap hm_User,SessionFactory sFactory){
-        Session dbsession = sFactory.openSession();
-        Transaction tr = dbsession.beginTransaction();
-        Jlinux_User juser = (Jlinux_User) dbsession.createCriteria(Jlinux_User.class).add(Restrictions.eq("User_name",hm_User.get("User_name")));
-        tr.commit();
-        dbsession.close();
-        if (juser==null)
+        public static boolean Is_selectbyHostname(HashMap hm_User,SessionFactory sFactory,Session dbsession,Transaction tr){
+            
+         try{
+//        Session is_dbsession = sFactory.openSession();
+//        Transaction tr = is_dbsession.beginTransaction();
+        
+//        Query query = (Query)dbsession.createQuery("from Jlinux_Host where H_Host_NAME = " + jhost.getH_Host_name());
+        Query query = (Query)dbsession.createSQLQuery("select * from Jlinux_User where User_name = " + hm_User.get("User_name"));
+        System.out.print(query);
+        List list = query.list();
+//        tr.commit();
+//        dbsession.close();
+//        Jlinux_LinuxOs  jlo = (Jlinux_LinuxOs) dbsession.createCriteria(Jlinux_LinuxOs.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
+        if (list.isEmpty())
             return false;
         else
-            return true;  
-
+            return true;
+        }
+         catch(Exception e){
+             log.debug(e);
+         }finally {
+           return false;
+         }
      }
     }

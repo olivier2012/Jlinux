@@ -5,7 +5,7 @@
  */
 package Hiber.DB.hw;
 
-import static Hiber.DB.hw.CPU_data.Is_selectbyHostname;
+import Hiber.DB.Sys.LinuxOs_data;
 import Hiber.HibUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +34,7 @@ public class Monitor_data {
         Session net_dbsession = sFactory.openSession();
 
         Transaction tr = net_dbsession.beginTransaction();
-        boolean flag = Is_selectbyHostname( jhost,sFactory);
+        boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,net_dbsession,tr);
         Jlinux_Monitor monitor = new Jlinux_Monitor();
             monitor.setH_Host_name(jhost.getH_Host_name());
             monitor.setUserId(jhost.getUserId());
@@ -69,7 +69,7 @@ public class Monitor_data {
         tr.commit();
         net_dbsession.close();
 //        addd_sFactory.close();
-        log.info("add the  infomation to database...finished " + Monitor_data.class.getName());
+        log.info("add the  monitor infomation to database...finished " + Monitor_data.class.getName());
     }
     
      public static List<Jlinux_Network> selectByH_Host_name(String H_Host_name){
@@ -127,18 +127,6 @@ public class Monitor_data {
 //            dbsession.close();
         }
         return network;
-     }
-     
-    public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
-        Session dbsession = sFactory.openSession();
-        Transaction tr = dbsession.beginTransaction();
-        Jlinux_Monitor jmonitor = (Jlinux_Monitor) dbsession.createCriteria(Jlinux_Monitor.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
-        tr.commit();
-        dbsession.close();
-        if (jmonitor==null)
-            return false;
-        else
-            return true;
      }
                
 }
