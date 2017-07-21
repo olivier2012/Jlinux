@@ -5,6 +5,9 @@
  */
 package Hiber.DB.hw;
 
+import Hiber.DB.Sys.Jlinux_LinuxOs;
+import Hiber.DB.Sys.LinuxOs_data;
+import static Hiber.DB.Sys.LinuxOs_data.Is_selectbyHostname;
 import Hiber.HibUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -50,7 +54,7 @@ public class CPU_data {
             }
             e.printStackTrace();
         } finally {
-//            dbsession.close();
+//            dbsession.cjcpue();
         }
         return list;
      }
@@ -60,13 +64,22 @@ public class CPU_data {
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
+        boolean flag = Is_selectbyHostname( jhost,sFactory);
+        Jlinux_CPU cpu = new Jlinux_CPU();
+            cpu.setH_Host_name(jhost.getH_Host_name());
+            cpu.setUserId(jhost.getUserId());
+            cpu.setH_User_name(jhost.getH_User_name());
+            cpu.setH_Passwd(jhost.getH_Passwd());
+            cpu.setAccess_time(jhost.getAccess_time());
+            cpu.setCreated_time(jhost.getCreated_time());
+            cpu.setHost_UUID(jhost.getHost_UUID());
+//        
+//        Jlinux_CPU cpu = new Jlinux_CPU((String) hm.get("processor"),(String) hm.get("vendor_id"),(String) hm.get("cpu_family"),(String) hm.get("model"),(String) hm.get("model_name"),(String) hm.get("stepping"),(String) hm.get("microcode"),(String) hm.get("cpu_mhz"),
+//                (String) hm.get("cache_size"),(String) hm.get("physical_id"),(String) hm.get("siblings"),(String) hm.get("core_id"),
+//                (String) hm.get("apicid"),(String) hm.get("fpu"),(String) hm.get("fpu_exception"),(String) hm.get("cpuid_level"),(String) hm.get("wp"),(String) hm.get("power_management"),(String) hm.get("cpu_cores"),(String) hm.get("flags"),(String) hm.get("bogomips"),
+//                (String) hm.get("clflush_size"),(String) hm.get("cache_alignment"),(String) hm.get("address_size"),jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
+//        
         
-        Jlinux_CPU cpu = new Jlinux_CPU((String) hm.get("processor"),(String) hm.get("vendor_id"),(String) hm.get("cpu_family"),(String) hm.get("model"),(String) hm.get("model_name"),(String) hm.get("stepping"),(String) hm.get("microcode"),(String) hm.get("cpu_mhz"),
-                (String) hm.get("cache_size"),(String) hm.get("cache_size"),(String) hm.get("physical_id"),(String) hm.get("siblings"),(String) hm.get("core_id"),
-                (String) hm.get("apicid"),(String) hm.get("fpu"),(String) hm.get("fpu_exception"),(String) hm.get("cpuid_level"),(String) hm.get("wp"),(String) hm.get("power_management"),(String) hm.get("cpu_cores"),(String) hm.get("flags"),(String) hm.get("bogomips"),
-                (String) hm.get("clflush_size"),(String) hm.get("cache_alignment"),(String) hm.get("address_size"),jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
-        
-        /*
         cpu.setProcessor((String) hm.get("processor"));
         cpu.setVendor_id((String) hm.get("vendor_id"));
         cpu.setCpu_family((String) hm.get("cpu_family"));
@@ -94,18 +107,25 @@ public class CPU_data {
         cpu.setBogomips((String) hm.get("bogomips"));
         cpu.setClflush_size((String)hm.get("clflush_size"));
         cpu.setCache_alignment((String)hm.get("cache_alignment")); 
-        cpu.setAddress_size((String)hm.get("address_sizes")); */
-        dbsession.persist(cpu);
-//        Host host = new Host();
-//        host.setAccess_time(new Date());
-//        host.setHost_name((String) hm.get("Host_name"));
-//        int timeActive = Integer.parseInt(host.getActive());
-//        host.setActive(Integer.toString(timeActive+1));
-//        host.setCpuId(cpu.getCPUId());
-//        dbsession.persist(host);
+        cpu.setAddress_size((String)hm.get("address_sizes")); 
+        if (flag)
+           dbsession.update(cpu);
+        else{   
+           dbsession.persist(cpu);
+        }
         tr.commit();        
         dbsession.close();
-//        add_sFactory.close();
+//        add_sFactory.cjcpue();
       log.debug("add the cpu infomation to database...finished ");
+     }
+    
+    public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
+        Session dbsession = sFactory.openSession();
+        Transaction tr = dbsession.beginTransaction();
+        Jlinux_CPU jcpu = (Jlinux_CPU) dbsession.createCriteria(Jlinux_CPU.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
+        if (jcpu==null)
+            return false;
+        else
+        return true;
      }
     }
