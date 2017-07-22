@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -329,5 +330,7 @@ public class Jlinux_CPU extends Jlinux_Host {
         this.address_size = address_size;
     }
 
+   @ManyToOne  
+    private Jlinux_Host host;
     
 }

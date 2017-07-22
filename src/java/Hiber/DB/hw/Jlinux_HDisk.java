@@ -6,11 +6,13 @@
 package Hiber.DB.hw;
 
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -115,5 +117,54 @@ public class Jlinux_HDisk extends Jlinux_Host{
         this.RM = RM;
     }
     
-    
+    @ManyToOne  
+    private Jlinux_Host host;
+
+    public String getHdsize() {
+        return hdsize;
+    }
+
+    public void setHdsize(String hdsize) {
+        this.hdsize = hdsize;
+    }
+
+    public Jlinux_Host getHost() {
+        return host;
+    }
+
+    public void setHost(Jlinux_Host host) {
+        this.host = host;
+    }
+
+    public Set<Jlinux_HDisk> getHardDisks() {
+        return hardDisks;
+    }
+
+    public void setHardDisks(Set<Jlinux_HDisk> hardDisks) {
+        this.hardDisks = hardDisks;
+    }
+
+    public Set<Jlinux_CPU> getJcpu() {
+        return jcpu;
+    }
+
+    public void setJcpu(Set<Jlinux_CPU> jcpu) {
+        this.jcpu = jcpu;
+    }
+
+    public Set<Jlinux_Monitor> getJmonitor() {
+        return jmonitor;
+    }
+
+    public void setJmonitor(Set<Jlinux_Monitor> jmonitor) {
+        this.jmonitor = jmonitor;
+    }
+
+    public Set<Jlinux_Network> getJnetwork() {
+        return jnetwork;
+    }
+
+    public void setJnetwork(Set<Jlinux_Network> jnetwork) {
+        this.jnetwork = jnetwork;
+    }
 }

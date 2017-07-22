@@ -5,7 +5,7 @@
  */
 package Hiber.DB.hw;
 
-import java.util.Date;
+import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,13 +31,17 @@ public class Jlinux_User {
     sequenceName="user_sequence",
     allocationSize=1
     )
+    @JoinColumn(name = "UserId")
+    private long UserId;
+/*   the userid for the browser user access */
+    
     @OneToMany(
+            mappedBy = "UserId",
             cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
             orphanRemoval = true 
     )
     @JoinColumn(name = "UserId")
-    private long UserId;
-/*   the userid for the browser user access */
+    Set<Jlinux_Host> hosts = new HashSet<>(); 
     
     public Jlinux_User(  String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
         

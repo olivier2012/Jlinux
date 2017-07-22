@@ -5,7 +5,7 @@
  */
 package Hiber.DB.hw;
 
-import java.util.Date;
+import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,11 +52,9 @@ public abstract class Jlinux_Host {
     
     @Column(name="Active",length=5)
     private String Active = "0" ;
-   
-    /*UserId will join the user table as foreign key */
+    
     @ManyToOne  
-    @Column(name = "UserId", length = 20)
-    private long UserId;
+    private Jlinux_User UserId;
     
     /* H_User_name is login the linux node use the username and password */
     @Column(name="H_User_name", length = 120)
@@ -82,14 +80,6 @@ public abstract class Jlinux_Host {
 
     public void setH_Host_name(String H_Host_name) {
         this.H_Host_name = H_Host_name;
-    }
-
-    public long getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(long UserId) {
-        this.UserId = UserId;
     }
 
     public String getH_User_name() {
@@ -151,7 +141,6 @@ public abstract class Jlinux_Host {
     public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
-        this.UserId = UserId;
         this.H_User_name = H_User_name;
         this.H_Passwd = H_Passwd;
         this.Access_time = Access_time;
@@ -164,6 +153,75 @@ public abstract class Jlinux_Host {
         return "Base_Host [HostId=" + HostId + ", Host_UUID=" + Host_UUID + ", Created_time=" + Created_time.toString() +
                 ", Access_time=" + Access_time.toString() + ", UserId=" + UserId + ", H_Host_name=" + H_Host_name + ", H_User_name=" + H_User_name + 
                 ", H_Passwd=" + H_Passwd + "]";
-    }    
+    }  
+    
+    @OneToMany(
+            mappedBy = "host",
+            cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
+            orphanRemoval = true 
+    )
+    Set<Jlinux_HDisk> hardDisks = new HashSet<>();
+    
+    @OneToMany(
+            mappedBy = "host",
+            cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
+            orphanRemoval = true 
+    )
+    Set<Jlinux_CPU> jcpu = new HashSet<>();
+    
+    @OneToMany(
+            mappedBy = "host",
+            cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
+            orphanRemoval = true 
+    )
+    Set<Jlinux_Monitor> jmonitor = new HashSet<>();
+    
+    @OneToMany(
+            mappedBy = "host",
+            cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
+            orphanRemoval = true 
+    )
+    Set<Jlinux_Network> jnetwork = new HashSet<>();
+
+    public Jlinux_User getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(Jlinux_User UserId) {
+        this.UserId = UserId;
+    }
+
+    public Set<Jlinux_HDisk> getHardDisks() {
+        return hardDisks;
+    }
+
+    public void setHardDisks(Set<Jlinux_HDisk> hardDisks) {
+        this.hardDisks = hardDisks;
+    }
+
+    public Set<Jlinux_CPU> getJcpu() {
+        return jcpu;
+    }
+
+    public void setJcpu(Set<Jlinux_CPU> jcpu) {
+        this.jcpu = jcpu;
+    }
+
+    public Set<Jlinux_Monitor> getJmonitor() {
+        return jmonitor;
+    }
+
+    public void setJmonitor(Set<Jlinux_Monitor> jmonitor) {
+        this.jmonitor = jmonitor;
+    }
+
+    public Set<Jlinux_Network> getJnetwork() {
+        return jnetwork;
+    }
+
+    public void setJnetwork(Set<Jlinux_Network> jnetwork) {
+        this.jnetwork = jnetwork;
+    }
+    
     
 }
