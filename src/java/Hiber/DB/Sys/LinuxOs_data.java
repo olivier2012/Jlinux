@@ -26,30 +26,39 @@ import org.hibernate.criterion.Restrictions;
  */
 public class LinuxOs_data {
      final static Logger log = org.apache.logging.log4j.LogManager.getLogger(LinuxOs_data.class.getName());
-    public static void add(HashMap hmtmp,Jlinux_Host jhost,SessionFactory sFactory){
-        log.debug("add the LinuxOS  infomation to database ");
+    public static boolean add(HashMap hmtmp,Jlinux_Host jhost,SessionFactory sFactory){
+        boolean ld_flag=false;
+        log.debug("add the LinuxOS_data  infomation to database ");
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
+        try{
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
         boolean flag = Is_selectbyHostname( jhost,sFactory,dbsession,tr);
+        
         Jlinux_LinuxOs los = new Jlinux_LinuxOs();
-            los.setH_Host_name(jhost.getH_Host_name());
+          /*  los.setH_Host_name(jhost.getH_Host_name());
             los.setUserId(jhost.getUserId());
             los.setH_User_name(jhost.getH_User_name());
             los.setH_Passwd(jhost.getH_Passwd());
             los.setAccess_time(jhost.getAccess_time());
             los.setCreated_time(jhost.getCreated_time());
-            los.setHost_UUID(jhost.getHost_UUID());
+            los.setHost_UUID(jhost.getHost_UUID());*/
+            
             los.setKernel_name((String) hmtmp.get("Kernel_name"));
-            los.setNode_name((String) hmtmp.get("Node_name"));
+           /* los.setNode_name((String) hmtmp.get("Node_name"));
             los.setKernel_version((String) hmtmp.get("Kernel_version"));
             los.setBuild_time((String) hmtmp.get("Build_time"));
             los.setHardware_platform((String) hmtmp.get("Hardware_platform"));
             los.setArchitecture((String) hmtmp.get("Architecture"));
-            los.setOperate_system((String) hmtmp.get("Operate_system")); 
+            los.setOperate_system((String) hmtmp.get("Operate_system")); */
+            jhost.getJlinuxos().add(los);
         if (flag)
-           dbsession.update(los);
-           else{   
+//        {
+//             dbsession.update(jhost);
+////           dbsession.update(los);
+//        }
+//           else
+        {   
 //            los = new Jlinux_LinuxOs(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 //            los.setKernel_name((String) hmtmp.get("Kernel_name"));
 //            los.setNode_name((String) hmtmp.get("Node_name"));
@@ -58,12 +67,16 @@ public class LinuxOs_data {
 //            los.setHardware_platform((String) hmtmp.get("Hardware_platform"));
 //            los.setArchitecture((String) hmtmp.get("Architecture"));
 //            los.setOperate_system((String) hmtmp.get("Operate_system"));
-        dbsession.persist(los);
+//        dbsession.persist(los);
+        dbsession.persist(jhost);
         }
         tr.commit();        
         dbsession.close();
+         ld_flag=true;
+        }catch(Exception e){ e.printStackTrace();}
 //        add_sFactory.close();
       log.debug("add theLinuxOS  infomation to database...finished ");
+      return ld_flag;
     }
      public static Jlinux_LinuxOs selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
         Session dbsession = sFactory.openSession();

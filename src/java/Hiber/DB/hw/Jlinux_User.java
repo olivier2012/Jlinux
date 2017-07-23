@@ -40,7 +40,7 @@ public class Jlinux_User {
             cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
             orphanRemoval = true 
     )
-    @JoinColumn(name = "UserId")
+//    @JoinColumn(name = "UserId")
     Set<Jlinux_Host> hosts = new HashSet<>(); 
     
     public Jlinux_User(  String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
@@ -197,6 +197,34 @@ public class Jlinux_User {
         this.Passwd = Passwd;
         this.Adate=date;
         this.Cdate=date;
+    }
+     
+    public Jlinux_User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd ,Date date,Set<Jlinux_Host> hosts) {
+        this.Fname = Fname;
+        this.Mname = Mname;
+        this.Lname = Lname;
+        this.Email = Email;
+        this.User_name = User_name;
+        this.Passwd = Passwd;
+        this.Adate=date;
+        this.Cdate=date;
+        this.hosts=hosts;
+    }
+
+    public Set<Jlinux_Host> getHosts() {
+        return hosts;
+    }
+
+    public void setHosts(Set<Jlinux_Host> hosts) {
+        this.hosts = hosts;
+    }
+
+    public Boolean getEmail_confirm() {
+        return Email_confirm;
+    }
+
+    public void setEmail_confirm(Boolean Email_confirm) {
+        this.Email_confirm = Email_confirm;
     }
    
 }

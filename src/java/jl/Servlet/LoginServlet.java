@@ -25,34 +25,8 @@ public class LoginServlet extends HttpServlet {
         SessionFactory sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         try{
-        /* 判断 http session 是不是第一次登录 ，如果是的话*/
-        if (s_session == null) {
-            if (dbsession == null) {
-                sFactory = HibUtil.getSessionFactory();
-                dbsession = (Session) sFactory.openStatelessSession();
-            }
-            String MESSAGE = null;
-            request.setAttribute(MESSAGE, "Start with this page, please");
-            request.getRequestDispatcher("/RegisterServlet").forward(request, response);
-            return;
-        } else {
-            if (s_session.isNew()) {
-                String userResult = "0";
-                s_session.setAttribute(userResult,userResult );
-//                 sFactory = HibUtil.getSessionFactory(); 
-                dbsession = sFactory.openSession();
-//                 dbsession = sFactory.getCurrentSession();
-            } else {
-//                 dbsession = sFactory.getCurrentSession();
-            }
             String User_name = request.getParameter("User_name");
             String Passwd = request.getParameter("Passwd");
-//            boolean b_result = Boolean.parseBoolean(request.getParameter("result"));
-//            Jlinux_User b_user = (Jlinux_User) request.getAttribute("user");
-//            /*customer have login , then second time click the Login menu , they will go home page directly*/
-//            if (b_result && User_name == b_user.getUser_name() && Passwd == b_user.getPasswd()) {
-//                response.sendRedirect("home.jsp");
-//            } else {
                 s_session.setAttribute("Passwd", Passwd);
                 s_session.setAttribute("User_name", User_name);
                 LoginService loginService = new LoginService();
@@ -69,13 +43,14 @@ public class LoginServlet extends HttpServlet {
                     isLoggedIn="1";
                     s_session.setAttribute("user", user);
                     s_session.setAttribute("isLoggedIn", isLoggedIn);
-                    response.sendRedirect("home.jsp");
+                    request.getRequestDispatcher("home.jsp").forward(request, response);
+//                    response.sendRedirect("home.jsp");
                 } else {
                     request.setAttribute("isLoggedIn",isLoggedIn);
-                    response.sendRedirect("RegisterServlet");
+                    request.getRequestDispatcher("RegisterServlet").forward(request, response);
+//                    response.sendRedirect("RegisterServlet");
                 }
-
-        }}catch(Exception e){
+        }catch(Exception e){
             String MESSAGE = "";
             request.setAttribute(MESSAGE, e.toString());
          request.getRequestDispatcher("register.jsp").forward(request, response);

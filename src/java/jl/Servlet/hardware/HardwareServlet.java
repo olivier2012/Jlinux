@@ -54,6 +54,8 @@ public class HardwareServlet extends HttpServlet {
     }catch(Exception e){
             response.sendRedirect("error.jsp");
          }
+        
+        
     }
     
     @Override

@@ -53,17 +53,15 @@ public class LinuxOs_function {
     }
     
    
-    public static boolean check_linuxOs(Jlinux_Host jhost , Map<String,String> maintmp , SessionFactory sFactory){
+    public static boolean check_linuxOs(Jlinux_Host jhost , Map<String,String> maintmp , SessionFactory sFactory,Session jschsession){
         boolean  run_flag =false;
         try{
-        LinuxOs_data.add(LinuxOs_function.addTimestamp((HashMap<String, String>) maintmp, jhost.getH_Host_name()), jhost,sFactory);
-        run_flag = true;
+        run_flag = LinuxOs_data.add(LinuxOs_function.addTimestamp((HashMap<String, String>) maintmp, jhost.getH_Host_name()), jhost,sFactory);
+        
         } catch(Exception e){
            run_flag =false;
            log.info(e);
-        }
-         
-        
+        }  
      return run_flag;   
     };
 }

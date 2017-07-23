@@ -31,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
      if(email==null||email.isEmpty()||User_name==null||User_name.isEmpty()){
             String MESSAGE = null;
             request.setAttribute(MESSAGE, "email or User_name is empty, please check ");
-         response.sendRedirect("error.jsp");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
          return ;
      }
      else{
@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
          if(result){
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("session_result", result);
-            response.sendRedirect("register_successful.jsp");
+            request.getRequestDispatcher("register_successful.jsp").forward(request, response);
          }else{
             request.getSession().setAttribute("session_result", result);
             response.sendRedirect("register_failed.jsp");

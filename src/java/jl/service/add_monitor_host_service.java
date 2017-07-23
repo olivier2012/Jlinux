@@ -6,7 +6,7 @@
 package jl.service;
 
 import Hiber.DB.Sys.LinuxOs_data;
-import Hiber.DB.hw.Jlinux_Host;
+import Hiber.DB.hw.*;
 import Hiber.HibUtil;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
@@ -15,6 +15,7 @@ import java.util.HashMap;
 import jl.DBinit;
 import jl.JL_network;
 import jl.MyUserInfo;
+import static jl.Servlet.add_monitor_host_servlet.web_login_user;
 import jl.function.Cpu_function;
 import jl.function.HDdisk_function;
 import jl.function.LinuxOs_function;
@@ -30,8 +31,8 @@ import org.hibernate.SessionFactory;
  */
 public class add_monitor_host_service {
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(add_monitor_host_service.class.getName());
-    public boolean checkallofhw(String H_Host_name, String H_User_name, String H_Passwd){
-        long UserId = 2;
+    public boolean checkallofhw(String H_Host_name, String H_User_name, String H_Passwd,Jlinux_User web_login_user){
+        long UserId = web_login_user.getUserId();
         boolean amhs_flag = false;
         SessionFactory sFactory = null;
         Session jschsession = null;
@@ -57,7 +58,7 @@ public class add_monitor_host_service {
 
             
         
-            boolean check_linuxOs = LinuxOs_function.check_linuxOs(jhost,maintmp,sFactory);
+            boolean check_linuxOs = LinuxOs_function.check_linuxOs(jhost,maintmp,sFactory,jschsession);
             boolean check_network = Network_function.check_network(jhost,maintmp,sFactory,jschsession);
             boolean check_cpu =  Cpu_function.check_cpu(jhost,maintmp,sFactory,jschsession);
             boolean check_hdisk = HDdisk_function.check_hdisk(jhost,maintmp,sFactory,jschsession);
@@ -70,8 +71,8 @@ public class add_monitor_host_service {
         } catch (Exception e){
            log.info(e);
         }finally{
-        sFactory.close();
-        jschsession.disconnect();
+//        sFactory.close();
+//        jschsession.disconnect();
         return amhs_flag; }
     }
 }

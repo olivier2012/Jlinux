@@ -5,6 +5,7 @@
  */
 package Hiber.DB.hw;
 
+import Hiber.DB.Sys.Jlinux_LinuxOs;
 import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -147,13 +148,68 @@ public abstract class Jlinux_Host {
         this.Created_time = Created_time;
         this.Host_UUID = Host_UUID;
     }
+    
+    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID,Set<Jlinux_HDisk> hardDisks) {
+        this.H_Host_name = H_Host_name;
+        /* as foreign key with jlinux_user*/
+        this.H_User_name = H_User_name;
+        this.H_Passwd = H_Passwd;
+        this.Access_time = Access_time;
+        this.Created_time = Created_time;
+        this.Host_UUID = Host_UUID;
+        this.hardDisks =hardDisks;
+    }
+    
+    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Created_time, String Host_UUID,Set<Jlinux_CPU> jcpu) {
+        this.H_Host_name = H_Host_name;
+        /* as foreign key with jlinux_user*/
+        this.H_User_name = H_User_name;
+        this.H_Passwd = H_Passwd;
+        this.Created_time = Created_time;
+        this.Host_UUID = Host_UUID;
+        this.jcpu = jcpu;
+    }
+    
+    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, String Host_UUID,Set<Jlinux_Monitor> jmonitor) {
+        this.H_Host_name = H_Host_name;
+        /* as foreign key with jlinux_user*/
+        this.H_User_name = H_User_name;
+        this.H_Passwd = H_Passwd;
+        this.Host_UUID = Host_UUID;
+        this.jmonitor = jmonitor;
+    }
    
+    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Set<Jlinux_Network> jnetwork) {
+        this.H_Host_name = H_Host_name;
+        /* as foreign key with jlinux_user*/
+        this.H_User_name = H_User_name;
+        this.H_Passwd = H_Passwd;
+        this.jnetwork = jnetwork;
+    }
+        
     @Override
     public String toString() {
         return "Base_Host [HostId=" + HostId + ", Host_UUID=" + Host_UUID + ", Created_time=" + Created_time.toString() +
                 ", Access_time=" + Access_time.toString() + ", UserId=" + UserId + ", H_Host_name=" + H_Host_name + ", H_User_name=" + H_User_name + 
                 ", H_Passwd=" + H_Passwd + "]";
     }  
+ 
+    @OneToMany(
+            mappedBy = "host",
+            cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
+            orphanRemoval = true 
+    )
+    Set<Jlinux_LinuxOs> Jlinuxos = new HashSet<>();    
+
+    public Set<Jlinux_LinuxOs> getJlinuxos() {
+        return Jlinuxos;
+    }
+
+    public void setJlinuxos(Set<Jlinux_LinuxOs> Jlinuxos) {
+        this.Jlinuxos = Jlinuxos;
+    }
+
+
     
     @OneToMany(
             mappedBy = "host",
@@ -209,6 +265,17 @@ public abstract class Jlinux_Host {
 
     public Set<Jlinux_Monitor> getJmonitor() {
         return jmonitor;
+    }
+
+    public Jlinux_Host(long HostId, String H_Host_name, Jlinux_User UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        this.HostId = HostId;
+        this.H_Host_name = H_Host_name;
+        this.UserId = UserId;
+        this.H_User_name = H_User_name;
+        this.H_Passwd = H_Passwd;
+        this.Access_time = Access_time;
+        this.Created_time = Created_time;
+        this.Host_UUID = Host_UUID;
     }
 
     public void setJmonitor(Set<Jlinux_Monitor> jmonitor) {

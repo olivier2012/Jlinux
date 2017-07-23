@@ -11,7 +11,7 @@
 <body>
         <%@include file="header.html" %> 
 <center>
-    <h1>Exception is: <%= exception %>   </h1>
+<!--    <h1>Exception is: <%= exception %>   </h1>-->
      <h1>Registration Successful</h1>
      
      <h2> Thanks for Registering with us :</h2>
