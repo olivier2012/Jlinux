@@ -13,16 +13,16 @@ public interface   Jlinux_Host_DAO {
     
     public int getJlinux_HostCount();
     
-    public void insertJlinux_HostTable(Jlinux_Host host);
+    public void insertJlinux_HostTable(Jlinux_H_WithTime host);
     
-    public void updateJlinux_Host(Jlinux_Host host);
+    public void updateJlinux_Host(Jlinux_H_WithTime host);
     
        
-    public  Jlinux_Host getJlinux_HostName(String h_host_name);    
+    public  Jlinux_H_WithTime getJlinux_HostName(String h_host_name);    
     
     public void deleteAllJlinux_Hosts();
     public void deletebyJlinux_Hosts(String HostId);
     
-     public List<Jlinux_Host> getListOfJlinux_Hosts();
+     public List<Jlinux_H_WithTime> getListOfJlinux_Hosts();
 
 }

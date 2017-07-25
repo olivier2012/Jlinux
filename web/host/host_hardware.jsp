@@ -21,30 +21,17 @@
           <b>You from Host name : <%= request.getRemoteHost() + "   IP Address : " + request.getRemoteAddr()+ "------ Port: "+ request.getRemotePort()%></b>   
            <br/>
              <%=new Date()%></br>
-             <%
-                 Jlinux_User user = (Jlinux_User) session.getAttribute("user");
-                  List<Jlinux_Host> list = new ArrayList()  ; 
-             %>     
-             <b>Welcome <%= user.getFname() + " " + user.getLname()+ "------ UserID: "+ user.getUserId()%></b>     
-             <br/>
-             <a class="btn btn-info" href="logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
-             <br/>
-             <%
-               Object User_name = session.getAttribute("User_name");    
-              if(User_name!=null || User_name.toString()!=null ||User_name.toString()!=""){
-              Object isLoggedIn = session.getAttribute("isLoggedIn");
-              /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
-              if (isLoggedIn != null)
-              {
-                  String isLoggedIn1 = isLoggedIn.toString();
-              }
-              Object Passwd = session.getAttribute("Passwd");
-             list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
-               if (list.size()==0){
-//                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
+            <%
+                Jlinux_User user = (Jlinux_User) session.getAttribute("user");
+            %>     
+            <b>Welcome <%= user.getFname() + " " + user.getLname() + "------ UserID: " + user.getUserId()%></b>  
+                         <%
+            List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_host");
+               if (list==null){
+                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
                    list = Host_data.selectByUserid(user);
                }
-             %> 
+             %>
              
          <table> 
              <thead>

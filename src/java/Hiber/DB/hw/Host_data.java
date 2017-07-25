@@ -5,6 +5,7 @@
  */
 package Hiber.DB.hw;
 
+import Hiber.DAO.Jlinux_Host_DAO_Impl;
 import Hiber.HibUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,5 +96,12 @@ public class Host_data {
         }
         return list;
      }
-               
+      
+     public void add_host(Jlinux_H_WithTime host){
+         
+        Jlinux_Host_DAO_Impl  jhdi = new Jlinux_Host_DAO_Impl () ;
+        jhdi.openCurrentSessionwithTransaction();
+        jhdi.insertJlinux_HostTable( host);
+        jhdi.closeCurrentSessionwithTransaction();
+     }
 }

@@ -47,11 +47,11 @@ public class Jlinux_HDisk extends Jlinux_Host{
     public Jlinux_HDisk() {
     }
 
-    public Jlinux_HDisk( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super(H_Host_name, User, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    public Jlinux_HDisk( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
+        super(H_Host_name, User, H_User_name, H_Passwd);
     }
     public Jlinux_HDisk(String Hddisk_name, String Majmin, String Mounted_on, String partition_type, String shdize, String RO, String RM, String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super(H_Host_name, User, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+        super(H_Host_name, User, H_User_name, H_Passwd);
         this.Hddisk_name = Hddisk_name;
         this.Majmin = Majmin;
         this.Mounted_on = Mounted_on;

@@ -30,8 +30,8 @@ public class RegisterServlet extends HttpServlet {
      try{
      if(email==null||email.isEmpty()||User_name==null||User_name.isEmpty()){
             String MESSAGE = null;
-            request.setAttribute(MESSAGE, "email or User_name is empty, please check ");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+//            request.setAttribute(MESSAGE, "email or User_name is empty, please check ");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
          return ;
      }
      else{

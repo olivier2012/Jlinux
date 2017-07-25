@@ -5,6 +5,8 @@
  */
 package jl.function;
 
+import Hiber.DB.hw.Host_data;
+import Hiber.DB.hw.Jlinux_H_WithTime;
 import Hiber.DB.hw.Jlinux_Host;
 import Hiber.DB.hw.Jlinux_User;
 import com.jcraft.jsch.JSch;
@@ -24,14 +26,31 @@ import org.hibernate.Transaction;
  */
 public class host_function {
 
-    public static Jlinux_Host check_host(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
-        boolean run_flag = false;
-        Jlinux_Host jhost = null;
-
+    
+    public static Jlinux_Host Add(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
         String Host_UUID = GenerateUUID().toString();
-        jhost = new Jlinux_Host(H_Host_name, User, H_User_name, H_Passwd, new Date(), new Date(), Host_UUID) {
-        };
+        Jlinux_H_WithTime jhost= new Jlinux_H_WithTime();
+        jhost.setH_Host_name(H_Host_name);
+        jhost.setH_User_name(H_User_name);
+        jhost.setUser( User);
+        jhost.setH_Passwd(H_Passwd) ; 
+        jhost.setCreated_time(new Date());
+        jhost.setAccess_time(new Date());
+        jhost.setHost_UUID(Host_UUID);
+        jhost.setActive("1");
+        
+
         return jhost;
+    }
+    public static boolean check_host(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
+        boolean run_flag = false;
+        List <Jlinux_Host> list_temp = Host_data.selectByUserid(User);
+        for(Jlinux_Host tmp_host: list_temp){
+           if(tmp_host.getH_Host_name()==H_Host_name)
+               run_flag=true;
+        }
+        
+        return run_flag;
     }
 
     ;  

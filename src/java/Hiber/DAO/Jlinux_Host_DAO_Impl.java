@@ -52,23 +52,23 @@ public class Jlinux_Host_DAO_Impl implements     Jlinux_Host_DAO {
     
     @Override
     public int getJlinux_HostCount(){
-        return dbsession.createCriteria(Jlinux_Host.class).list().size();
+        return dbsession.createCriteria(Jlinux_H_WithTime.class).list().size();
     }
     
     @Override
-    public void insertJlinux_HostTable(Jlinux_Host user){
-       currentSession.save(user);
+    public void insertJlinux_HostTable(Jlinux_H_WithTime host){
+       currentSession.save(host);
     }
     
     @Override
-    public void updateJlinux_Host(Jlinux_Host user){
-        currentSession.update(user);
+    public void updateJlinux_Host(Jlinux_H_WithTime host){
+        currentSession.update(host);
     }
     
    @Override
-    public  Jlinux_Host getJlinux_HostName(String h_host_name){
+    public  Jlinux_H_WithTime getJlinux_HostName(String h_host_name){
         try{
-        Jlinux_Host host = (Jlinux_Host) dbsession.createCriteria(Jlinux_Host.class).add(Restrictions.eq("h_host_name", h_host_name));
+        Jlinux_H_WithTime host = (Jlinux_H_WithTime) dbsession.createCriteria(Jlinux_H_WithTime.class).add(Restrictions.eq("h_host_name", h_host_name));
          return host;
         }  // catch all exceptions if any, return null as a sign of failure 
         catch(Exception e) {  return  null;  }
@@ -76,23 +76,23 @@ public class Jlinux_Host_DAO_Impl implements     Jlinux_Host_DAO {
     
     @Override
     public void deleteAllJlinux_Hosts(){   //special ORACLE syntax
-        List<Jlinux_Host> entityList = getListOfJlinux_Hosts( );
-        for(Jlinux_Host entity: entityList){
+        List<Jlinux_H_WithTime> entityList = getListOfJlinux_Hosts( );
+        for(Jlinux_H_WithTime entity: entityList){
          currentSession.delete(entity);
         }
         
     }
     
     public void deletebyJlinux_Hosts(String HostId){   //special ORACLE syntax
-       Jlinux_Host result =  (Jlinux_Host) dbsession.createCriteria(Jlinux_Host.class).add(Restrictions.idEq(HostId)).uniqueResult();
+       Jlinux_H_WithTime result =  (Jlinux_H_WithTime) dbsession.createCriteria(Jlinux_H_WithTime.class).add(Restrictions.idEq(HostId)).uniqueResult();
         if(result !=null){
          dbsession.delete(result);
         }
     }
     
     @Override
-    public List<Jlinux_Host> getListOfJlinux_Hosts( ) {
-         List<Jlinux_Host> list = dbsession.createCriteria(Jlinux_Host.class).list();
+    public List<Jlinux_H_WithTime> getListOfJlinux_Hosts( ) {
+         List<Jlinux_H_WithTime> list = dbsession.createCriteria(Jlinux_H_WithTime.class).list();
          return list;
 
     }

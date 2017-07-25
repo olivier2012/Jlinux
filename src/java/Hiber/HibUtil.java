@@ -13,6 +13,7 @@ public class HibUtil {
         Configuration conf  = new Configuration( ).configure( );  //reads hibernate.cfg.xml
         conf.addAnnotatedClass( Jlinux_User.class );
         conf.addAnnotatedClass( Jlinux_Host.class );
+        conf.addAnnotatedClass( Jlinux_H_WithTime.class);
         conf.addAnnotatedClass( Jlinux_CPU.class );
         conf.addAnnotatedClass( Jlinux_Network.class );
         conf.addAnnotatedClass( Jlinux_HDisk.class );

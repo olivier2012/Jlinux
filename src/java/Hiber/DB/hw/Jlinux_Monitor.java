@@ -148,8 +148,8 @@ public class Jlinux_Monitor extends Jlinux_Host{
     public Jlinux_Monitor() {
     }
 
-    public Jlinux_Monitor(String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super(H_Host_name, User, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    public Jlinux_Monitor(String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
+        super(H_Host_name, User, H_User_name, H_Passwd);
     }
     @ManyToOne  
     private Jlinux_Host host;
