@@ -24,16 +24,15 @@
             <%
              User_data user_data = new User_data();
              List<Jlinux_User> list = user_data.findAll();
-         
-
              %> 
          <table> 
              <thead>
-                 <tr>
-                        <th>User Name -  </th>
-                        <th>First Name -  </th>
-                        <th>Middle Name - </th>
-                        <th>Last Name  - </th>
+                 <tr>   
+                        <th>User   ID </th>
+                        <th>User   Name  </th>
+                        <th>First    Name  </th>
+                        <th>Middle   Name </th>
+                        <th>Last   Name </th>
                         <th> Email    -  </th>   
                         <th>Password  - </th> 
                         <th>Usertype - </th> 
@@ -45,6 +44,7 @@
                         for (Jlinux_User u : list) {
                     %>
                     <tr>
+                        <td><%=u.getUserId() %></td>
                         <td><%=u.getUser_name()%></td>
                         <td><%=u.getFname()%></td>
                         <td><%=u.getMname()%></td>

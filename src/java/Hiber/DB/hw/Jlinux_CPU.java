@@ -100,8 +100,8 @@ public class Jlinux_CPU extends Jlinux_Host {
     public Jlinux_CPU(){};
     
 
-    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size,  String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size,  String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super( H_Host_name, User, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
         this.processor = processor;
         this.vendor_id = vendor_id;
         this.cpu_family = cpu_family;
@@ -332,5 +332,11 @@ public class Jlinux_CPU extends Jlinux_Host {
 
    @ManyToOne  
     private Jlinux_Host host;
-    
+
+    @Override
+    public String toString() {
+        return "Jlinux_CPU{" + "processor=" + processor + ", vendor_id=" + vendor_id + ", cpu_family=" + cpu_family + ", model=" + model + ", model_name=" + model_name + ", stepping=" + stepping + ", microcode=" + microcode + ", cpu_mhz=" + cpu_mhz + ", cache_size=" + cache_size + ", physical_id=" + physical_id + ", siblings=" + siblings + ", core_id=" + core_id + ", apicid=" + apicid + ", initial_apicid=" + initial_apicid + ", fpu=" + fpu + ", fpu_exception=" + fpu_exception + ", cpuid_level=" + cpuid_level + ", wp=" + wp + ", power_management=" + power_management + ", cpu_cores=" + cpu_cores + ", flags=" + flags + ", bogomips=" + bogomips + ", clflush_size=" + clflush_size + ", cache_alignment=" + cache_alignment + ", address_size=" + address_size + ", host=" + host + '}';
+    }
+   
+   
 }

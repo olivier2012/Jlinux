@@ -41,7 +41,7 @@ public class Network_data {
         boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,net_dbsession,tr); 
         Jlinux_Network network = new Jlinux_Network();
             network.setH_Host_name(jhost.getH_Host_name());
-            network.setUserId(jhost.getUserId());
+            network.setUser(jhost.getUser());
             network.setH_User_name(jhost.getH_User_name());
             network.setH_Passwd(jhost.getH_Passwd());
             network.setAccess_time(jhost.getAccess_time());
@@ -69,7 +69,7 @@ public class Network_data {
         network.setMTU((String) hm.get("MTU"));
   
         network.setLink_encap((String) hm.get("link_encap"));
-        
+        jhost.getJnetwork().add(network);
        if (flag)
            net_dbsession.update(network);
         else{   

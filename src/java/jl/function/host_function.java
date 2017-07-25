@@ -24,7 +24,7 @@ import org.hibernate.Transaction;
  */
 public class host_function {
 
-    public static Jlinux_Host check_host(String H_Host_name, String H_User_name, String H_Passwd, long UserId) {
+    public static Jlinux_Host check_host(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User UserId) {
         boolean run_flag = false;
         Jlinux_Host jhost = null;
 

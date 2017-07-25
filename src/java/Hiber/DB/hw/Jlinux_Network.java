@@ -76,8 +76,8 @@ public class Jlinux_Network extends Jlinux_Host{
     public Jlinux_Network() {
     }
 
-    public Jlinux_Network( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    public Jlinux_Network( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super( H_Host_name, User, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
 
 
@@ -218,5 +218,11 @@ public class Jlinux_Network extends Jlinux_Host{
     }
      @ManyToOne  
     private Jlinux_Host host;
+
+    @Override
+    public String toString() {
+        return "Jlinux_Network{" + "Net_cardId=" + Net_cardId + ", Net_name=" + Net_name + ", ipv4=" + ipv4 + ", MemID=" + MemID + ", ipv4_gw=" + ipv4_gw + ", Rx=" + Rx + ", Tx=" + Tx + ", ipv4_status=" + ipv4_status + ", ipv6=" + ipv6 + ", ipv6_mask=" + ipv6_mask + ", ipv6_gw=" + ipv6_gw + ", ipv6_Rx=" + ipv6_Rx + ", ipv6_Tx=" + ipv6_Tx + ", ipv6_status=" + ipv6_status + ", link_encap=" + link_encap + ", MTU=" + MTU + ", MAC=" + MAC + ", host=" + host + '}';
+    }
     
+     
 }

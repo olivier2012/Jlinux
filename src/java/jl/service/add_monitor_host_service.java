@@ -32,7 +32,7 @@ import org.hibernate.SessionFactory;
 public class add_monitor_host_service {
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(add_monitor_host_service.class.getName());
     public boolean checkallofhw(String H_Host_name, String H_User_name, String H_Passwd,Jlinux_User web_login_user){
-        long UserId = web_login_user.getUserId();
+        Jlinux_User UserId = web_login_user;
         boolean amhs_flag = false;
         SessionFactory sFactory = null;
         Session jschsession = null;

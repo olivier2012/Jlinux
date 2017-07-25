@@ -1,6 +1,4 @@
 
-<%@page import="javax.servlet.http.HttpServletResponse"%>
-<%@page import="javax.servlet.http.HttpServletRequest"%>
 <%@page import="java.lang.String"%>
 <%@page import="Hiber.DB.hw.Jlinux_User"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -33,6 +31,46 @@
             <li><c:out value="Header[${h.key}]=${h.value}"  /></li>
         </c:forEach>
         </ol>
+    <%    
+           HttpSession s_session = request.getSession();
+//           if(s_session!=null){
+//             request.getRequestDispatcher("index.html").forward(request, response);
+//           }else if(s_session.isNew()){
+//             String message=null;
+//             String isLoggedIn=null;
+//           }else{
+          if(s_session!=null){
+           Object User_name = session.getAttribute("User_name"); 
+          if(User_name!=null || User_name.toString()!=null ||User_name.toString()!=""){
+              Object isLoggedIn = session.getAttribute("isLoggedIn");
+              /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
+              if (isLoggedIn != null)
+              {
+                  String isLoggedIn1 = isLoggedIn.toString();
+              }
+              Object Passwd = session.getAttribute("Passwd");
+           
+            try{
+                 /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
+               Object  bbresult = session.getAttribute("isLoggedIn");
+               }
+            catch(Exception e){
+               s_session.invalidate();
+               System.out.println("error=" + e.toString());  
+            }
+            Jlinux_User b_user = (Jlinux_User) session.getAttribute("user");
+            /*customer have login , then second time click the Login menu , they will go home page directly*/
+           
+                out.print("b_user name : "+b_user.getUser_name());
+                out.print("     b_passwd  : "+b_user.getPasswd());
+                String bb_pass =  b_user.getPasswd();
+//            if ( User_name.toString() == b_user.getUser_name() && Passwd.toString() == b_user.getPasswd()) {
+            if ( Integer.parseInt(isLoggedIn.toString())==1) {
+                 request.getRequestDispatcher("home.jsp").forward(request, response);
+//                response.sendRedirect("home.jsp");
+            } 
+            }
+           }    %>
     <form method="post" action="LoginServlet">
         <div style="padding: 100px 0 0 250px;">
             <div id="login-box">

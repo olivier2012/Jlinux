@@ -23,7 +23,7 @@ public class Servlet_function extends HttpServlet {
 
     }
 
-    public  void show_all_sess_attributes(HttpServletRequest request, HttpServletResponse response) {
+    public  void show_all_sess_attributes() {
         
         Enumeration<?> e = getServletContext().getAttributeNames();
         while (e.hasMoreElements()) {

@@ -1,0 +1,250 @@
+[INFO ] 2017-07-24 05:03:10.497 [main] JL_cpu - main begin.........! 
+[INFO ] 2017-07-24 05:03:22.075 [main] JL_cpu - call the execCommand
+[INFO ] 2017-07-24 05:03:22.790 [main] execCommand - 
+[INFO ] 2017-07-24 05:03:23.790 [main] execCommand - processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 1
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 1
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+
+[INFO ] 2017-07-24 05:03:23.794 [main] execCommand - exit-status: 0
+[INFO ] 2017-07-24 05:03:24.230 [main] JL_cpu - main begin.........! 
+[INFO ] 2017-07-24 05:03:27.448 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:27.448 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:27.453 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:27.453 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:27.453 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:27.453 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:27.462 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:27.462 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:27.462 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:27.462 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:27.470 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:27.470 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:27.470 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:27.470 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:27.475 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:27.475 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:36.567 [main] JL_cpu - call the execCommand
+[INFO ] 2017-07-24 05:03:37.164 [main] execCommand - 
+[INFO ] 2017-07-24 05:03:38.165 [main] execCommand - processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 1
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x15
+cpu MHz		: 2494.389
+cache size	: 3072 KB
+physical id	: 1
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm ida arat epb pln pts dtherm fsgsbase tsc_adjust smep
+bogomips	: 4988.77
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 42 bits physical, 48 bits virtual
+power management:
+
+
+[INFO ] 2017-07-24 05:03:38.168 [main] execCommand - exit-status: 0
+[INFO ] 2017-07-24 05:03:41.677 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:41.678 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:41.698 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:41.698 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:41.699 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:41.699 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:41.704 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:41.704 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:41.704 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:41.704 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:41.712 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:41.712 [main] JL_cpu - ready  the cpu info , covert it to map
+[INFO ] 2017-07-24 05:03:41.712 [main] DBinit - DBinit.String2map .....! 
+[INFO ] 2017-07-24 05:03:41.713 [main] DBinit - last one : 860
+[INFO ] 2017-07-24 05:03:41.718 [main] DBinit - DBinit.String2map .....before return ! 
+[INFO ] 2017-07-24 05:03:41.718 [main] JL_cpu - ready  the cpu info , covert it to map

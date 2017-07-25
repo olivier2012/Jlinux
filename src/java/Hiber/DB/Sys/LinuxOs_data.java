@@ -6,8 +6,11 @@
 package Hiber.DB.Sys;
 
 import Hiber.DB.hw.CPU_data;
+import static Hiber.DB.hw.CPU_data.selectByH_Host_name;
+import Hiber.DB.hw.Jlinux_CPU;
 import Hiber.DB.hw.Jlinux_Host;
 import Hiber.HibUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,19 +48,19 @@ public class LinuxOs_data {
             los.setHost_UUID(jhost.getHost_UUID());*/
             
             los.setKernel_name((String) hmtmp.get("Kernel_name"));
-           /* los.setNode_name((String) hmtmp.get("Node_name"));
+            los.setNode_name((String) hmtmp.get("Node_name"));
             los.setKernel_version((String) hmtmp.get("Kernel_version"));
             los.setBuild_time((String) hmtmp.get("Build_time"));
             los.setHardware_platform((String) hmtmp.get("Hardware_platform"));
             los.setArchitecture((String) hmtmp.get("Architecture"));
-            los.setOperate_system((String) hmtmp.get("Operate_system")); */
+            los.setOperate_system((String) hmtmp.get("Operate_system")); 
             jhost.getJlinuxos().add(los);
         if (flag)
-//        {
-//             dbsession.update(jhost);
-////           dbsession.update(los);
-//        }
-//           else
+        {
+//           dbsession.update(jhost);
+           dbsession.update(los);
+        }
+           else
         {   
 //            los = new Jlinux_LinuxOs(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 //            los.setKernel_name((String) hmtmp.get("Kernel_name"));
@@ -67,8 +70,8 @@ public class LinuxOs_data {
 //            los.setHardware_platform((String) hmtmp.get("Hardware_platform"));
 //            los.setArchitecture((String) hmtmp.get("Architecture"));
 //            los.setOperate_system((String) hmtmp.get("Operate_system"));
-//        dbsession.persist(los);
-        dbsession.persist(jhost);
+        dbsession.persist(los);
+//        dbsession.persist(jhost);
         }
         tr.commit();        
         dbsession.close();
@@ -78,12 +81,35 @@ public class LinuxOs_data {
       log.debug("add theLinuxOS  infomation to database...finished ");
       return ld_flag;
     }
-     public static Jlinux_LinuxOs selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory){
-        Session dbsession = sFactory.openSession();
-        Transaction tr = dbsession.beginTransaction();
-        Jlinux_LinuxOs  jlo = (Jlinux_LinuxOs) dbsession.createCriteria(Jlinux_LinuxOs.class).add(Restrictions.eq("H_Host_name", jhost.getH_Host_name()));
-        
-        return jlo;
+     public static List<Jlinux_LinuxOs> selectByH_Host_name(String H_Host_name,Session dbsession){  
+         List<Jlinux_LinuxOs> list = new ArrayList<Jlinux_LinuxOs>();
+        Transaction tx = null;
+        try {
+            tx = dbsession.getTransaction();
+            tx.begin();
+//            list = dbsession.createQuery("from Network where Host_name='"+Host_name+"'").list();
+           list = dbsession.createQuery("from Jlinux_LinuxOs").list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+//            dbsession.cjcpue();
+        }
+        return list;
+     }
+     
+    public static List<Jlinux_LinuxOs> selectByH_Host_name(String H_Host_name){
+        Session dbsession1 = null;
+        if(dbsession1==null){
+            SessionFactory sFactory = HibUtil.getSessionFactory();
+            dbsession1 = sFactory.openSession();
+        }
+        List tmplinuxos_data = selectByH_Host_name( H_Host_name,dbsession1);
+        dbsession1.close();
+        return  tmplinuxos_data;
      }
      
      public static boolean Is_selectbyHostname(Jlinux_Host jhost,SessionFactory sFactory,Session dbsession,Transaction tr){

@@ -55,7 +55,7 @@ public abstract class Jlinux_Host {
     private String Active = "0" ;
     
     @ManyToOne  
-    private Jlinux_User UserId;
+    private Jlinux_User User;
     
     /* H_User_name is login the linux node use the username and password */
     @Column(name="H_User_name", length = 120)
@@ -139,7 +139,7 @@ public abstract class Jlinux_Host {
         this.Active = Active;
     }
 
-    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+    public Jlinux_Host( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
         this.H_User_name = H_User_name;
@@ -149,7 +149,7 @@ public abstract class Jlinux_Host {
         this.Host_UUID = Host_UUID;
     }
     
-    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID,Set<Jlinux_HDisk> hardDisks) {
+    public Jlinux_Host( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID,Set<Jlinux_HDisk> hardDisks) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
         this.H_User_name = H_User_name;
@@ -160,7 +160,7 @@ public abstract class Jlinux_Host {
         this.hardDisks =hardDisks;
     }
     
-    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Date Created_time, String Host_UUID,Set<Jlinux_CPU> jcpu) {
+    public Jlinux_Host( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Created_time, String Host_UUID,Set<Jlinux_CPU> jcpu) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
         this.H_User_name = H_User_name;
@@ -170,7 +170,7 @@ public abstract class Jlinux_Host {
         this.jcpu = jcpu;
     }
     
-    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, String Host_UUID,Set<Jlinux_Monitor> jmonitor) {
+    public Jlinux_Host( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, String Host_UUID,Set<Jlinux_Monitor> jmonitor) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
         this.H_User_name = H_User_name;
@@ -179,7 +179,7 @@ public abstract class Jlinux_Host {
         this.jmonitor = jmonitor;
     }
    
-    public Jlinux_Host( String H_Host_name, long UserId, String H_User_name, String H_Passwd, Set<Jlinux_Network> jnetwork) {
+    public Jlinux_Host( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Set<Jlinux_Network> jnetwork) {
         this.H_Host_name = H_Host_name;
         /* as foreign key with jlinux_user*/
         this.H_User_name = H_User_name;
@@ -190,7 +190,7 @@ public abstract class Jlinux_Host {
     @Override
     public String toString() {
         return "Base_Host [HostId=" + HostId + ", Host_UUID=" + Host_UUID + ", Created_time=" + Created_time.toString() +
-                ", Access_time=" + Access_time.toString() + ", UserId=" + UserId + ", H_Host_name=" + H_Host_name + ", H_User_name=" + H_User_name + 
+                ", Access_time=" + Access_time.toString() + ", User=" + User.getUserId() + ", H_Host_name=" + H_Host_name + ", H_User_name=" + H_User_name + 
                 ", H_Passwd=" + H_Passwd + "]";
     }  
  
@@ -239,14 +239,6 @@ public abstract class Jlinux_Host {
     )
     Set<Jlinux_Network> jnetwork = new HashSet<>();
 
-    public Jlinux_User getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(Jlinux_User UserId) {
-        this.UserId = UserId;
-    }
-
     public Set<Jlinux_HDisk> getHardDisks() {
         return hardDisks;
     }
@@ -267,10 +259,10 @@ public abstract class Jlinux_Host {
         return jmonitor;
     }
 
-    public Jlinux_Host(long HostId, String H_Host_name, Jlinux_User UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+    public Jlinux_Host(long HostId, String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
         this.HostId = HostId;
         this.H_Host_name = H_Host_name;
-        this.UserId = UserId;
+        this.User = User;
         this.H_User_name = H_User_name;
         this.H_Passwd = H_Passwd;
         this.Access_time = Access_time;
@@ -288,6 +280,14 @@ public abstract class Jlinux_Host {
 
     public void setJnetwork(Set<Jlinux_Network> jnetwork) {
         this.jnetwork = jnetwork;
+    }
+
+    public Jlinux_User getUser() {
+        return User;
+    }
+
+    public void setUser(Jlinux_User User) {
+        this.User = User;
     }
     
     

@@ -37,7 +37,7 @@ public class Monitor_data {
         boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,net_dbsession,tr);
         Jlinux_Monitor monitor = new Jlinux_Monitor();
             monitor.setH_Host_name(jhost.getH_Host_name());
-            monitor.setUserId(jhost.getUserId());
+            monitor.setUser(jhost.getUser());
             monitor.setH_User_name(jhost.getH_User_name());
             monitor.setH_Passwd(jhost.getH_Passwd());
             monitor.setAccess_time(jhost.getAccess_time());
@@ -59,6 +59,7 @@ public class Monitor_data {
         monitor.setCapabilities((String) hm.get("capabilities"));
         monitor.setConfiguration((String) hm.get("configuration"));
         monitor.setResources((String) hm.get("resources"));
+        jhost.getJmonitor().add(monitor);
         if (flag)
           net_dbsession.update(monitor);
         else{   

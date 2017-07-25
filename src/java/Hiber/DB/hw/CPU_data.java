@@ -67,7 +67,7 @@ public class CPU_data {
         boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,dbsession,tr);
         Jlinux_CPU cpu = new Jlinux_CPU();
             cpu.setH_Host_name(jhost.getH_Host_name());
-            cpu.setUserId(jhost.getUserId());
+            cpu.setUser(jhost.getUser());
             cpu.setH_User_name(jhost.getH_User_name());
             cpu.setH_Passwd(jhost.getH_Passwd());
             cpu.setAccess_time(jhost.getAccess_time());
@@ -108,6 +108,7 @@ public class CPU_data {
         cpu.setClflush_size((String)hm.get("clflush_size"));
         cpu.setCache_alignment((String)hm.get("cache_alignment")); 
         cpu.setAddress_size((String)hm.get("address_sizes")); 
+        jhost.getJcpu().add(cpu);
         if (flag)
            dbsession.update(cpu);
         else{   

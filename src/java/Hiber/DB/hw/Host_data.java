@@ -64,15 +64,15 @@ public class Host_data {
      
      }
       
-     /*hostmap can update all of column , use match key , and update the value*/
-     public static Jlinux_Network UpdateByH_Host_name(String H_Host_name,Map<String,String> hostmap,Session dbsession){
+     public static List<Jlinux_Host> selectByUserid(Jlinux_User User,Session dbsession){  
+         List<Jlinux_Host> list = new ArrayList<Jlinux_Host>();
         Transaction tx = null;
-        Jlinux_Network network = null;
+        Jlinux_Host host = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            Query query = dbsession.createQuery("from Jlinux_Network where H_Host_name='"+H_Host_name+"'");
-            network = (Jlinux_Network)query.uniqueResult();
+           Query query = dbsession.createQuery(" from " + TAB_NAME + " where UserId = " + User.getUserId()  );
+           list = query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -82,7 +82,7 @@ public class Host_data {
         } finally {
 //            dbsession.close();
         }
-        return network;
+        return list;
      }
                
 }

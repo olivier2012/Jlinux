@@ -36,11 +36,11 @@ public class Jlinux_User {
 /*   the userid for the browser user access */
     
     @OneToMany(
-            mappedBy = "UserId",
+            mappedBy = "User",
             cascade = {CascadeType.PERSIST,  CascadeType.REMOVE },
             orphanRemoval = true 
     )
-//    @JoinColumn(name = "UserId")
+//    @JoinColumn(name = "User")
     Set<Jlinux_Host> hosts = new HashSet<>(); 
     
     public Jlinux_User(  String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
@@ -225,6 +225,11 @@ public class Jlinux_User {
 
     public void setEmail_confirm(Boolean Email_confirm) {
         this.Email_confirm = Email_confirm;
+    }
+
+    @Override
+    public String toString() {
+        return "Jlinux_User{" + "UserId=" + UserId + ", hosts=" + hosts + ", Host_IP=" + Host_IP + ", User_name=" + User_name + ", Fname=" + Fname + ", Mname=" + Mname + ", Lname=" + Lname + ", Passwd=" + Passwd + ", Usertype=" + Usertype + ", Cdate=" + Cdate + ", Adate=" + Adate + ", Email=" + Email + ", Email_confirm=" + Email_confirm + '}';
     }
    
 }
