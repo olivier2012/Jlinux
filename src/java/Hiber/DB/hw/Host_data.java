@@ -82,8 +82,8 @@ public class Host_data {
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-           Query query = dbsession.createQuery(" from " + TAB_NAME + " where UserId = " + User.getUserId()  );
-           list = query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+           Query query = dbsession.createQuery(" from " + TAB_NAME + " where J_UserId = " + User.getUserId()  );
+           list = query.list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

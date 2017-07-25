@@ -31,6 +31,7 @@
          <table> 
              <thead>
                  <tr>
+                     <th>USER   ID   </th>
                      <th>Model_name</th>
                      <th>Model</th>
                      <th>Cpu_family</th>
@@ -46,6 +47,7 @@
                         for (Jlinux_CPU n : list) {
                     %>
                  <tr>
+                     <td><%=n.getJ_UserId() %></td>
                      <td><%=n.getModel_name() %></td>
                      <td><%=n.getModel()%></td>
                      <td><%=n.getCpu_family()%></td>

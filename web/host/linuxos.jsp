@@ -38,6 +38,7 @@
          <table> 
              <thead>
                  <tr>
+                     <th>USER   ID   </th>
                      <td>Kernel_name</td>
                      <td>Node_name</td>
                      <td>Kernel_version</td>
@@ -52,6 +53,7 @@
                      for (Jlinux_LinuxOs n : list) {
                  %>
                  <tr>
+                     <td><%=n.getJ_UserId() %></td>
                      <td><%=n.getKernel_name()    %></td>
                      <td><%=n.getNode_name() %></td>
                      <td><%=n.getKernel_name() %></td>

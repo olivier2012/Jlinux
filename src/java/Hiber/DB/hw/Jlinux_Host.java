@@ -38,14 +38,14 @@ public abstract class Jlinux_Host {
     public Jlinux_Host(){};
     
     @Column(name="J_UserId")
-    private long UserId;
+    private long J_UserId;
 
-    public long getUserId() {
-        return UserId;
+    public long getJ_UserId() {
+        return J_UserId;
     }
 
-    public void setUserId(Jlinux_User User) {
-        this.UserId = User.getUserId();
+    public void setJ_UserId(Jlinux_Host jhost) {
+        this.J_UserId = jhost.getUser().getUserId();
     }
     
     

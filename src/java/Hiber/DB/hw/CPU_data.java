@@ -79,7 +79,7 @@ public class CPU_data {
 //                (String) hm.get("apicid"),(String) hm.get("fpu"),(String) hm.get("fpu_exception"),(String) hm.get("cpuid_level"),(String) hm.get("wp"),(String) hm.get("power_management"),(String) hm.get("cpu_cores"),(String) hm.get("flags"),(String) hm.get("bogomips"),
 //                (String) hm.get("clflush_size"),(String) hm.get("cache_alignment"),(String) hm.get("address_size"),jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 //        
-        
+        cpu.setJ_UserId(jhost);
         cpu.setProcessor((String) hm.get("processor"));
         cpu.setVendor_id((String) hm.get("vendor_id"));
         cpu.setCpu_family((String) hm.get("cpu_family"));

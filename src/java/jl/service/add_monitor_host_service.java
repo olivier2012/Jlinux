@@ -62,7 +62,7 @@ public class add_monitor_host_service {
             boolean check_network = Network_function.check_network(jhost,maintmp,sFactory,jschsession);
             boolean check_cpu =  Cpu_function.check_cpu(jhost,maintmp,sFactory,jschsession);
             boolean check_hdisk = HDdisk_function.check_hdisk(jhost,maintmp,sFactory,jschsession);
-           /* boolean check_monitor = Monitor_function.check_monitor(jhost, maintmp, sFactory, jschsession);*/
+            boolean check_monitor = Monitor_function.check_monitor(jhost, maintmp, sFactory, jschsession);
             /* boolean check_accessory = Monitor_function.check_accessory(jhost, maintmp, sFactory, jschsession);*/
             if(check_linuxOs && check_network && check_cpu && check_hdisk /*&& check_monitor*/){
                 amhs_flag=true;

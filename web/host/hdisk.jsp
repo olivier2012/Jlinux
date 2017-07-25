@@ -31,6 +31,7 @@
          <table> 
              <thead>
                  <tr>
+                     <th>USER   ID   </th>
                      <th>Hddisk_name</th>
                      <th>Majmin</th>
                      <th>Mounted_on</th>
@@ -46,6 +47,7 @@
                         for (Jlinux_HDisk n : list) {
                     %>
                  <tr>
+                     <td><%=n.getJ_UserId() %></td>
                      <td><%=n.getHddisk_name() %></td>
                      <td><%=n.getMajmin()%></td>
                      <td><%=n.getMounted_on()%></td>

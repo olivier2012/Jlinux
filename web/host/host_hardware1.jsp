@@ -1,6 +1,4 @@
-
 <%@page import="java.util.ArrayList"%>
-<%@page import="Hiber.DB.Sys.*"%>
 <%@page import="Hiber.DB.hw.Jlinux_Host"%>
 <%@ page errorPage="error.jsp" %>  
 <%@page import="jl.service.LoginService"%>
@@ -30,25 +28,35 @@
              <a class="btn btn-info" href="logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
              <br/>
              <%
-               Object User_name = session.getAttribute("User_name");    
-              if(User_name!=null || User_name.toString()!=null ||User_name.toString()!=""){
-              Object isLoggedIn = session.getAttribute("isLoggedIn");
-              /* 有两处 冗余代码，不知道为什么 在 netbeans 中一直是 “is not a known variable in the current context netbeans” */
-              if (isLoggedIn != null)
-              {
-                  String isLoggedIn1 = isLoggedIn.toString();
-              }
-              Object Passwd = session.getAttribute("Passwd");
-             list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
-               if (list.size()==0){
-//                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
+              
+                     list  = (List<Jlinux_Host>) session.getAttribute("list_jhost");
+               if (list==null){
+               try{
                    list = Host_data.selectByUserid(user);
+                  }catch(Exception e) {
+                     request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
+                  }
+//                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
+//                   list = Host_data.selectByH_Host_name("192.168.2.106");
                }
              %> 
-             
+                          <!--<hr>-->
+ <svg id="i-ellipsis-horizontal" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <circle cx="7" cy="16" r="2" />
+    <circle cx="16" cy="16" r="2" />
+    <circle cx="25" cy="16" r="2" />
+</svg>
+
+             <div class = "svg-container" id="desktop">
+     <svg id="i-desktop" viewBox="0 0 32 32" width="32" height="32" fill="red" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M10 29 C10 29 10 24 16 24 22 24 22 29 22 29 L10 29 Z M2 6 L2 23 30 23 30 6 2 6 Z" />
+                 </svg>
+                 
+             <!--</div>--> 
+             <!--<hr/>-->
          <table> 
              <thead>
-                  <tr>
+                 <tr>
                      <td>User Id  </td>
                      <td>Host Id</td>
                      <td>H_Host_name</td>
@@ -77,7 +85,7 @@
                  </tr>
                  <%}%>
              <tbody>
-         </table>    
+         </table>           
          <br/>
      </div>
     </center>

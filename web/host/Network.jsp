@@ -31,13 +31,14 @@
          <table> 
              <thead>
                  <tr>
-                     <th>Net_cardId</th>
-                     <th>Ipv4</th>
-                     <th>Ipv6</th>
-                     <th>Tx</th>
-                     <th>Rx</th>   
-                     <th>Link_encap</th>  
-                     <th>MTU</th>  
+                     <th>USER   ID   </th>
+                     <th>Net   cardId  </th>
+                     <th>   Ipv  4   </th>
+                     <th>   Ipv  6   </th>
+                     <th>   Tx    </th>
+                     <th>   Rx   </th>   
+                     <th>   Link    encap    </th>  
+                     <th>  MTU   </th>  
                  </tr>
              </thead>
              <tbody>
@@ -46,6 +47,7 @@
                         for (Jlinux_Network n : list) {
                     %>
                  <tr>
+                     <td><%=n.getJ_UserId() %></td>
                      <td><%=n.getNet_cardId() %></td>
                      <td><%=n.getIpv4()%></td>
                      <td><%=n.getIpv6()%></td>

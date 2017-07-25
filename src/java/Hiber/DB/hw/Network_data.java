@@ -50,6 +50,7 @@ public class Network_data {
 
 //        Jlinux_Network network = new Jlinux_Network(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 //        network.setAccess_time(new Date());
+        network.setJ_UserId(jhost);
         network.setIpv4((String) hm.get("inet_addr"));
         network.setNet_cardId((String) hm.get("Iface"));
         network.setMemID((String) hm.get(""));
@@ -70,7 +71,7 @@ public class Network_data {
         network.setLink_encap((String) hm.get("link_encap"));
         jhost.getJnetwork().add(network);
        if (flag)
-           net_dbsession.update(network);
+           net_dbsession.saveOrUpdate(network);
         else{   
            net_dbsession.persist(network);
         }
