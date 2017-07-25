@@ -69,7 +69,7 @@ public class User_data {
      }
      
     public static void add(HashMap hm_User,SessionFactory sFactory){
-        log.debug("add the"+ Class.class.getName()+" cpu infomation to database ");
+        log.debug("add the"+ Class.class.getName()+" infomation to database ");
 //        SessionFactory add_sFactory = HibUtil.getSessionFactory();
         Session dbsession = sFactory.openSession();
         Transaction tr = dbsession.beginTransaction();
@@ -90,7 +90,7 @@ public class User_data {
         user.setAdate((Date) hm_User.get("Adate"));
         user.setEmail((String) hm_User.get("microcode"));
         if(flag){
-        dbsession.update(user);
+        dbsession.saveOrUpdate(user);
         }else{
         dbsession.persist(user);
         }

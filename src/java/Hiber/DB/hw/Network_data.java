@@ -40,17 +40,16 @@ public class Network_data {
         Transaction tr = net_dbsession.beginTransaction();
         boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,net_dbsession,tr); 
         Jlinux_Network network = new Jlinux_Network();
-            network.setH_Host_name(jhost.getH_Host_name());
+          /*  network.setH_Host_name(jhost.getH_Host_name());
             network.setUser(jhost.getUser());
             network.setH_User_name(jhost.getH_User_name());
             network.setH_Passwd(jhost.getH_Passwd());
             network.setAccess_time(jhost.getAccess_time());
             network.setCreated_time(jhost.getCreated_time());
-            network.setHost_UUID(jhost.getHost_UUID());
+            network.setHost_UUID(jhost.getHost_UUID());*/
 
 //        Jlinux_Network network = new Jlinux_Network(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
-        network.setAccess_time(new Date());
-
+//        network.setAccess_time(new Date());
         network.setIpv4((String) hm.get("inet_addr"));
         network.setNet_cardId((String) hm.get("Iface"));
         network.setMemID((String) hm.get(""));

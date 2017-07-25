@@ -66,13 +66,13 @@ public class CPU_data {
         Transaction tr = dbsession.beginTransaction();
         boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,dbsession,tr);
         Jlinux_CPU cpu = new Jlinux_CPU();
-            cpu.setH_Host_name(jhost.getH_Host_name());
+           /* cpu.setH_Host_name(jhost.getH_Host_name());
             cpu.setUser(jhost.getUser());
             cpu.setH_User_name(jhost.getH_User_name());
             cpu.setH_Passwd(jhost.getH_Passwd());
             cpu.setAccess_time(jhost.getAccess_time());
             cpu.setCreated_time(jhost.getCreated_time());
-            cpu.setHost_UUID(jhost.getHost_UUID());
+            cpu.setHost_UUID(jhost.getHost_UUID()); */
 //        
 //        Jlinux_CPU cpu = new Jlinux_CPU((String) hm.get("processor"),(String) hm.get("vendor_id"),(String) hm.get("cpu_family"),(String) hm.get("model"),(String) hm.get("model_name"),(String) hm.get("stepping"),(String) hm.get("microcode"),(String) hm.get("cpu_mhz"),
 //                (String) hm.get("cache_size"),(String) hm.get("physical_id"),(String) hm.get("siblings"),(String) hm.get("core_id"),
@@ -110,7 +110,7 @@ public class CPU_data {
         cpu.setAddress_size((String)hm.get("address_sizes")); 
         jhost.getJcpu().add(cpu);
         if (flag)
-           dbsession.update(cpu);
+           dbsession.saveOrUpdate(cpu);
         else{   
            dbsession.persist(cpu);
         }

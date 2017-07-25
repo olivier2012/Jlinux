@@ -28,8 +28,13 @@
              <%
                List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
                if (list==null){
+               try{
+                   list = Host_data.selectByUserid(user);
+                  }catch(Exception e) {
+                     request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
+                  }
 //                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
-                   list = Host_data.selectByH_Host_name("192.168.2.106");
+//                   list = Host_data.selectByH_Host_name("192.168.2.106");
                }
              %> 
                           <!--<hr>-->
@@ -65,7 +70,7 @@
                      for (Jlinux_Host n : list) {
                  %>
                  <tr>
-                     <td><%=n.getUserId() %></td>
+                     <td><%=n.getUser().getUserId() %></td>
                      <td><%=n.getHostId() %></td>
                      <td><%=n.getH_Host_name()%></td>
                      <td><%=n.getH_User_name() %></td>

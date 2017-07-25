@@ -32,7 +32,7 @@ import org.hibernate.SessionFactory;
 public class add_monitor_host_service {
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(add_monitor_host_service.class.getName());
     public boolean checkallofhw(String H_Host_name, String H_User_name, String H_Passwd,Jlinux_User web_login_user){
-        Jlinux_User UserId = web_login_user;
+        Jlinux_User User = web_login_user;
         boolean amhs_flag = false;
         SessionFactory sFactory = null;
         Session jschsession = null;
@@ -40,7 +40,7 @@ public class add_monitor_host_service {
         log.info(H_Host_name +"  "+ H_User_name+"  "+ H_Passwd);
         try {     
             JSch jsch = new JSch();
-            jhost = host_function.check_host(H_Host_name ,H_User_name,H_Passwd,UserId);
+            jhost = host_function.check_host(H_Host_name ,H_User_name,H_Passwd,User);
             /*如果是新的ip 可能 会遇到 UnknownHostKey ， 需要处理 */
             jsch.setKnownHosts("C:\\Users\\olivier-h\\.ssh\\known_hosts");
             jschsession = jsch.getSession(jhost.getH_User_name(), jhost.getH_Host_name(), jhost.getH_Host_port());
@@ -62,9 +62,9 @@ public class add_monitor_host_service {
             boolean check_network = Network_function.check_network(jhost,maintmp,sFactory,jschsession);
             boolean check_cpu =  Cpu_function.check_cpu(jhost,maintmp,sFactory,jschsession);
             boolean check_hdisk = HDdisk_function.check_hdisk(jhost,maintmp,sFactory,jschsession);
-            boolean check_monitor = Monitor_function.check_monitor(jhost, maintmp, sFactory, jschsession);
+           /* boolean check_monitor = Monitor_function.check_monitor(jhost, maintmp, sFactory, jschsession);*/
             /* boolean check_accessory = Monitor_function.check_accessory(jhost, maintmp, sFactory, jschsession);*/
-            if(check_linuxOs && check_network && check_cpu && check_hdisk && check_monitor){
+            if(check_linuxOs && check_network && check_cpu && check_hdisk /*&& check_monitor*/){
                 amhs_flag=true;
             }
 

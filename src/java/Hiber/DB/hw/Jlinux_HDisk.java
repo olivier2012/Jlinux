@@ -119,6 +119,17 @@ public class Jlinux_HDisk extends Jlinux_Host{
     
     @ManyToOne  
     private Jlinux_Host host;
+    
+    @Column(name="J_UserId")
+    private long J_UserId;
+
+    public long getJ_UserId() {
+        return J_UserId;
+    }
+
+    public void setJ_UserId(Jlinux_Host  host) {
+        this.J_UserId = host.getUser().getUserId();
+    }
 
     public String getHdsize() {
         return hdsize;
@@ -134,43 +145,6 @@ public class Jlinux_HDisk extends Jlinux_Host{
 
     public void setHost(Jlinux_Host host) {
         this.host = host;
-    }
-
-    public Set<Jlinux_HDisk> getHardDisks() {
-        return hardDisks;
-    }
-
-    public void setHardDisks(Set<Jlinux_HDisk> hardDisks) {
-        this.hardDisks = hardDisks;
-    }
-
-    public Set<Jlinux_CPU> getJcpu() {
-        return jcpu;
-    }
-
-    public void setJcpu(Set<Jlinux_CPU> jcpu) {
-        this.jcpu = jcpu;
-    }
-
-    public Set<Jlinux_Monitor> getJmonitor() {
-        return jmonitor;
-    }
-
-    public void setJmonitor(Set<Jlinux_Monitor> jmonitor) {
-        this.jmonitor = jmonitor;
-    }
-
-    public Set<Jlinux_Network> getJnetwork() {
-        return jnetwork;
-    }
-
-    public void setJnetwork(Set<Jlinux_Network> jnetwork) {
-        this.jnetwork = jnetwork;
-    }
-
-    @Override
-    public String toString() {
-        return "Jlinux_HDisk{" + "Hddisk_name=" + Hddisk_name + ", Majmin=" + Majmin + ", Mounted_on=" + Mounted_on + ", partition_type=" + partition_type + ", hdsize=" + hdsize + ", RO=" + RO + ", RM=" + RM + ", host=" + host + '}';
     }
     
     

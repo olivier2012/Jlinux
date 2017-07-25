@@ -58,7 +58,7 @@ public class LinuxOs_data {
         if (flag)
         {
 //           dbsession.update(jhost);
-           dbsession.update(los);
+           dbsession.saveOrUpdate(los);
         }
            else
         {   

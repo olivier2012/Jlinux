@@ -63,7 +63,18 @@ public class Host_data {
      public static void deleteByH_Host_name(String H_Host_name,SessionFactory sFactory){
      
      }
-      
+     
+     public static List<Jlinux_Host> selectByUserid(Jlinux_User User){
+        Session dbsession1 = null;
+        if(dbsession1==null){
+            SessionFactory sFactory = HibUtil.getSessionFactory();
+            dbsession1 = sFactory.openSession();
+        }
+        List tmp_host = selectByUserid( User, dbsession1);
+        dbsession1.close();
+        return tmp_host;
+     }
+     
      public static List<Jlinux_Host> selectByUserid(Jlinux_User User,Session dbsession){  
          List<Jlinux_Host> list = new ArrayList<Jlinux_Host>();
         Transaction tx = null;

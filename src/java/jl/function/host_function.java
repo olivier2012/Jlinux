@@ -24,12 +24,12 @@ import org.hibernate.Transaction;
  */
 public class host_function {
 
-    public static Jlinux_Host check_host(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User UserId) {
+    public static Jlinux_Host check_host(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
         boolean run_flag = false;
         Jlinux_Host jhost = null;
 
         String Host_UUID = GenerateUUID().toString();
-        jhost = new Jlinux_Host(H_Host_name, UserId, H_User_name, H_Passwd, new Date(), new Date(), Host_UUID) {
+        jhost = new Jlinux_Host(H_Host_name, User, H_User_name, H_Passwd, new Date(), new Date(), Host_UUID) {
         };
         return jhost;
     }
@@ -58,13 +58,13 @@ public class host_function {
         return jhost;
     }
 
-    public static List<Jlinux_Host> getHostByUser_ID(long User_ID, org.hibernate.Session dbsession) {
+    public static List<Jlinux_Host> getHostByUser_ID(Jlinux_User User, org.hibernate.Session dbsession) {
         Transaction tx = null;
        List<Jlinux_Host> list =new ArrayList<Jlinux_Host>();;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            list = dbsession.createQuery("from Jlinux_Host where UserId=" + User_ID).list(); 
+            list = dbsession.createQuery("from Jlinux_Host ").list(); 
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

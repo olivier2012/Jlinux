@@ -36,13 +36,13 @@ public class Monitor_data {
         Transaction tr = net_dbsession.beginTransaction();
         boolean flag = LinuxOs_data.Is_selectbyHostname( jhost,sFactory,net_dbsession,tr);
         Jlinux_Monitor monitor = new Jlinux_Monitor();
-            monitor.setH_Host_name(jhost.getH_Host_name());
+          /*  monitor.setH_Host_name(jhost.getH_Host_name());
             monitor.setUser(jhost.getUser());
             monitor.setH_User_name(jhost.getH_User_name());
             monitor.setH_Passwd(jhost.getH_Passwd());
             monitor.setAccess_time(jhost.getAccess_time());
             monitor.setCreated_time(jhost.getCreated_time());
-            monitor.setHost_UUID(jhost.getHost_UUID());
+            monitor.setHost_UUID(jhost.getHost_UUID());*/
 
 //        Jlinux_Monitor monitor = new Jlinux_Monitor(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 
@@ -61,7 +61,7 @@ public class Monitor_data {
         monitor.setResources((String) hm.get("resources"));
         jhost.getJmonitor().add(monitor);
         if (flag)
-          net_dbsession.update(monitor);
+          net_dbsession.saveOrUpdate(monitor);
         else{   
           net_dbsession.persist(monitor);
         }

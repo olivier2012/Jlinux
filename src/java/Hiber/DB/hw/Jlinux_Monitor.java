@@ -51,7 +51,7 @@ public class Jlinux_Monitor extends Jlinux_Host{
     private String capabilities;
     
     
-        @Column(name = "configuration", length = 30)
+    @Column(name = "configuration", length = 30)
     private String configuration;
     
     @Column(name = "resources", length = 100)
@@ -153,6 +153,18 @@ public class Jlinux_Monitor extends Jlinux_Host{
     }
     @ManyToOne  
     private Jlinux_Host host;
+    
+        
+    @Column(name="J_UserId")
+    private long J_UserId;
+
+    public long getJ_UserId() {
+        return J_UserId;
+    }
+
+    public void setJ_UserId(Jlinux_Host  host) {
+        this.J_UserId = host.getUser().getUserId();
+    }
 
     @Override
     public String toString() {

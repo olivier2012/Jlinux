@@ -25,6 +25,17 @@ public class Jlinux_LinuxOs extends Jlinux_Host{
     @ManyToOne
      private Jlinux_Host  host;
     
+    @Column(name="J_UserId")
+    private long J_UserId;
+
+    public long getJ_UserId() {
+        return J_UserId;
+    }
+
+    public void setJ_UserId(Jlinux_Host  host) {
+        this.J_UserId = host.getUser().getUserId();
+    }
+    
     @Column(name="Kernel_name",length=40)
     private String Kernel_name;
     
@@ -105,8 +116,8 @@ public class Jlinux_LinuxOs extends Jlinux_Host{
     public Jlinux_LinuxOs() {
     }
 
-    public Jlinux_LinuxOs( String H_Host_name, Jlinux_User UserId, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
-        super( H_Host_name, UserId, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
+    public Jlinux_LinuxOs( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd, Date Access_time, Date Created_time, String Host_UUID) {
+        super( H_Host_name, User, H_User_name, H_Passwd, Access_time, Created_time, Host_UUID);
     }
 
 }

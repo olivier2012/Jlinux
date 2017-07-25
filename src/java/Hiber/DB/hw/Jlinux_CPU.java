@@ -332,6 +332,17 @@ public class Jlinux_CPU extends Jlinux_Host {
 
    @ManyToOne  
     private Jlinux_Host host;
+   
+    @Column(name="J_UserId")
+    private long J_UserId;
+
+    public long getJ_UserId() {
+        return J_UserId;
+    }
+
+    public void setJ_UserId(Jlinux_Host  host) {
+        this.J_UserId = host.getUser().getUserId();
+    }
 
     @Override
     public String toString() {
