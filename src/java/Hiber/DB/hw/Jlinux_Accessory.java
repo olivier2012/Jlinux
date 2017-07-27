@@ -17,9 +17,10 @@ import javax.persistence.Table;
 /**
  *
  * @author olivier-h
+ * only this table extends Jlinux_H_WithTime  , pay attention to  
  */
 @Entity
-public class Jlinux_Accessory extends Jlinux_Host {
+public class Jlinux_Accessory extends Jlinux_H_WithTime {
     
     @Column(name="keyboard_id",length=20)
     private String keyboard_id;

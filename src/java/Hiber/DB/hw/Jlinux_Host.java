@@ -44,7 +44,7 @@ public abstract class Jlinux_Host {
         return J_UserId;
     }
 
-    public void setJ_UserId(Jlinux_Host jhost) {
+    public void setJ_UserId(Jlinux_H_WithTime jhost) {
         this.J_UserId = jhost.getUser().getUserId();
     }
     
@@ -64,8 +64,7 @@ public abstract class Jlinux_Host {
     }
     
     
-    @ManyToOne  
-    private Jlinux_User User;
+
     
     /* H_User_name is login the linux node use the username and password */
     @Column(name="H_User_name", length = 120)
@@ -194,17 +193,8 @@ public abstract class Jlinux_Host {
         this.jnetwork = jnetwork;
     }
 
-    public Jlinux_User getUser() {
-        return User;
-    }
-
-    public void setUser(Jlinux_User User) {
-        this.User = User;
-    }
-
-    public Jlinux_Host( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
+    public Jlinux_Host( String H_Host_name,  String H_User_name, String H_Passwd) {
         this.H_Host_name = H_Host_name;
-        this.User = User;
         this.H_User_name = H_User_name;
         this.H_Passwd = H_Passwd;
     }

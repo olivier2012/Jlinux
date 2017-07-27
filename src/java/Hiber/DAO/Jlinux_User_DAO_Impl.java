@@ -4,6 +4,7 @@ import Hiber.HibUtil;
 import static Hiber.HibUtil.getSessionFactory;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -67,8 +68,22 @@ public class Jlinux_User_DAO_Impl implements     Jlinux_User_DAO {
     
    @Override
     public  Jlinux_User getJlinux_UserName(String User_name){
+        Transaction tx = null;
+        Jlinux_User user = null;
         try{
-        Jlinux_User user = (Jlinux_User) dbsession.createCriteria(Jlinux_User.class).add(Restrictions.eq("User_name", User_name));
+            tx = dbsession.getTransaction();
+            tx.begin();
+            Query query = dbsession.createQuery("from Jlinux_User where User_name='"+User_name+"'");
+            user = (Jlinux_User)query.uniqueResult();
+            tx.commit();
+         return user;
+        }  // catch all exceptions if any, return null as a sign of failure 
+        catch(Exception e) {  return  null;  }
+    }
+    
+    public  Jlinux_User getJlinux_UserName(long UserId){
+        try{
+        Jlinux_User user = (Jlinux_User) dbsession.createQuery("from Jlinux_User where UserId = " + UserId );
          return user;
         }  // catch all exceptions if any, return null as a sign of failure 
         catch(Exception e) {  return  null;  }

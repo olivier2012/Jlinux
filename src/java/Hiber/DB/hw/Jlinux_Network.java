@@ -76,8 +76,8 @@ public class Jlinux_Network extends Jlinux_Host{
     public Jlinux_Network() {
     }
 
-    public Jlinux_Network( String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
-        super( H_Host_name, User, H_User_name, H_Passwd);
+    public Jlinux_Network( String H_Host_name, String H_User_name, String H_Passwd) {
+        super( H_Host_name, H_User_name, H_Passwd);
     }
 
 
@@ -227,7 +227,7 @@ public class Jlinux_Network extends Jlinux_Host{
         return J_UserId;
     }
 
-    public void setJ_UserId(Jlinux_Host  host) {
+    public void setJ_UserId(Jlinux_H_WithTime  host) {
         this.J_UserId = host.getUser().getUserId();
     }
 

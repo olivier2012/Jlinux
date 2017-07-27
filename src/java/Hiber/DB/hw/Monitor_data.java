@@ -46,7 +46,7 @@ public class Monitor_data {
 
 //        Jlinux_Monitor monitor = new Jlinux_Monitor(jhost.getH_Host_name(),jhost.getUserId(),jhost.getH_User_name(),jhost.getH_Passwd(),jhost.getAccess_time(),jhost.getCreated_time(),jhost.getHost_UUID());
 
-        monitor.setJ_UserId(jhost);
+//        monitor.setJ_UserId(jhost);
         monitor.setDescription((String) hm.get("description"));
         monitor.setProduct((String) hm.get("product"));
         monitor.setVendor((String) hm.get("vendor"));

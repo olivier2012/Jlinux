@@ -33,13 +33,13 @@ import org.hibernate.SessionFactory;
  */
 public class add_monitor_host_service {
     final static Logger log = org.apache.logging.log4j.LogManager.getLogger(add_monitor_host_service.class.getName());
-    public Jlinux_Host checkallofhw(String H_Host_name, String H_User_name, String H_Passwd,Jlinux_User web_login_user){
+    public Jlinux_H_WithTime checkallofhw(String H_Host_name, String H_User_name, String H_Passwd,Jlinux_User web_login_user){
         Jlinux_User User = web_login_user;
         boolean amhs_flag = false,check_jhost=false;
         SessionFactory sFactory = null;
         Session jschsession = null;
-        Jlinux_Host jhost=null;
-        List<Jlinux_Host> list_host = new ArrayList<Jlinux_Host>() ; 
+        Jlinux_H_WithTime jhost=null;
+        List<Jlinux_H_WithTime> list_host = new ArrayList<Jlinux_H_WithTime>() ; 
         log.info(H_Host_name +"  "+ H_User_name+"  "+ H_Passwd);
         try {     
             JSch jsch = new JSch();

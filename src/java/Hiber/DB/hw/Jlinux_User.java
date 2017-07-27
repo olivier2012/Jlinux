@@ -41,7 +41,7 @@ public class Jlinux_User {
             orphanRemoval = true 
     )
 //    @JoinColumn(name = "User")
-    Set<Jlinux_Host> hosts = new HashSet<>(); 
+    Set<Jlinux_H_WithTime> hosts = new HashSet<>(); 
     
     public Jlinux_User(  String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
         
@@ -199,7 +199,7 @@ public class Jlinux_User {
         this.Cdate=date;
     }
      
-    public Jlinux_User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd ,Date date,Set<Jlinux_Host> hosts) {
+    public Jlinux_User(String Fname, String Mname, String Lname, String Email, String User_name, String Passwd ,Date date,Set<Jlinux_H_WithTime> hosts) {
         this.Fname = Fname;
         this.Mname = Mname;
         this.Lname = Lname;
@@ -211,11 +211,11 @@ public class Jlinux_User {
         this.hosts=hosts;
     }
 
-    public Set<Jlinux_Host> getHosts() {
+    public Set<Jlinux_H_WithTime> getHosts() {
         return hosts;
     }
 
-    public void setHosts(Set<Jlinux_Host> hosts) {
+    public void setHosts(Set<Jlinux_H_WithTime> hosts) {
         this.hosts = hosts;
     }
 

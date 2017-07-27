@@ -26,11 +26,11 @@
              <a class="btn btn-info" href="logout.jsp">Logout</a> <a class="btn btn-info" href="add_monitor_host.jsp">Add the New host</a> <a class="btn btn-info" href="../logout.jsp">Update the host information </a>
              <br/>
              <%
-               List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_jhost");
+               List<Jlinux_H_WithTime> list = (List<Jlinux_H_WithTime>) session.getAttribute("list_jhost");
                if (list==null){
 //                   request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
                   try{
-                   list = Host_data.selectByUserid(user);
+                   list = Host_withtime_data.selectByUserid(user);
                   }catch(Exception e) {
                      request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
                   }
@@ -53,7 +53,7 @@
              </thead>
              <tbody>
                  <%  
-                     for (Jlinux_Host n : list) {
+                     for (Jlinux_H_WithTime n : list) {
                  %>
                  <tr>
                      <td><%=n.getUser().getUserId() %></td>

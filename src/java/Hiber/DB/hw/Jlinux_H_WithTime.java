@@ -23,6 +23,7 @@ import javax.persistence.Table;
 /**
  *
  * @author olivier-h
+ * 加这个 entity 是为了 让 host 可以 不是 abstract 类，可以 实例化 
  */
 @Entity
 public  class Jlinux_H_WithTime extends Jlinux_Host {
@@ -38,6 +39,17 @@ public  class Jlinux_H_WithTime extends Jlinux_Host {
     
     @Column(name="Host_UUID")
     private String Host_UUID;
+    
+    @ManyToOne  
+    private Jlinux_User User;
+    
+    public Jlinux_User getUser() {
+        return User;
+    }
+
+    public void setUser(Jlinux_User User) {
+        this.User = User;
+    }
 
     public String getActive() {
         return Active;
@@ -115,20 +127,22 @@ public  class Jlinux_H_WithTime extends Jlinux_Host {
     }
 
     public Jlinux_H_WithTime(String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
-        super(H_Host_name, User, H_User_name, H_Passwd);
+        super(H_Host_name, H_User_name, H_Passwd);
     }
 
     public Jlinux_H_WithTime(Date Created_time, Date Access_time, String Host_UUID) {
         this.Created_time = Created_time;
         this.Access_time = Access_time;
         this.Host_UUID = Host_UUID;
+        this.User = User;
     }
 
     public Jlinux_H_WithTime(Date Created_time, Date Access_time, String Host_UUID, String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
-        super(H_Host_name, User, H_User_name, H_Passwd);
+        super(H_Host_name,  H_User_name, H_Passwd);
         this.Created_time = Created_time;
         this.Access_time = Access_time;
         this.Host_UUID = Host_UUID;
+        this.User = User;
     }
         
     

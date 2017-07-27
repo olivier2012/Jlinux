@@ -100,8 +100,8 @@ public class Jlinux_CPU extends Jlinux_Host {
     public Jlinux_CPU(){};
     
 
-    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size,  String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
-        super( H_Host_name, User, H_User_name, H_Passwd);
+    public Jlinux_CPU( String processor, String vendor_id, String cpu_family, String model, String model_name, String stepping, String microcode, String cpu_mhz, String cache_size, String physical_id, String siblings, String core_id, String apicid, String initial_apicid, String fpu, String fpu_exception, String cpuid_level, String wp, String power_management, String cpu_cores, String flags, String bogomips, String clflush_size, String cache_alignment, String address_size,  String H_Host_name,  String H_User_name, String H_Passwd) {
+        super( H_Host_name,  H_User_name, H_Passwd);
         this.processor = processor;
         this.vendor_id = vendor_id;
         this.cpu_family = cpu_family;
@@ -340,7 +340,7 @@ public class Jlinux_CPU extends Jlinux_Host {
         return J_UserId;
     }
 
-    public void setJ_UserId(Jlinux_Host  host) {
+    public void setJ_UserId(Jlinux_H_WithTime  host) {
         this.J_UserId = host.getUser().getUserId();
     }
 

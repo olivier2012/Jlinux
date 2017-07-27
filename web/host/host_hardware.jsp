@@ -26,10 +26,10 @@
             %>     
             <b>Welcome <%= user.getFname() + " " + user.getLname() + "------ UserID: " + user.getUserId()%></b>  
                          <%
-            List<Jlinux_Host> list = (List<Jlinux_Host>) session.getAttribute("list_host");
+            List<Jlinux_H_WithTime> list = (List<Jlinux_H_WithTime>) session.getAttribute("list_host");
                if (list==null){
                    request.getRequestDispatcher("add_monitor_host.jsp").forward(request, response);
-                   list = Host_data.selectByUserid(user);
+                   list = Host_withtime_data.selectByUserid(user);
                }
              %>
              
@@ -49,7 +49,7 @@
              </thead>
              <tbody>
                  <%  
-                     for (Jlinux_Host n : list) {
+                     for (Jlinux_H_WithTime n : list) {
                  %>
                  <tr>
                      <td><%=n.getUser().getUserId() %></td>

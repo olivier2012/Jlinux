@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
                 boolean result = loginService.authenticateUser(User_name, Passwd, dbsession);
                 if (result == true) {
                 Jlinux_User user = loginService.getUserByUserId(User_name, dbsession);
-                List<Jlinux_Host> list_jhost =   Host_data.selectByUserid(user);
+                List<Jlinux_H_WithTime> list_jhost =   Host_withtime_data.selectByUserid(user);
                 dbsession.close();
                     isLoggedIn="1";
                     s_session.setAttribute("user", user);

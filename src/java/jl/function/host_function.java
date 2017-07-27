@@ -5,9 +5,9 @@
  */
 package jl.function;
 
-import Hiber.DB.hw.Host_data;
+import Hiber.DB.hw.Host_withtime_data;
 import Hiber.DB.hw.Jlinux_H_WithTime;
-import Hiber.DB.hw.Jlinux_Host;
+import Hiber.DB.hw.Jlinux_H_WithTime;
 import Hiber.DB.hw.Jlinux_User;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
@@ -27,7 +27,7 @@ import org.hibernate.Transaction;
 public class host_function {
 
     
-    public static Jlinux_Host Add(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
+    public static Jlinux_H_WithTime Add(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
         String Host_UUID = GenerateUUID().toString();
         Jlinux_H_WithTime jhost= new Jlinux_H_WithTime();
         jhost.setH_Host_name(H_Host_name);
@@ -44,8 +44,8 @@ public class host_function {
     }
     public static boolean check_host(String H_Host_name, String H_User_name, String H_Passwd, Jlinux_User User) {
         boolean run_flag = false;
-        List <Jlinux_Host> list_temp = Host_data.selectByUserid(User);
-        for(Jlinux_Host tmp_host: list_temp){
+        List <Jlinux_H_WithTime> list_temp = Host_withtime_data.selectByUserid(User);
+        for(Jlinux_H_WithTime tmp_host: list_temp){
            if(tmp_host.getH_Host_name()==H_Host_name)
                run_flag=true;
         }
@@ -59,14 +59,14 @@ public class host_function {
         return UUID.randomUUID();
     }
 
-    public static Jlinux_Host getHostByH_Host_name(String H_Host_name, org.hibernate.Session dbsession) {
+    public static Jlinux_H_WithTime getHostByH_Host_name(String H_Host_name, org.hibernate.Session dbsession) {
         Transaction tx = null;
-        Jlinux_Host jhost = null;
+        Jlinux_H_WithTime jhost = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            Query query = dbsession.createQuery("from Jlinux_Host where H_Host_name='" + H_Host_name + "'");
-            jhost = (Jlinux_Host) query.uniqueResult();
+            Query query = dbsession.createQuery("from Jlinux_H_WithTime where H_Host_name='" + H_Host_name + "'");
+            jhost = (Jlinux_H_WithTime) query.uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -77,13 +77,13 @@ public class host_function {
         return jhost;
     }
 
-    public static List<Jlinux_Host> getHostByUser_ID(Jlinux_User User, org.hibernate.Session dbsession) {
+    public static List<Jlinux_H_WithTime> getHostByUser_ID(Jlinux_User User, org.hibernate.Session dbsession) {
         Transaction tx = null;
-       List<Jlinux_Host> list =new ArrayList<Jlinux_Host>();;
+       List<Jlinux_H_WithTime> list =new ArrayList<Jlinux_H_WithTime>();;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
-            list = dbsession.createQuery("from Jlinux_Host ").list(); 
+            list = dbsession.createQuery("from Jlinux_H_WithTime ").list(); 
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

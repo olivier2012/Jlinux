@@ -46,7 +46,7 @@ public class LinuxOs_data {
             los.setAccess_time(jhost.getAccess_time());
             los.setCreated_time(jhost.getCreated_time());
             los.setHost_UUID(jhost.getHost_UUID());*/
-            los.setJ_UserId(jhost);
+//            los.setJ_UserId(jhost);
             los.setKernel_name((String) hmtmp.get("Kernel_name"));
             los.setNode_name((String) hmtmp.get("Node_name"));
             los.setKernel_version((String) hmtmp.get("Kernel_version"));

@@ -24,12 +24,12 @@ import org.hibernate.Transaction;
  *
  * @author olivier-h
  */
-public class Host_data {
+public class Host_withtime_data {
     
-    final static String TAB_NAME = "Jlinux_Host";
-    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Host_data.class.getName());
+    final static String TAB_NAME = "Jlinux_H_WithTime";
+    final static Logger log = org.apache.logging.log4j.LogManager.getLogger(Host_withtime_data.class.getName());
     
-     public static List<Jlinux_Host> selectByH_Host_name(String H_Host_name){
+     public static List<Jlinux_H_WithTime> selectByH_Host_name(String H_Host_name){
         Session dbsession1 = null;
         if(dbsession1==null){
             SessionFactory sFactory = HibUtil.getSessionFactory();
@@ -40,10 +40,10 @@ public class Host_data {
         return  tmpnetwork_data;
      }
      
-     public static List<Jlinux_Host> selectByH_Host_name(String H_Host_name,Session dbsession){  
-         List<Jlinux_Host> list = new ArrayList<Jlinux_Host>();
+     public static List<Jlinux_H_WithTime> selectByH_Host_name(String H_Host_name,Session dbsession){  
+         List<Jlinux_H_WithTime> list = new ArrayList<Jlinux_H_WithTime>();
         Transaction tx = null;
-        Jlinux_Host host = null;
+        Jlinux_H_WithTime host = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();
@@ -65,7 +65,7 @@ public class Host_data {
      
      }
      
-     public static List<Jlinux_Host> selectByUserid(Jlinux_User User){
+     public static List<Jlinux_H_WithTime> selectByUserid(Jlinux_User User){
         Session dbsession1 = null;
         if(dbsession1==null){
             SessionFactory sFactory = HibUtil.getSessionFactory();
@@ -76,10 +76,10 @@ public class Host_data {
         return tmp_host;
      }
      
-     public static List<Jlinux_Host> selectByUserid(Jlinux_User User,Session dbsession){  
-         List<Jlinux_Host> list = new ArrayList<Jlinux_Host>();
+     public static List<Jlinux_H_WithTime> selectByUserid(Jlinux_User User,Session dbsession){  
+         List<Jlinux_H_WithTime> list = new ArrayList<Jlinux_H_WithTime>();
         Transaction tx = null;
-        Jlinux_Host host = null;
+        Jlinux_H_WithTime host = null;
         try {
             tx = dbsession.getTransaction();
             tx.begin();

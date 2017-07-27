@@ -41,15 +41,15 @@ public class add_monitor_host_servlet extends HttpServlet {
         s_session.setAttribute("H_User_name", H_User_name);
         s_session.setAttribute("H_Passwd", H_Passwd);
                 add_monitor_host_service amhs = new add_monitor_host_service(); 
-                Jlinux_Host jhost = amhs.checkallofhw(H_Host_name,H_User_name,H_Passwd,web_login_user);
+                Jlinux_H_WithTime jhost = (Jlinux_H_WithTime) amhs.checkallofhw(H_Host_name,H_User_name,H_Passwd,web_login_user);
 
                 if (jhost.getClass().getName().isEmpty()) {
                    response.sendRedirect("error.jsp");
                 } else {
                    s_session.setAttribute("jhost", jhost);
                    boolean add_host_flag=true;
-                   List<Jlinux_Host> list_host =  (List<Jlinux_Host>) s_session.getAttribute("list_host");
-                   for(Jlinux_Host tmp_host: list_host){
+                   List<Jlinux_H_WithTime> list_host =  (List<Jlinux_H_WithTime>) s_session.getAttribute("list_host");
+                   for(Jlinux_H_WithTime tmp_host: list_host){
                      if(tmp_host.getH_Host_name()==H_Host_name)
                          add_host_flag=false;
                       }
