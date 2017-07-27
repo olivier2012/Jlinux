@@ -229,7 +229,8 @@ public class Jlinux_User {
 
     @Override
     public String toString() {
-        return "Jlinux_User{" + "UserId=" + UserId + ", hosts=" + hosts + ", Host_IP=" + Host_IP + ", User_name=" + User_name + ", Fname=" + Fname + ", Mname=" + Mname + ", Lname=" + Lname + ", Passwd=" + Passwd + ", Usertype=" + Usertype + ", Cdate=" + Cdate + ", Adate=" + Adate + ", Email=" + Email + ", Email_confirm=" + Email_confirm + '}';
+        return "Jlinux_User{" + "UserId=" + UserId + " ,Host_IP=" + Host_IP + ", User_name=" + User_name + ", Fname=" + Fname + ", Mname=" + Mname + ", Lname=" + Lname + ", Passwd=" + Passwd + ", Usertype=" + Usertype + ", Cdate=" + Cdate + ", Adate=" + Adate + ", Email=" + Email + ", Email_confirm=" + Email_confirm + '}';
     }
+
    
 }

@@ -33,8 +33,6 @@ public class test_hiber_onetomany {
         
         System.out.println("=================inital jlinux_host_withtime ------ ");
         
-          host.setAccess_time(new Date());
-          host.setCreated_time(new Date());
           host.setActive("1");
           host.setH_Host_name("127.0.0.1");
           host.setH_Host_port(22);

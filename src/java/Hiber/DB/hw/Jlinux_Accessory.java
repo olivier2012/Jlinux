@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * only this table extends Jlinux_H_WithTime  , pay attention to  
  */
 @Entity
-public class Jlinux_Accessory extends Jlinux_H_WithTime {
+public class Jlinux_Accessory extends Jlinux_Host {
     
     @Column(name="keyboard_id",length=20)
     private String keyboard_id;
@@ -40,8 +40,8 @@ public class Jlinux_Accessory extends Jlinux_H_WithTime {
     public Jlinux_Accessory() {
     }
 
-    public Jlinux_Accessory(String H_Host_name, Jlinux_User User, String H_User_name, String H_Passwd) {
-        super(H_Host_name, User, H_User_name, H_Passwd);
+    public Jlinux_Accessory(String H_Host_name, String H_User_name, String H_Passwd) {
+        super(H_Host_name, H_User_name, H_Passwd);
     }
 
     @Override
