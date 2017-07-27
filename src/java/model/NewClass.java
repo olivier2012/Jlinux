@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Hiber.DB.hw;
+package model;
 
 /**
  *
  * @author olivier-h
  */
-public class Jlinux_H_WithTime {
+public class NewClass {
     
 }

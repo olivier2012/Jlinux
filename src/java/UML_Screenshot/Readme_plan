@@ -1,8 +1,13 @@
 
+8,仔细 思考了 hibernate 的 inheritence strage 的 join 模式 ，不是 很好的一个 解决 数据库 与 java对应的方法，如果以后 想 解耦 hibernate 与 数据库，用 jdbc
+来实际 存取 数据库。 
+   所以用  jlinux_user 和jlinux_host 及 jilinux_h_withtime三个 数据库 做 测试 这种模式 保留这个。 其他 数据库  与 这种模式 解耦， 采用 比较 loose的 模式 来用 级联去 存取 
+
+7, we create some tools (like : yaml json xml convert each other )
 6, login.jsp  has problem,  when the client login , second time , click the menu ,need login again  
 5, user can use the browser to check the linux host status 
  
-7, we create some tools (like : yaml json xml convert each other )
+
 
 have example finished : 
 1, import the ssh protocol to project . 
