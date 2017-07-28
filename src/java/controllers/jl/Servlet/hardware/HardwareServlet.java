@@ -1,6 +1,6 @@
 package controllers.jl.Servlet.hardware;
 
-import Hiber.DB.hw.*;
+import model.Hiber.DB.hw.*;
 import controllers.jl.service.LoginService;
 import java.io.IOException;
 import javax.servlet.ServletException;

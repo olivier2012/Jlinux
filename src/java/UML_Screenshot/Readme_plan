@@ -1,3 +1,7 @@
+9,
+
+poing A , before point A and point A , we use the hibernate inhen-strage-join  , conderside ,if the enterprise want to use jdbc and the database had been filled many data , 
+we should not use the inhen-strage-join . just use  the general model without inhen-strage-join
 
 8,仔细 思考了 hibernate 的 inheritence strage 的 join 模式 ，不是 很好的一个 解决 数据库 与 java对应的方法，如果以后 想 解耦 hibernate 与 数据库，用 jdbc
 来实际 存取 数据库。 

@@ -1,6 +1,6 @@
 package controllers.jl.Servlet.hardware;
 
-import Hiber.DB.hw.*;
+import model.Hiber.DB.hw.*;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;

@@ -5,7 +5,6 @@
  */
 package model.Hiber.DB.hw;
 
-import com.sun.istack.internal.NotNull;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
@@ -16,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *

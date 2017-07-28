@@ -2,7 +2,7 @@
 <%@page import="javax.servlet.http.HttpServletResponse"%>
 <%@page import="javax.servlet.http.HttpServletRequest"%>
 <%@page import="java.lang.String"%>
-<%@page import="Hiber.DB.hw.Jlinux_User"%>
+<%@page import="model.Hiber.DB.hw.Jlinux_User"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp" %>  

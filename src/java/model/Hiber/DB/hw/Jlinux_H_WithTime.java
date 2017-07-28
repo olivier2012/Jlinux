@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import model.CompositeKey.CompositeKey_U_H;
 import model.Hiber.DB.Sys.Jlinux_LinuxOs;
 
 /**
@@ -26,6 +28,7 @@ import model.Hiber.DB.Sys.Jlinux_LinuxOs;
  * 加这个 entity 是为了 让 host 可以 不是 abstract 类，可以 实例化 
  */
 @Entity
+@IdClass(CompositeKey_U_H.class)
 public  class Jlinux_H_WithTime extends Jlinux_Host {
 
     @Column(name="Active",length=5)

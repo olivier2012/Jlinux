@@ -8,7 +8,7 @@
     </session-config>
     <servlet>
         <servlet-name>HServlet</servlet-name>
-        <servlet-class>jl.Servlet.add_monitor_host_servlet</servlet-class>
+        <servlet-class>controllers.jl.Servlet.add_monitor_host_servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HServlet</servlet-name>
@@ -16,7 +16,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>jl.Servlet.LoginServlet</servlet-class>
+        <servlet-class>controllers.jl.Servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -24,7 +24,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>jl.Servlet.RegisterServlet</servlet-class>
+        <servlet-class>controllers.jl.Servlet.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>

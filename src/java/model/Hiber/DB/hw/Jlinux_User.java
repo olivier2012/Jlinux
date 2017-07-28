@@ -5,7 +5,6 @@
  */
 package model.Hiber.DB.hw;
 
-import com.sun.istack.internal.NotNull;
 import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -44,6 +44,11 @@ public class Jlinux_User {
 //    @JoinColumn(name = "User")
     Set<Jlinux_H_WithTime> hosts = new HashSet<>(); 
     
+     public Jlinux_User(String User_name){
+         this.User_name = User_name ;
+     };
+     
+    
     public Jlinux_User(  String Host_IP, String User_name, String Fname, String Mname, String Lname, String Passwd, String Usertype, Date Cdate, Date Adate, String Email, Boolean Email_confirm) {
         
         this.Host_IP = Host_IP;
@@ -67,7 +72,7 @@ public class Jlinux_User {
     private String Host_IP;
 
     @NotNull
-    @Column(name="User_name", length = 120)
+    @Column(name="User_name", length = 120 ,unique=true)
     private String User_name;
 
     public Jlinux_User() {
@@ -112,7 +117,7 @@ public class Jlinux_User {
     @Column(name="Access_Date")
     private Date Adate;
     
-   @Column(name = "Email", length = 80)
+   @Column(name = "Email", length = 80 , unique=true)
     private String Email;
    
    /*add the email confirm function  ,  when the email confirm is false , user can not login */
