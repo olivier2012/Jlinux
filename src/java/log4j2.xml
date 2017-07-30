@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Appenders>
+		<Console name="console-all" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+		</Console>
+		<File name="file-all" filename="Log/Jlinux.log">
+			<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n"/>
+		</File >
+		<RollingFile name="rolling-file-all" filename="Log/Jlinux_all.log"
+					filePattern ="Log/Jlinux-%d{dd-MM-yyyy}-%i.log.zip" >
+			<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+			<SizeBasedTriggeringPolicy size="1024MB"></SizeBasedTriggeringPolicy>			
+		</RollingFile>
+		<Async name="all">
+			<AppenderRef ref="file-all"/>
+			<AppenderRef ref="console-all" />
+			<AppenderRef ref="rolling-file-all" />
+		</Async>
+	</Appenders>
+	<Loggers>
+		<Logger additivity="false" level="INFO" name="Jlinux">
+			<appender-ref level="ALL" ref="console-all"/>
+			<appender-ref level="ALL" ref="file-all"/>
+			<appender-ref level="ALL" ref="rolling-file-all"/>
+		</Logger>
+		<Logger additivity="false" level="INFO" name="Jlinux">
+			<appender-ref level="ALL" ref="console-all"/>
+			<appender-ref level="ALL" ref="file-all"/>
+			<appender-ref level="ALL" ref="rolling-file-all"/>
+		</Logger>
+		<Root additivity="false" level="INFO">
+			<AppenderRef ref="console-all"/>
+			<AppenderRef ref="file-all"/>
+			<AppenderRef ref="rolling-file-all" />
+		</Root>
+	</Loggers>
+</Configuration>
+<!--<Configuration status="WARN">
+<Properties>
+<Property name="log-path">logs</Property>
+</Properties>
+<Appenders>
+<Console name="console-log" target="SYSTEM_OUT">
+<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+</Console>
+<RollingFile name="trace-log" fileName="${log-path}/jlinux_trace.log"
+filePattern="${log-path}/Jlinux-trace-%d{yyyy-MM-dd}.log">
+<PatternLayout>
+<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+</PatternLayout>
+<Policies>
+<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+</Policies>
+</RollingFile>
+<RollingFile name="error-log" fileName="${log-path}/jlinux_error.log"
+filePattern="${log-path}/Jlinux-error-%d{yyyy-MM-dd}.log">
+<PatternLayout>
+<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+</PatternLayout>
+<Policies>
+<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+</Policies>
+</RollingFile>
+</Appenders>
+<Loggers>
+<Logger name="com.Jlinux.log4j2" level="debug" additivity="false">
+<appender-ref ref="trace-log" level="debug"/>
+<appender-ref ref="error-log" level="error"/>
+<appender-ref ref="console-log" level="debug"/>
+</Logger>
+<Root level="info" additivity="false">
+<AppenderRef ref="console-log"/>
+</Root>
+</Loggers>
+</Configuration>  -->
